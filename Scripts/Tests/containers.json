@@ -1,0 +1,37 @@
+[
+  {
+    "name": "wfe-api-mongo",
+    "provider": "mongo",
+    "port": 47017,
+    "database": "workflow-engine"
+  },
+  {
+    "name": "wfe-api-mssql",
+    "provider": "mssql",
+    "user": "SA",
+    "password": "P@ssw0rd",
+    "port": 41433
+  },
+  {
+    "name": "wfe-api-mysql",
+    "provider": "mysql",
+    "user": "root",
+    "password": "P@ssw0rd",
+    "port": 43306,
+    "database": "workflow_engine"
+  },
+  {
+    "name": "wfe-api-oracle",
+    "provider": "oracle",
+    "password": "password",
+    "port": 41521,
+    "database": "WORKFLOW_ENGINE"
+  },
+  {
+    "name": "wfe-api-postgres",
+    "provider": "postgres",
+    "user": "postgres",
+    "password": "P@ssw0rd",
+    "port": 45432
+  }
+]

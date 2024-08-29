@@ -1,0 +1,4063 @@
+openapi: 3.0.1
+info:
+  title: Workflow Engine API
+  description: A Workflow Engine Web API
+  version: '1.0'
+paths:
+  /workflow-api/search/processes/approvals:
+    post:
+      tags:
+        - Approvals
+      summary: Search for process instance approval history entries
+      operationId: workflow-api.search.processes.approvals
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/approvals':
+    get:
+      tags:
+        - Approvals
+      summary: Get multiple process instance approval history entries with query
+      operationId: workflow-api.data.processes.approvals.get-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApprovalFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApprovalFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Approvals
+      summary: Delete multiple process instance approval history entries with filter
+      operationId: workflow-api.data.processes.approvals.delete-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApprovalFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/approvals/{id}':
+    get:
+      tags:
+        - Approvals
+      summary: Get one process instance approval history entry
+      operationId: workflow-api.data.processes.approvals.get
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Approvals
+      summary: Delete one process instance approval history entry
+      operationId: workflow-api.data.processes.approvals.delete
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /auth:
+    get:
+      tags:
+        - Auth
+      operationId: auth.login
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: password
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+    post:
+      tags:
+        - Auth
+      operationId: auth.register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - Auth
+      operationId: auth.delete
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /workflow-api/search/global-parameters:
+    post:
+      tags:
+        - GlobalParameters
+      summary: Search for global parameters
+      operationId: workflow-api.search.global-parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalParameterFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalParameterModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/data/global-parameters:
+    get:
+      tags:
+        - GlobalParameters
+      summary: Get multiple global parameters with query
+      operationId: workflow-api.data.global-parameters.get-collection
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/GlobalParameterFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/GlobalParameterFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalParameterModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - GlobalParameters
+      summary: Create multiple global parameters
+      operationId: workflow-api.data.global-parameters.create-collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/GlobalParameterCreateRequestWithTypeName'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - GlobalParameters
+      summary: Delete multiple global parameters with filter
+      operationId: workflow-api.data.global-parameters.delete-collection
+      parameters:
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/GlobalParameterFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/global-parameters/{type}/{name}':
+    get:
+      tags:
+        - GlobalParameters
+      summary: Get one global parameter
+      operationId: workflow-api.data.global-parameters.get
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalParameterModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - GlobalParameters
+      summary: Create one global parameter
+      operationId: workflow-api.data.global-parameters.create
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalParameterCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    put:
+      tags:
+        - GlobalParameters
+      summary: Update one global parameter
+      operationId: workflow-api.data.global-parameters.update
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlobalParameterUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - GlobalParameters
+      summary: Delete one global parameter
+      operationId: workflow-api.data.global-parameters.delete
+      parameters:
+        - name: type
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/processes/inbox-entries:
+    post:
+      tags:
+        - InboxEntries
+      summary: Search for process instance inbox entries
+      operationId: workflow-api.search.processes.inbox-entries
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboxEntryFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxEntryModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/inbox-entries':
+    get:
+      tags:
+        - InboxEntries
+      summary: Get multiple process instance inbox entries with query
+      operationId: workflow-api.data.processes.inbox-entries.get-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/InboxEntryFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/InboxEntryFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxEntryModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - InboxEntries
+      summary: Delete multiple process instance inbox entries with filter
+      operationId: workflow-api.data.processes.inbox-entries.delete-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/InboxEntryFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/inbox-entries/{identityId}':
+    get:
+      tags:
+        - InboxEntries
+      summary: Get one process instance inbox entry
+      operationId: workflow-api.data.processes.inbox-entries.get
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: identityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxEntryModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - InboxEntries
+      summary: Delete one process instance inbox entry
+      operationId: workflow-api.data.processes.inbox-entries.delete
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: identityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/processes/parameters:
+    post:
+      tags:
+        - Parameters
+      summary: Search for process instance parameters
+      operationId: workflow-api.search.processes.parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/parameters':
+    get:
+      tags:
+        - Parameters
+      summary: Get multiple process instance parameters with query
+      operationId: workflow-api.data.processes.parameters.get-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ParameterFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ParameterFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - Parameters
+      summary: Create multiple process instance parameters
+      operationId: workflow-api.data.processes.parameters.create-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ParameterCreateRequestWithName'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Parameters
+      summary: Delete multiple process instance parameters with filter
+      operationId: workflow-api.data.processes.parameters.delete-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ParameterFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/parameters/{name}':
+    get:
+      tags:
+        - Parameters
+      summary: Get one process instance parameter
+      operationId: workflow-api.data.processes.parameters.get
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - Parameters
+      summary: Create one process instance parameter
+      operationId: workflow-api.data.processes.parameters.create
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    put:
+      tags:
+        - Parameters
+      summary: Update one process instance parameter
+      operationId: workflow-api.data.processes.parameters.update
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParameterUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Parameters
+      summary: Delete one process instance parameter
+      operationId: workflow-api.data.processes.parameters.delete
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/processes:
+    post:
+      tags:
+        - Processes
+      summary: Search for process instances
+      operationId: workflow-api.search.processes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/data/processes:
+    get:
+      tags:
+        - Processes
+      summary: Get multiple process instances with query
+      operationId: workflow-api.data.processes.get-collection
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProcessFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProcessFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{id}':
+    get:
+      tags:
+        - Processes
+      summary: Get one process instance
+      operationId: workflow-api.data.processes.get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    put:
+      tags:
+        - Processes
+      summary: Update one process instance
+      operationId: workflow-api.data.processes.update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/runtimes:
+    post:
+      tags:
+        - Runtimes
+      summary: Search for runtime instances
+      operationId: workflow-api.search.runtimes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuntimeFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/data/runtimes:
+    get:
+      tags:
+        - Runtimes
+      summary: Get runtime instances with query
+      operationId: workflow-api.data.runtimes.get-collection
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/RuntimeFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/RuntimeFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/runtimes/{id}':
+    get:
+      tags:
+        - Runtimes
+      summary: Get one runtime instance
+      operationId: workflow-api.data.runtimes.get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/schemes:
+    post:
+      tags:
+        - Schemes
+      summary: Search for workflow schemes
+      operationId: workflow-api.search.schemes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemeFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemeModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/data/schemes:
+    get:
+      tags:
+        - Schemes
+      summary: Get multiple workflow schemes with query
+      operationId: workflow-api.data.schemes.get-collection
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SchemeFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SchemeFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemeModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - Schemes
+      summary: Create multiple workflow schemes
+      operationId: workflow-api.data.schemes.create-collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SchemeCreateRequestWithCode'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Schemes
+      summary: Delete multiple workflow schemes with filter
+      operationId: workflow-api.data.schemes.delete-collection
+      parameters:
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SchemeFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/schemes/{code}':
+    get:
+      tags:
+        - Schemes
+      summary: Get one workflow scheme
+      operationId: workflow-api.data.schemes.get
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemeModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - Schemes
+      summary: Create one workflow scheme
+      operationId: workflow-api.data.schemes.create
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemeCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    put:
+      tags:
+        - Schemes
+      summary: Update one workflow scheme
+      operationId: workflow-api.data.schemes.update
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemeUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Schemes
+      summary: Delete one workflow scheme
+      operationId: workflow-api.data.schemes.delete
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/statuses:
+    post:
+      tags:
+        - Statuses
+      summary: Search for process instance statuses
+      operationId: workflow-api.search.statuses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/data/statuses:
+    get:
+      tags:
+        - Statuses
+      summary: Get multiple process instance statuses with query
+      operationId: workflow-api.data.statuses.get-collection
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatusFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatusFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/statuses/{processId}':
+    get:
+      tags:
+        - Statuses
+      summary: Get one process instance status
+      operationId: workflow-api.data.statuses.get
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/processes/timers:
+    post:
+      tags:
+        - Timers
+      summary: Search for process instance timers
+      operationId: workflow-api.search.processes.timers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimerFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimerModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/timers':
+    get:
+      tags:
+        - Timers
+      summary: Get multiple process instance timers with query
+      operationId: workflow-api.data.processes.timers.get-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TimerFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TimerFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimerModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - Timers
+      summary: Create multiple process instance timers
+      operationId: workflow-api.data.processes.timers.create-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TimerCreateRequestWithName'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Timers
+      summary: Delete multiple process instance timers with filter
+      operationId: workflow-api.data.processes.timers.delete-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TimerFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/timers/{name}':
+    get:
+      tags:
+        - Timers
+      summary: Get one process instance timer
+      operationId: workflow-api.data.processes.timers.get
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimerModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    post:
+      tags:
+        - Timers
+      summary: Create one process instance timer
+      operationId: workflow-api.data.processes.timers.create
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimerCreateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    put:
+      tags:
+        - Timers
+      summary: Update one process instance timer
+      operationId: workflow-api.data.processes.timers.update
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TimerUpdateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Timers
+      summary: Delete one process instance timer
+      operationId: workflow-api.data.processes.timers.delete
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/search/processes/transitions:
+    post:
+      tags:
+        - Transitions
+      summary: Search for process instance transition history entries
+      operationId: workflow-api.search.processes.transitions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransitionFieldQuery'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitionModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/transitions':
+    get:
+      tags:
+        - Transitions
+      summary: Get multiple process instance transition history entries with query
+      operationId: workflow-api.data.processes.transitions.get-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TransitionFieldFilter'
+        - name: sorts
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TransitionFieldSort'
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: take
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitionModelGetCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Transitions
+      summary: Delete multiple process instance transition history entries with filter
+      operationId: workflow-api.data.processes.transitions.delete-collection
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: filters
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/TransitionFieldFilter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  '/workflow-api/data/processes/{processId}/transitions/{id}':
+    get:
+      tags:
+        - Transitions
+      summary: Get one process instance transition history entry
+      operationId: workflow-api.data.processes.transitions.get
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitionModel'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+    delete:
+      tags:
+        - Transitions
+      summary: Delete one process instance transition history entry
+      operationId: workflow-api.data.processes.transitions.delete
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+  /workflow-api/health:
+    get:
+      tags:
+        - WorkflowApi
+      summary: Check service health
+      operationId: workflow-api.health
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+        - Bearer: [ ]
+components:
+  schemas:
+    ActionReference:
+      type: object
+      properties:
+        actionName:
+          type: string
+          nullable: true
+        order:
+          type: integer
+          format: int32
+        actionParameter:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Activity:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        originalName:
+          type: string
+          nullable: true
+        originalSchemeCode:
+          type: string
+          nullable: true
+        lastTimeInlineName:
+          type: string
+          nullable: true
+        firstTimeInlineName:
+          type: string
+          nullable: true
+        wasInlined:
+          type: boolean
+        activityType:
+          type: string
+          nullable: true
+        schemeCode:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        isInitial:
+          type: boolean
+        isFinal:
+          type: boolean
+        isForSetState:
+          type: boolean
+        isAutoSchemeUpdate:
+          type: boolean
+        inlinedSchemeCode:
+          type: string
+          nullable: true
+        disablePersistState:
+          type: boolean
+        disablePersistTransitionHistory:
+          type: boolean
+        disablePersistParameters:
+          type: boolean
+        userComment:
+          type: string
+          nullable: true
+        haveImplementation:
+          type: boolean
+        havePreExecutionImplementation:
+          type: boolean
+        implementation:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionReference'
+          nullable: true
+        preExecutionImplementation:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionReference'
+          nullable: true
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
+          nullable: true
+        executionTimeout:
+          $ref: '#/components/schemas/ActivityTimeout'
+        idleTimeout:
+          $ref: '#/components/schemas/ActivityTimeout'
+        exceptionsHandlers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExceptionsHandler'
+          nullable: true
+        isState:
+          type: boolean
+        nestingLevel:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ActivityTimeout:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        timer:
+          type: string
+          nullable: true
+        nameForSet:
+          type: string
+          nullable: true
+        retryCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Actor:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        originalName:
+          type: string
+          nullable: true
+        originalSchemeCode:
+          type: string
+          nullable: true
+        wasInlined:
+          type: boolean
+        rule:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        isPredefined:
+          type: boolean
+      additionalProperties: false
+    Annotation:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        jsonValue:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ApprovalField:
+      enum:
+        - Id
+        - ProcessId
+        - IdentityId
+        - AllowedTo
+        - TransitionTime
+        - Sort
+        - InitialState
+        - DestinationState
+        - TriggerName
+        - Commentary
+      type: string
+    ApprovalFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/ApprovalField'
+        value:
+          nullable: true
+      additionalProperties: false
+    ApprovalFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    ApprovalFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/ApprovalField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    ApprovalModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        processId:
+          type: string
+          format: uuid
+        identityId:
+          type: string
+          nullable: true
+        allowedTo:
+          type: array
+          items:
+            type: string
+          nullable: true
+        transitionTime:
+          type: string
+          format: date-time
+          nullable: true
+        sort:
+          type: integer
+          format: int64
+        initialState:
+          type: string
+          nullable: true
+        destinationState:
+          type: string
+          nullable: true
+        triggerName:
+          type: string
+          nullable: true
+        commentary:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ApprovalModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApprovalModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    CodeAction:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        originalName:
+          type: string
+          nullable: true
+        originalSchemeCode:
+          type: string
+          nullable: true
+        wasInlined:
+          type: boolean
+        actionCode:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        isGlobal:
+          type: boolean
+        isAsync:
+          type: boolean
+        usings:
+          type: string
+          nullable: true
+        excludedUsings:
+          type: string
+          nullable: true
+        parameterDefinitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeActionParameter'
+          nullable: true
+      additionalProperties: false
+    CodeActionParameter:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        isRequired:
+          type: boolean
+        dropdownValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/DropdownValue'
+          nullable: true
+        defaultValue:
+          type: string
+          nullable: true
+        comment:
+          type: string
+          nullable: true
+        customName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Command:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        inputParameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParameterReference'
+          nullable: true
+        comment:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Comment:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        value:
+          type: string
+          nullable: true
+        boldText:
+          type: boolean
+        italicText:
+          type: boolean
+        underlineText:
+          type: boolean
+        lineThroughText:
+          type: boolean
+        fontSize:
+          type: integer
+          format: int32
+        rotation:
+          type: number
+          format: double
+        width:
+          type: number
+          format: double
+        alignment:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Condition:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        action:
+          $ref: '#/components/schemas/ActionReference'
+        expression:
+          type: string
+          nullable: true
+        resultOnPreExecution:
+          type: boolean
+          nullable: true
+        conditionInversion:
+          type: boolean
+      additionalProperties: false
+    CreateCollectionResponse:
+      type: object
+      properties:
+        createdCount:
+          type: integer
+          format: int64
+      additionalProperties: false
+    CreateResponse:
+      type: object
+      additionalProperties: false
+    DeleteCollectionResponse:
+      type: object
+      properties:
+        deletedCount:
+          type: integer
+          format: int64
+      additionalProperties: false
+    DeleteResponse:
+      type: object
+      properties:
+        deletedCount:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Designer:
+      type: object
+      properties:
+        x:
+          type: string
+          nullable: true
+        y:
+          type: string
+          nullable: true
+        bending:
+          type: string
+          nullable: true
+        scale:
+          type: string
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        autoTextContrast:
+          type: boolean
+        group:
+          type: string
+          nullable: true
+        hidden:
+          type: boolean
+        overwriteActivityTo:
+          type: string
+          nullable: true
+        inlineElementSettings:
+          $ref: '#/components/schemas/Designer'
+      additionalProperties: false
+    Direction:
+      enum:
+        - Asc
+        - Desc
+      type: string
+    DropdownValue:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ErrorCode'
+        message:
+          type: string
+          nullable: true
+          readOnly: true
+        exception:
+          $ref: '#/components/schemas/ExceptionModel'
+      additionalProperties: false
+    ErrorCode:
+      enum:
+        - Unknown
+        - Exception
+        - NotFound
+        - InsertFailed
+      type: string
+    ExceptionModel:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+          readOnly: true
+        message:
+          type: string
+          nullable: true
+          readOnly: true
+        data:
+          type: object
+          additionalProperties: { }
+          nullable: true
+          readOnly: true
+        stackTrace:
+          type: string
+          nullable: true
+          readOnly: true
+        source:
+          type: string
+          nullable: true
+          readOnly: true
+        helpLink:
+          type: string
+          nullable: true
+          readOnly: true
+        hResult:
+          type: integer
+          format: int32
+          readOnly: true
+        innerException:
+          $ref: '#/components/schemas/ExceptionModel'
+      additionalProperties: false
+    ExceptionsHandler:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        nameForSet:
+          type: string
+          nullable: true
+        retryCount:
+          type: integer
+          format: int32
+        exceptions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        order:
+          type: integer
+          format: int32
+      additionalProperties: false
+    FilterType:
+      enum:
+        - And
+        - Or
+        - Not
+        - Equal
+        - NotEqual
+        - Greater
+        - GreaterEqual
+        - Less
+        - LessEqual
+        - Contains
+        - StartsWith
+        - EndsWith
+        - In
+      type: string
+    GlobalParameterCreateRequest:
+      type: object
+      properties:
+        value:
+          nullable: true
+      additionalProperties: false
+    GlobalParameterCreateRequestWithTypeName:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    GlobalParameterField:
+      enum:
+        - Id
+        - Type
+        - Name
+        - Value
+      type: string
+    GlobalParameterFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalParameterFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/GlobalParameterField'
+        value:
+          nullable: true
+      additionalProperties: false
+    GlobalParameterFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalParameterFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalParameterFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    GlobalParameterFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/GlobalParameterField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    GlobalParameterModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    GlobalParameterModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalParameterModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    GlobalParameterUpdateRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    HealthResponse:
+      type: object
+      additionalProperties: false
+    InboxEntryField:
+      enum:
+        - Id
+        - ProcessId
+        - IdentityId
+        - AddingDate
+        - AvailableCommands
+      type: string
+    InboxEntryFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxEntryFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/InboxEntryField'
+        value:
+          nullable: true
+      additionalProperties: false
+    InboxEntryFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxEntryFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxEntryFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    InboxEntryFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/InboxEntryField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    InboxEntryModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        processId:
+          type: string
+          format: uuid
+        identityId:
+          type: string
+          nullable: true
+        addingDate:
+          type: string
+          format: date-time
+        availableCommands:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    InboxEntryModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboxEntryModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Parameter:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        type:
+          type: string
+          nullable: true
+        purpose:
+          type: string
+          nullable: true
+        initialValue:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ParameterCreateRequest:
+      type: object
+      properties:
+        value:
+          nullable: true
+      additionalProperties: false
+    ParameterCreateRequestWithName:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    ParameterField:
+      enum:
+        - Id
+        - ProcessId
+        - ParameterName
+        - Value
+      type: string
+    ParameterFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParameterFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/ParameterField'
+        value:
+          nullable: true
+      additionalProperties: false
+    ParameterFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParameterFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParameterFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    ParameterFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/ParameterField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    ParameterModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        processId:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    ParameterModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/ParameterModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    ParameterReference:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        isRequired:
+          type: boolean
+        defaultValue:
+          type: string
+          nullable: true
+        parameter:
+          $ref: '#/components/schemas/Parameter'
+        comment:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ParameterUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        value:
+          nullable: true
+      additionalProperties: false
+    ProcessField:
+      enum:
+        - Id
+        - StateName
+        - ActivityName
+        - SchemeId
+        - PreviousState
+        - PreviousStateForDirect
+        - PreviousStateForReverse
+        - PreviousActivity
+        - PreviousActivityForDirect
+        - PreviousActivityForReverse
+        - ParentProcessId
+        - RootProcessId
+        - IsDeterminingParametersChanged
+        - TenantId
+        - StartingTransition
+        - SubprocessName
+        - CreationDate
+        - LastTransitionDate
+        - CalendarName
+      type: string
+    ProcessFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/ProcessField'
+        value:
+          nullable: true
+      additionalProperties: false
+    ProcessFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    ProcessFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/ProcessField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    ProcessModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        stateName:
+          type: string
+          nullable: true
+        activityName:
+          type: string
+          nullable: true
+        schemeId:
+          type: string
+          format: uuid
+          nullable: true
+        previousState:
+          type: string
+          nullable: true
+        previousStateForDirect:
+          type: string
+          nullable: true
+        previousStateForReverse:
+          type: string
+          nullable: true
+        previousActivity:
+          type: string
+          nullable: true
+        previousActivityForDirect:
+          type: string
+          nullable: true
+        previousActivityForReverse:
+          type: string
+          nullable: true
+        parentProcessId:
+          type: string
+          format: uuid
+          nullable: true
+        rootProcessId:
+          type: string
+          format: uuid
+        isDeterminingParametersChanged:
+          type: boolean
+        tenantId:
+          type: string
+          nullable: true
+        startingTransition:
+          type: string
+          nullable: true
+        subprocessName:
+          type: string
+          nullable: true
+        creationDate:
+          type: string
+          format: date-time
+        lastTransitionDate:
+          type: string
+          format: date-time
+          nullable: true
+        calendarName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProcessModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    ProcessUpdateRequest:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+        calendarName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RegisterRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        permissions:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    Restriction:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        actor:
+          $ref: '#/components/schemas/Actor'
+      additionalProperties: false
+    RuntimeField:
+      enum:
+        - RuntimeId
+        - Lock
+        - Status
+        - RestorerId
+        - NextTimerTime
+        - NextServiceTimerTime
+        - LastAliveSignal
+      type: string
+    RuntimeFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuntimeFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/RuntimeField'
+        value:
+          nullable: true
+      additionalProperties: false
+    RuntimeFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuntimeFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuntimeFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    RuntimeFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/RuntimeField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    RuntimeModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        lock:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/RuntimeStatus'
+        restorerId:
+          type: string
+          nullable: true
+        nextTimerTime:
+          type: string
+          format: date-time
+          nullable: true
+        nextServiceTimerTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastAliveSignal:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    RuntimeModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/RuntimeModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    RuntimeStatus:
+      enum:
+        - Alive
+        - Restore
+        - SelfRestore
+        - Dead
+        - Terminated
+        - Single
+      type: string
+    Scheme:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        actors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Actor'
+          nullable: true
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Parameter'
+          nullable: true
+        commands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Command'
+          nullable: true
+        timers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Timer'
+          nullable: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+          nullable: true
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+          nullable: true
+        transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transition'
+          nullable: true
+        localization:
+          type: array
+          items:
+            $ref: '#/components/schemas/Translation'
+          nullable: true
+        codeActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeAction'
+          nullable: true
+        codeActionsCommonUsings:
+          type: string
+          nullable: true
+        additionalParams:
+          type: object
+          additionalProperties: { }
+          nullable: true
+        canBeInlined:
+          type: boolean
+        logEnabled:
+          type: boolean
+        inlinedSchemes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+        definingParametersString:
+          type: string
+          nullable: true
+        rootSchemeCode:
+          type: string
+          nullable: true
+        rootSchemeId:
+          type: string
+          format: uuid
+          nullable: true
+        isObsolete:
+          type: boolean
+        id:
+          type: string
+          format: uuid
+        allowedActivities:
+          type: array
+          items:
+            type: string
+          nullable: true
+        calendarName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SchemeCreateRequest:
+      type: object
+      properties:
+        scheme:
+          $ref: '#/components/schemas/Scheme'
+        canBeInlined:
+          type: boolean
+        inlinedSchemes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SchemeCreateRequestWithCode:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        scheme:
+          $ref: '#/components/schemas/Scheme'
+        canBeInlined:
+          type: boolean
+        inlinedSchemes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SchemeField:
+      enum:
+        - Code
+        - Scheme
+        - CanBeInlined
+        - InlinedSchemes
+        - Tags
+      type: string
+    SchemeFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemeFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/SchemeField'
+        value:
+          nullable: true
+      additionalProperties: false
+    SchemeFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemeFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemeFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    SchemeFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/SchemeField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    SchemeModel:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        scheme:
+          $ref: '#/components/schemas/Scheme'
+        canBeInlined:
+          type: boolean
+        inlinedSchemes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    SchemeModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchemeModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    SchemeUpdateRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        scheme:
+          $ref: '#/components/schemas/Scheme'
+        canBeInlined:
+          type: boolean
+          nullable: true
+        inlinedSchemes:
+          type: array
+          items:
+            type: string
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    StatusField:
+      enum:
+        - Id
+        - Status
+        - Lock
+        - RuntimeId
+        - SetTime
+      type: string
+    StatusFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/StatusField'
+        value:
+          nullable: true
+      additionalProperties: false
+    StatusFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    StatusFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/StatusField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    StatusModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        statusCode:
+          type: integer
+          format: int32
+        lock:
+          type: string
+          format: uuid
+        runtimeId:
+          type: string
+          nullable: true
+        setTime:
+          type: string
+          format: date-time
+      additionalProperties: false
+    StatusModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Timer:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        type:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        notOverrideIfExists:
+          type: boolean
+      additionalProperties: false
+    TimerCreateRequest:
+      type: object
+      properties:
+        rootProcessId:
+          type: string
+          format: uuid
+        nextExecutionDateTime:
+          type: string
+          format: date-time
+        ignore:
+          type: boolean
+      additionalProperties: false
+    TimerCreateRequestWithName:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        rootProcessId:
+          type: string
+          format: uuid
+        nextExecutionDateTime:
+          type: string
+          format: date-time
+        ignore:
+          type: boolean
+      additionalProperties: false
+    TimerField:
+      enum:
+        - Id
+        - ProcessId
+        - RootProcessId
+        - Name
+        - NextExecutionDateTime
+        - Ignore
+      type: string
+    TimerFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/TimerField'
+        value:
+          nullable: true
+      additionalProperties: false
+    TimerFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    TimerFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/TimerField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    TimerModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        processId:
+          type: string
+          format: uuid
+        rootProcessId:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        nextExecutionDateTime:
+          type: string
+          format: date-time
+        ignore:
+          type: boolean
+      additionalProperties: false
+    TimerModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimerModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    TimerUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        nextExecutionDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        ignore:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    Transition:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        inlinedFinalActivityName:
+          type: string
+          nullable: true
+        originalName:
+          type: string
+          nullable: true
+        originalSchemeCode:
+          type: string
+          nullable: true
+        lastTimeInlineName:
+          type: string
+          nullable: true
+        firstTimeInlineName:
+          type: string
+          nullable: true
+        userComment:
+          type: string
+          nullable: true
+        wasInlined:
+          type: boolean
+        from:
+          $ref: '#/components/schemas/Activity'
+        to:
+          $ref: '#/components/schemas/Activity'
+        classifier:
+          type: string
+          nullable: true
+        trigger:
+          $ref: '#/components/schemas/Trigger'
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+          nullable: true
+        restrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Restriction'
+          nullable: true
+        allowConcatenationType:
+          type: string
+          nullable: true
+        restrictConcatenationType:
+          type: string
+          nullable: true
+        conditionsConcatenationType:
+          type: string
+          nullable: true
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
+          nullable: true
+        isFork:
+          type: boolean
+        mergeViaSetState:
+          type: boolean
+        disableParentStateControl:
+          type: boolean
+        subprocessStartupType:
+          type: string
+          nullable: true
+        subprocessInOutDefinition:
+          type: string
+          nullable: true
+        subprocessName:
+          type: string
+          nullable: true
+        subprocessId:
+          type: string
+          nullable: true
+        subprocessStartupParameterCopyStrategy:
+          type: string
+          nullable: true
+        subprocessFinalizeParameterMergeStrategy:
+          type: string
+          nullable: true
+        subprocessSpecifiedParameters:
+          type: string
+          nullable: true
+        isAlwaysTransition:
+          type: boolean
+        isOtherwiseTransition:
+          type: boolean
+        isConditionTransition:
+          type: boolean
+      additionalProperties: false
+    TransitionField:
+      enum:
+        - Id
+        - ProcessId
+        - ExecutorIdentityId
+        - ActorIdentityId
+        - ExecutorName
+        - ActorName
+        - FromActivityName
+        - ToActivityName
+        - ToStateName
+        - TransitionTime
+        - TransitionClassifier
+        - IsFinalised
+        - FromStateName
+        - TriggerName
+        - StartTransitionTime
+        - TransitionDuration
+      type: string
+    TransitionFieldFilter:
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/FilterType'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransitionFieldFilter'
+          nullable: true
+        field:
+          $ref: '#/components/schemas/TransitionField'
+        value:
+          nullable: true
+      additionalProperties: false
+    TransitionFieldQuery:
+      type: object
+      properties:
+        search:
+          type: string
+          nullable: true
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransitionFieldFilter'
+          nullable: true
+        sorts:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransitionFieldSort'
+          nullable: true
+        skip:
+          type: integer
+          format: int64
+        take:
+          type: integer
+          format: int64
+      additionalProperties: false
+    TransitionFieldSort:
+      type: object
+      properties:
+        field:
+          $ref: '#/components/schemas/TransitionField'
+        direction:
+          $ref: '#/components/schemas/Direction'
+      additionalProperties: false
+    TransitionModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        processId:
+          type: string
+          format: uuid
+        executorIdentityId:
+          type: string
+          nullable: true
+        actorIdentityId:
+          type: string
+          nullable: true
+        executorName:
+          type: string
+          nullable: true
+        actorName:
+          type: string
+          nullable: true
+        fromActivityName:
+          type: string
+          nullable: true
+        toActivityName:
+          type: string
+          nullable: true
+        toStateName:
+          type: string
+          nullable: true
+        transitionTime:
+          type: string
+          format: date-time
+        transitionClassifier:
+          type: string
+          nullable: true
+        isFinalised:
+          type: boolean
+        fromStateName:
+          type: string
+          nullable: true
+        triggerName:
+          type: string
+          nullable: true
+        startTransitionTime:
+          type: string
+          format: date-time
+          nullable: true
+        transitionDuration:
+          type: integer
+          format: int64
+          nullable: true
+      additionalProperties: false
+    TransitionModelGetCollectionResponse:
+      type: object
+      properties:
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransitionModel'
+          nullable: true
+        total:
+          type: integer
+          format: int64
+      additionalProperties: false
+    Translation:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        designerSettings:
+          $ref: '#/components/schemas/Designer'
+        objectName:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        culture:
+          type: string
+          nullable: true
+        isDefault:
+          type: boolean
+      additionalProperties: false
+    Trigger:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        command:
+          $ref: '#/components/schemas/Command'
+        timer:
+          $ref: '#/components/schemas/Timer'
+      additionalProperties: false
+    UpdateResponse:
+      type: object
+      properties:
+        updatedCount:
+          type: integer
+          format: int64
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: http
+      description: Please insert JWT Bearer token into field
+      scheme: Bearer
+      bearerFormat: JWT
