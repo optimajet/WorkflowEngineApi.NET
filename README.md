@@ -100,7 +100,7 @@ Learn more about Workflow Engine API on the [documentation website](https://work
         3. Click on the `Try it out` button.
         4. Click on the `Execute` button.
 
-![How to use Swagger UI](./.images/how-to-use-swagger-ui.gif)
+![How to use Swagger UI](./Images/how-to-use-swagger-ui.gif)
 
 ## Solution Structure
 
