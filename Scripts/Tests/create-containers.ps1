@@ -1,4 +1,10 @@
+param(
+    [Parameter(Mandatory=$false)]
+    [string[]]$Providers=@("Mongo", "Mssql", "Mysql", "Oracle", "Postgres", "Sqlite")
+)
+
 $ErrorActionPreference = "Stop"
+$Providers = $Providers | ForEach-Object { $_.Trim() }
 
 function CheckExitCode()
 {
@@ -191,23 +197,25 @@ function InitContainer($Container)
 Write-Host "Creating docker containers" -ForegroundColor Yellow
 
 $Containers = Get-Content -Raw "$( $PSScriptRoot )/containers.json" | ConvertFrom-Json
-$Excluded = @('Mongo', 'Mysql', 'Oracle', 'Postgres', 'Sqlite')
 
 if ($PSVersionTable.OS -match "ARM")
 {
     Write-Host "Disabling Oracle container for ARM processor architecture" -ForegroundColor Red
-    $Excluded += "Oracle"
+    $Providers = $Providers | Where-Object { $_ -ne "Oracle" }
+    Write-Host "Disabling Sqlite container for ARM processor architecture" -ForegroundColor Red
+    $Providers = $Providers | Where-Object { $_ -ne "Sqlite" }
 }
 
 foreach ($Container in $Containers)
 {
-    if ($Excluded -contains $Container.Provider)
+    if ($Providers -contains $Container.Provider)
     {
-        Write-Host "Container $( $Container.Name ) is excluded" -ForegroundColor Magenta
-        continue
+        CreateContainer $Container
     }
-
-    CreateContainer $Container
+    else
+    { 
+        Write-Host "Container $( $Container.Name ) is skipped" -ForegroundColor Magenta
+    }
 }
 
 Write-Host "Containers created, waiting for them to become healthy..." -ForegroundColor Yellow
@@ -216,13 +224,14 @@ Write-Host "Initializing docker containers" -ForegroundColor Yellow
 
 foreach ($Container in $Containers)
 {
-    if ($Excluded -contains $Container.Provider)
+    if ($Providers -contains $Container.Provider)
     {
-        Write-Host "Container $( $Container.Name ) is excluded" -ForegroundColor Magenta
-        continue
+        InitContainer $Container
     }
-
-    InitContainer $Container
+    else
+    {
+        Write-Host "Container $( $Container.Name ) is skipped" -ForegroundColor Magenta
+    }
 }
 
 Write-Host "Initializing completed, containers available!" -ForegroundColor Green

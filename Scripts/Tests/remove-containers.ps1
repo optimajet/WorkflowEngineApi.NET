@@ -1,3 +1,11 @@
+param(
+    [Parameter(Mandatory=$false)]
+    [string[]]$Providers=@("Mongo", "Mssql", "Mysql", "Oracle", "Postgres", "Sqlite")
+)
+
+$ErrorActionPreference = "Stop"
+$Providers = $Providers | ForEach-Object { $_.Trim() }
+
 function RemoveMongoContainer($Container) {
     Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
 
@@ -36,17 +44,18 @@ function RemoveContainer($Container) {
 }
 
 $Containers = Get-Content -Raw "$( $PSScriptRoot )/containers.json" | ConvertFrom-Json
-$Excluded = @('Mongo', 'Mysql', 'Oracle', 'Postgres', 'Sqlite')
 
 Write-Host "Removing docker containers" -ForegroundColor Yellow
 
 foreach ($Container in $Containers) {
-    if ($Excluded -contains $Container.Provider) {
-        Write-Host "Container $( $Container.Name ) is excluded" -ForegroundColor Magenta
-        continue
+    if ($Providers -contains $Container.Provider)
+    {
+        RemoveContainer $Container
     }
-
-    RemoveContainer $Container
+    else
+    {
+        Write-Host "Container $( $Container.Name ) is skipped" -ForegroundColor Magenta
+    }
 }
 
 Write-Host "Removing completed, containers removed!" -ForegroundColor Green

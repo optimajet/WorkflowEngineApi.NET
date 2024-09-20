@@ -7,18 +7,24 @@ public class TestServiceSet : IDisposable
 {
     private static readonly Lazy<TestServiceSet> LazyInstance = new(() => CreateAsync().Result);
     public static TestServiceSet Instance => LazyInstance.Value;
+    
+    public static List<string> DefaultRunningConfigurations { get; } = [
+        ProviderName.Mongo,
+        ProviderName.Mssql,
+        ProviderName.Mysql,
+        ProviderName.Oracle,
+        ProviderName.Postgres,
+        ProviderName.Sqlite
+    ];
 
-public static List<string> Excluded { get; } =
-[
-    ProviderName.Mongo,
-    ProviderName.Mysql,
-    ProviderName.Oracle,
-    ProviderName.Postgres,
-    ProviderName.Sqlite
-];
+    public static List<string> RunningConfigurations { get; } = Environment
+        .GetEnvironmentVariable("RUNNING_CONFIGURATIONS")?
+        .Split(",")
+        .Select(s => s.Trim())
+        .ToList() ?? DefaultRunningConfigurations;
 
     public static IReadOnlyList<TestConfiguration> Configurations { get; } = [
-        new TestConfiguration
+        new()
         {
             Name = ProviderName.Mongo,
             Port = 8081,
@@ -27,7 +33,7 @@ public static List<string> Excluded { get; } =
                 Provider = Provider.Mongo,
             }
         },
-        new TestConfiguration
+        new()
         {
             Name = ProviderName.Mssql,
             Port = 8082,
@@ -36,7 +42,7 @@ public static List<string> Excluded { get; } =
                 Provider = Provider.Mssql,
             }
         },
-        new TestConfiguration
+        new()
         {
             Name = ProviderName.Mysql,
             Port = 8083,
@@ -45,7 +51,7 @@ public static List<string> Excluded { get; } =
                 Provider = Provider.Mysql,
             }
         },
-        new TestConfiguration
+        new()
         {
             Name = ProviderName.Oracle,
             Port = 8084,
@@ -54,7 +60,7 @@ public static List<string> Excluded { get; } =
                 Provider = Provider.Oracle,
             }
         },
-        new TestConfiguration
+        new()
         {
             Name = ProviderName.Postgres,
             Port = 8085,
@@ -63,7 +69,7 @@ public static List<string> Excluded { get; } =
                 Provider = Provider.Postgres,
             }
         },
-        new TestConfiguration
+        new()
         {
             Name = ProviderName.Sqlite,
             Port = 8086,
@@ -81,14 +87,14 @@ public static List<string> Excluded { get; } =
         if (RuntimeInformation.ProcessArchitecture == Architecture.Arm64 || RuntimeInformation.ProcessArchitecture == Architecture.Arm)
         {
             Console.WriteLine("Oracle is not supported on ARM architecture. Excluding Oracle configuration");
-            Excluded.Add(ProviderName.Oracle);
+            RunningConfigurations.Remove(ProviderName.Oracle);
             Console.WriteLine("Sqlite is not supported on ARM architecture. Excluding Sqlite configuration");
-            Excluded.Add(ProviderName.Sqlite);
+            RunningConfigurations.Remove(ProviderName.Sqlite);
         }
         
         var services = await Task.WhenAll(
             Configurations
-                .Where(c => !Excluded.Contains(c.Name))
+                .Where(c => RunningConfigurations.Contains(c.Name))
                 .Select(TestService.CreateAsync)
         );
 

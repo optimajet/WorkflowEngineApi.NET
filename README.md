@@ -55,10 +55,9 @@ Learn more about Workflow Engine API on the [documentation website](https://work
     ```
 
 9. Run integration tests:
-    > By default, testing is conducted for MS SQL Server. To change the provider, refer to the Excluding Providers section.
 
     ```bash
-    pwsh ./Scripts/Tests/run-tests.ps1
+    pwsh ./Scripts/Tests/run-tests.ps1 -Providers "Mssql"
     ```
 
 10. Launch the WorkflowApi project:
@@ -136,10 +135,12 @@ Scripts are stored in the `./Scripts` folder.
 - `lint-swagger.ps1` - Lints the OpenAPI specification generated at `/WorkflowApi/.swagger/swagger.yaml` using
   the `dshanley/vacuum` Docker image.
 - `Tests/run-tests.ps1` - Runs integration tests for the `WorkflowApi.Client.Tests` project. Ensure Docker is installed
-  and running before executing.
+  and running before executing. Has a `-Providers` parameter to specify the list of providers to test.
 - `Tests/create-containers.ps1` - Creates Docker containers for integration testing in the `WorkflowApi.Client.Tests`
-  project. Ensure Docker is installed and running before executing.
-- `Tests/remove-containers.ps1` - Removes containers created by the previous script.
+  project. Ensure Docker is installed and running before executing. Has a `-Providers` parameter to specify the list of
+  providers to test.
+- `Tests/remove-containers.ps1` - Removes containers created by the previous script. Ensure Docker is installed and
+  running before executing. Has a `-Providers` parameter to specify the list of providers to remove.
 - `Tests/containers.json` - Configuration for the created containers.
 
 ## Details
@@ -215,10 +216,9 @@ configuring them as needed for the tests. Each controller is tested in various u
 The tests also use an automatically generated client, so significant changes in the API specification will break the
 application's build and help understand where backward compatibility is violated and where tests need to be modified.
 
-#### Excluding Providers
+#### Providers
 
-By default, testing is conducted for MS SQL Server, but the tests support all data providers supported by Workflow
-Engine:
+By default, testing is conducted for all data providers supported by Workflow Engine:
 
 - `Mongo`: MongoDB
 - `Mssql`: Microsoft SQL Server
@@ -227,22 +227,12 @@ Engine:
 - `Oracle`: Oracle
 - `Sqlite`: SQLite
 
-To change the list of providers for testing, you need to modify the list of excluded providers. Make changes in the
-following three files:
+To change the list of providers for testing, you need to pass the `-Providers` parameter to the script with a list of
+providers separated by commas (without spaces in parameter value). For example:
 
-- In `./Scripts/Tests/create-containers.ps1` and `./Scripts/Tests/remove-containers.ps1`, find the array `$Excluded` on
-  line 179. Add the list of providers you want to exclude.
-    ```powershell
-    $Excluded = @('Mongo', 'Mysql', 'Oracle', 'Postgres', 'Sqlite')
-    ```
-- In `./WorkflowApi.Client.Tests/Runner/TestServiceSet.cs`, add the same providers to the `Excluded` list on line 11.
-    ```csharp
-    public static List<string> Excluded { get; } =
-    [
-        ProviderName.Mongo,
-        ProviderName.Mysql,
-        ProviderName.Oracle,
-        ProviderName.Postgres,
-        ProviderName.Sqlite
-    ];
-    ```
+```bash
+pwsh ./Scripts/Tests/run-tests.ps1 -Providers "Mongo","Mssql","Mysql","Postgres","Oracle","Sqlite"
+```
+
+Running tests for all providers can take a long time and require at least 24 GB of RAM. If you have less memory, you can
+run tests for a specific provider or a subset of providers.
