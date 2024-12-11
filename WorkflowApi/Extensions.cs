@@ -11,7 +11,7 @@ public static class Extensions
     /// <param name="builder">The web application builder.</param>
     /// <typeparam name="TOptions">The type of options to configure.</typeparam>
     /// <returns>The web application builder.</returns>
-    public static  WebApplicationBuilder Configure<TOptions>(this WebApplicationBuilder builder) where TOptions : class
+    public static WebApplicationBuilder Configure<TOptions>(this WebApplicationBuilder builder) where TOptions : class
     {
         var optionsName = typeof(TOptions).Name;
         builder.Services.Configure<TOptions>(builder.Configuration.GetSection(optionsName));

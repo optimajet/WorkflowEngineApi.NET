@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Delete one process instance transition history entry
+        /// Delete a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -37,7 +37,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataProcessesTransitionsDelete(Guid processId, Guid id, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one process instance transition history entry
+        /// Delete a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -49,7 +49,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataProcessesTransitionsDeleteWithHttpInfo(Guid processId, Guid id, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter
+        /// Delete multiple transitions for a specific process instance ID, with optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -59,7 +59,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataProcessesTransitionsDeleteCollection(Guid processId, List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter
+        /// Delete multiple transitions for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -71,7 +71,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataProcessesTransitionsDeleteCollectionWithHttpInfo(Guid processId, List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one process instance transition history entry
+        /// Retrieve a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -81,7 +81,7 @@ namespace WorkflowApi.Client.Api
         TransitionModel WorkflowApiDataProcessesTransitionsGet(Guid processId, Guid id, int operationIndex = 0);
 
         /// <summary>
-        /// Get one process instance transition history entry
+        /// Retrieve a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -93,7 +93,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of TransitionModel</returns>
         ApiResponse<TransitionModel> WorkflowApiDataProcessesTransitionsGetWithHttpInfo(Guid processId, Guid id, int operationIndex = 0);
         /// <summary>
-        /// Get multiple process instance transition history entries with query
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -107,7 +107,7 @@ namespace WorkflowApi.Client.Api
         TransitionModelGetCollectionResponse WorkflowApiDataProcessesTransitionsGetCollection(Guid processId, string? search = default(string?), List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), List<TransitionFieldSort>? sorts = default(List<TransitionFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple process instance transition history entries with query
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -123,7 +123,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of TransitionModelGetCollectionResponse</returns>
         ApiResponse<TransitionModelGetCollectionResponse> WorkflowApiDataProcessesTransitionsGetCollectionWithHttpInfo(Guid processId, string? search = default(string?), List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), List<TransitionFieldSort>? sorts = default(List<TransitionFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Search for process instance transition history entries
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transitionFieldQuery"></param>
@@ -132,7 +132,7 @@ namespace WorkflowApi.Client.Api
         TransitionModelGetCollectionResponse WorkflowApiSearchProcessesTransitions(TransitionFieldQuery transitionFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for process instance transition history entries
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -152,7 +152,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Delete one process instance transition history entry
+        /// Delete a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -166,7 +166,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataProcessesTransitionsDeleteAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one process instance transition history entry
+        /// Delete a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -179,7 +179,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataProcessesTransitionsDeleteWithHttpInfoAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter
+        /// Delete multiple transitions for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -193,7 +193,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataProcessesTransitionsDeleteCollectionAsync(Guid processId, List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter
+        /// Delete multiple transitions for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -206,7 +206,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataProcessesTransitionsDeleteCollectionWithHttpInfoAsync(Guid processId, List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one process instance transition history entry
+        /// Retrieve a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -220,7 +220,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<TransitionModel> WorkflowApiDataProcessesTransitionsGetAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one process instance transition history entry
+        /// Retrieve a single transition for a specific process instance ID and transition ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -233,7 +233,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (TransitionModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<TransitionModel>> WorkflowApiDataProcessesTransitionsGetWithHttpInfoAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple process instance transition history entries with query
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -251,7 +251,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<TransitionModelGetCollectionResponse> WorkflowApiDataProcessesTransitionsGetCollectionAsync(Guid processId, string? search = default(string?), List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), List<TransitionFieldSort>? sorts = default(List<TransitionFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple process instance transition history entries with query
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -268,7 +268,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (TransitionModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TransitionModelGetCollectionResponse>> WorkflowApiDataProcessesTransitionsGetCollectionWithHttpInfoAsync(Guid processId, string? search = default(string?), List<TransitionFieldFilter>? filters = default(List<TransitionFieldFilter>?), List<TransitionFieldSort>? sorts = default(List<TransitionFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for process instance transition history entries
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -281,7 +281,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<TransitionModelGetCollectionResponse> WorkflowApiSearchProcessesTransitionsAsync(TransitionFieldQuery transitionFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for process instance transition history entries
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -413,7 +413,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance transition history entry 
+        /// Delete a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -427,7 +427,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance transition history entry 
+        /// Delete a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -486,7 +486,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance transition history entry 
+        /// Delete a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -501,7 +501,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance transition history entry 
+        /// Delete a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -563,7 +563,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter 
+        /// Delete multiple transitions for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -577,7 +577,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter 
+        /// Delete multiple transitions for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -639,7 +639,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter 
+        /// Delete multiple transitions for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -654,7 +654,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance transition history entries with filter 
+        /// Delete multiple transitions for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -719,7 +719,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance transition history entry 
+        /// Retrieve a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -733,7 +733,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance transition history entry 
+        /// Retrieve a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -792,7 +792,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance transition history entry 
+        /// Retrieve a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -807,7 +807,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance transition history entry 
+        /// Retrieve a single transition for a specific process instance ID and transition ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -869,7 +869,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance transition history entries with query 
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -887,7 +887,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance transition history entries with query 
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -969,7 +969,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance transition history entries with query 
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -988,7 +988,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance transition history entries with query 
+        /// Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1073,7 +1073,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance transition history entries 
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transitionFieldQuery"></param>
@@ -1086,7 +1086,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance transition history entries 
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transitionFieldQuery"></param>
@@ -1150,7 +1150,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance transition history entries 
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transitionFieldQuery"></param>
@@ -1164,7 +1164,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance transition history entries 
+        /// Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="transitionFieldQuery"></param>

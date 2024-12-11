@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Create one process instance timer
+        /// Create a single timer for a specific process instance ID, using timer name and creation request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -38,7 +38,7 @@ namespace WorkflowApi.Client.Api
         Object WorkflowApiDataProcessesTimersCreate(Guid processId, string name, TimerCreateRequest timerCreateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Create one process instance timer
+        /// Create a single timer for a specific process instance ID, using timer name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -51,7 +51,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of Object</returns>
         ApiResponse<Object> WorkflowApiDataProcessesTimersCreateWithHttpInfo(Guid processId, string name, TimerCreateRequest timerCreateRequest, int operationIndex = 0);
         /// <summary>
-        /// Create multiple process instance timers
+        /// Create multiple timers for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -61,7 +61,7 @@ namespace WorkflowApi.Client.Api
         CreateCollectionResponse WorkflowApiDataProcessesTimersCreateCollection(Guid processId, List<TimerCreateRequestWithName> timerCreateRequestWithName, int operationIndex = 0);
 
         /// <summary>
-        /// Create multiple process instance timers
+        /// Create multiple timers for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -73,7 +73,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of CreateCollectionResponse</returns>
         ApiResponse<CreateCollectionResponse> WorkflowApiDataProcessesTimersCreateCollectionWithHttpInfo(Guid processId, List<TimerCreateRequestWithName> timerCreateRequestWithName, int operationIndex = 0);
         /// <summary>
-        /// Delete one process instance timer
+        /// Delete a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -83,7 +83,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataProcessesTimersDelete(Guid processId, string name, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one process instance timer
+        /// Delete a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <remarks>
         /// 
@@ -95,7 +95,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataProcessesTimersDeleteWithHttpInfo(Guid processId, string name, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple process instance timers with filter
+        /// Delete multiple timers for a specific process instance ID, with optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -105,7 +105,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataProcessesTimersDeleteCollection(Guid processId, List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple process instance timers with filter
+        /// Delete multiple timers for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -117,7 +117,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataProcessesTimersDeleteCollectionWithHttpInfo(Guid processId, List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one process instance timer
+        /// Retrieve a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -127,7 +127,7 @@ namespace WorkflowApi.Client.Api
         TimerModel WorkflowApiDataProcessesTimersGet(Guid processId, string name, int operationIndex = 0);
 
         /// <summary>
-        /// Get one process instance timer
+        /// Retrieve a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <remarks>
         /// 
@@ -139,7 +139,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of TimerModel</returns>
         ApiResponse<TimerModel> WorkflowApiDataProcessesTimersGetWithHttpInfo(Guid processId, string name, int operationIndex = 0);
         /// <summary>
-        /// Get multiple process instance timers with query
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -153,7 +153,7 @@ namespace WorkflowApi.Client.Api
         TimerModelGetCollectionResponse WorkflowApiDataProcessesTimersGetCollection(Guid processId, string? search = default(string?), List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), List<TimerFieldSort>? sorts = default(List<TimerFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple process instance timers with query
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -169,7 +169,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of TimerModelGetCollectionResponse</returns>
         ApiResponse<TimerModelGetCollectionResponse> WorkflowApiDataProcessesTimersGetCollectionWithHttpInfo(Guid processId, string? search = default(string?), List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), List<TimerFieldSort>? sorts = default(List<TimerFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Update one process instance timer
+        /// Update a single timer for a specific process instance ID and timer name, using an update request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -180,7 +180,7 @@ namespace WorkflowApi.Client.Api
         UpdateResponse WorkflowApiDataProcessesTimersUpdate(Guid processId, string name, TimerUpdateRequest timerUpdateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Update one process instance timer
+        /// Update a single timer for a specific process instance ID and timer name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -193,7 +193,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of UpdateResponse</returns>
         ApiResponse<UpdateResponse> WorkflowApiDataProcessesTimersUpdateWithHttpInfo(Guid processId, string name, TimerUpdateRequest timerUpdateRequest, int operationIndex = 0);
         /// <summary>
-        /// Search for process instance timers
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="timerFieldQuery"></param>
@@ -202,7 +202,7 @@ namespace WorkflowApi.Client.Api
         TimerModelGetCollectionResponse WorkflowApiSearchProcessesTimers(TimerFieldQuery timerFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for process instance timers
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -222,7 +222,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Create one process instance timer
+        /// Create a single timer for a specific process instance ID, using timer name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -237,7 +237,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<Object> WorkflowApiDataProcessesTimersCreateAsync(Guid processId, string name, TimerCreateRequest timerCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create one process instance timer
+        /// Create a single timer for a specific process instance ID, using timer name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -251,7 +251,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (Object)</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> WorkflowApiDataProcessesTimersCreateWithHttpInfoAsync(Guid processId, string name, TimerCreateRequest timerCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Create multiple process instance timers
+        /// Create multiple timers for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -265,7 +265,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<CreateCollectionResponse> WorkflowApiDataProcessesTimersCreateCollectionAsync(Guid processId, List<TimerCreateRequestWithName> timerCreateRequestWithName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create multiple process instance timers
+        /// Create multiple timers for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -278,7 +278,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (CreateCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCollectionResponse>> WorkflowApiDataProcessesTimersCreateCollectionWithHttpInfoAsync(Guid processId, List<TimerCreateRequestWithName> timerCreateRequestWithName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete one process instance timer
+        /// Delete a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <remarks>
         /// 
@@ -292,7 +292,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataProcessesTimersDeleteAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one process instance timer
+        /// Delete a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <remarks>
         /// 
@@ -305,7 +305,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataProcessesTimersDeleteWithHttpInfoAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple process instance timers with filter
+        /// Delete multiple timers for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -319,7 +319,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataProcessesTimersDeleteCollectionAsync(Guid processId, List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple process instance timers with filter
+        /// Delete multiple timers for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -332,7 +332,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataProcessesTimersDeleteCollectionWithHttpInfoAsync(Guid processId, List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one process instance timer
+        /// Retrieve a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <remarks>
         /// 
@@ -346,7 +346,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<TimerModel> WorkflowApiDataProcessesTimersGetAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one process instance timer
+        /// Retrieve a single timer for a specific process instance ID and timer name.
         /// </summary>
         /// <remarks>
         /// 
@@ -359,7 +359,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (TimerModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<TimerModel>> WorkflowApiDataProcessesTimersGetWithHttpInfoAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple process instance timers with query
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -377,7 +377,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<TimerModelGetCollectionResponse> WorkflowApiDataProcessesTimersGetCollectionAsync(Guid processId, string? search = default(string?), List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), List<TimerFieldSort>? sorts = default(List<TimerFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple process instance timers with query
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -394,7 +394,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (TimerModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TimerModelGetCollectionResponse>> WorkflowApiDataProcessesTimersGetCollectionWithHttpInfoAsync(Guid processId, string? search = default(string?), List<TimerFieldFilter>? filters = default(List<TimerFieldFilter>?), List<TimerFieldSort>? sorts = default(List<TimerFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Update one process instance timer
+        /// Update a single timer for a specific process instance ID and timer name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -409,7 +409,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<UpdateResponse> WorkflowApiDataProcessesTimersUpdateAsync(Guid processId, string name, TimerUpdateRequest timerUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Update one process instance timer
+        /// Update a single timer for a specific process instance ID and timer name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -423,7 +423,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> WorkflowApiDataProcessesTimersUpdateWithHttpInfoAsync(Guid processId, string name, TimerUpdateRequest timerUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for process instance timers
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -436,7 +436,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<TimerModelGetCollectionResponse> WorkflowApiSearchProcessesTimersAsync(TimerFieldQuery timerFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for process instance timers
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -568,7 +568,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance timer 
+        /// Create a single timer for a specific process instance ID, using timer name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -583,7 +583,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance timer 
+        /// Create a single timer for a specific process instance ID, using timer name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -657,7 +657,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance timer 
+        /// Create a single timer for a specific process instance ID, using timer name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -673,7 +673,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance timer 
+        /// Create a single timer for a specific process instance ID, using timer name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -750,7 +750,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance timers 
+        /// Create multiple timers for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -764,7 +764,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance timers 
+        /// Create multiple timers for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -830,7 +830,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance timers 
+        /// Create multiple timers for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -845,7 +845,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance timers 
+        /// Create multiple timers for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -914,7 +914,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance timer 
+        /// Delete a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -928,7 +928,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance timer 
+        /// Delete a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -993,7 +993,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance timer 
+        /// Delete a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1008,7 +1008,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance timer 
+        /// Delete a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1076,7 +1076,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance timers with filter 
+        /// Delete multiple timers for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1090,7 +1090,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance timers with filter 
+        /// Delete multiple timers for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1152,7 +1152,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance timers with filter 
+        /// Delete multiple timers for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1167,7 +1167,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance timers with filter 
+        /// Delete multiple timers for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1232,7 +1232,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance timer 
+        /// Retrieve a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1246,7 +1246,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance timer 
+        /// Retrieve a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1311,7 +1311,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance timer 
+        /// Retrieve a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1326,7 +1326,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance timer 
+        /// Retrieve a single timer for a specific process instance ID and timer name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1394,7 +1394,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance timers with query 
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1412,7 +1412,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance timers with query 
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1494,7 +1494,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance timers with query 
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1513,7 +1513,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance timers with query 
+        /// Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1598,7 +1598,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance timer 
+        /// Update a single timer for a specific process instance ID and timer name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1613,7 +1613,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance timer 
+        /// Update a single timer for a specific process instance ID and timer name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1687,7 +1687,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance timer 
+        /// Update a single timer for a specific process instance ID and timer name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1703,7 +1703,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance timer 
+        /// Update a single timer for a specific process instance ID and timer name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1780,7 +1780,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance timers 
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="timerFieldQuery"></param>
@@ -1793,7 +1793,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance timers 
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="timerFieldQuery"></param>
@@ -1857,7 +1857,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance timers 
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="timerFieldQuery"></param>
@@ -1871,7 +1871,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance timers 
+        /// Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="timerFieldQuery"></param>

@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using OptimaJet.Workflow.Api.Sql.Services;
+using OptimaJet.Workflow.Api.Sql;
 using WorkflowApi.Client.Test.Runner;
 
 namespace WorkflowApi.Client.Test.Repositories.Mongo;

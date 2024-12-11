@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Check service health
+        /// Check services and database connection health
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -35,7 +35,7 @@ namespace WorkflowApi.Client.Api
         Object WorkflowApiHealth(int operationIndex = 0);
 
         /// <summary>
-        /// Check service health
+        /// Check services and database connection health
         /// </summary>
         /// <remarks>
         /// 
@@ -54,7 +54,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Check service health
+        /// Check services and database connection health
         /// </summary>
         /// <remarks>
         /// 
@@ -66,7 +66,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<Object> WorkflowApiHealthAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Check service health
+        /// Check services and database connection health
         /// </summary>
         /// <remarks>
         /// 
@@ -197,7 +197,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Check service health 
+        /// Check services and database connection health 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -209,7 +209,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Check service health 
+        /// Check services and database connection health 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -264,7 +264,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Check service health 
+        /// Check services and database connection health 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
@@ -277,7 +277,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Check service health 
+        /// Check services and database connection health 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>

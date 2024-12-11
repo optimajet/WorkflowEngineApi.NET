@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Delete one process instance inbox entry
+        /// Delete a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -37,7 +37,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataProcessesInboxEntriesDelete(Guid processId, string identityId, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one process instance inbox entry
+        /// Delete a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -49,7 +49,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataProcessesInboxEntriesDeleteWithHttpInfo(Guid processId, string identityId, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -59,7 +59,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataProcessesInboxEntriesDeleteCollection(Guid processId, List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -71,7 +71,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataProcessesInboxEntriesDeleteCollectionWithHttpInfo(Guid processId, List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one process instance inbox entry
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -81,7 +81,7 @@ namespace WorkflowApi.Client.Api
         InboxEntryModel WorkflowApiDataProcessesInboxEntriesGet(Guid processId, string identityId, int operationIndex = 0);
 
         /// <summary>
-        /// Get one process instance inbox entry
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -93,7 +93,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of InboxEntryModel</returns>
         ApiResponse<InboxEntryModel> WorkflowApiDataProcessesInboxEntriesGetWithHttpInfo(Guid processId, string identityId, int operationIndex = 0);
         /// <summary>
-        /// Get multiple process instance inbox entries with query
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -107,7 +107,7 @@ namespace WorkflowApi.Client.Api
         InboxEntryModelGetCollectionResponse WorkflowApiDataProcessesInboxEntriesGetCollection(Guid processId, string? search = default(string?), List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), List<InboxEntryFieldSort>? sorts = default(List<InboxEntryFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple process instance inbox entries with query
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -123,7 +123,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of InboxEntryModelGetCollectionResponse</returns>
         ApiResponse<InboxEntryModelGetCollectionResponse> WorkflowApiDataProcessesInboxEntriesGetCollectionWithHttpInfo(Guid processId, string? search = default(string?), List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), List<InboxEntryFieldSort>? sorts = default(List<InboxEntryFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Search for process instance inbox entries
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inboxEntryFieldQuery"></param>
@@ -132,7 +132,7 @@ namespace WorkflowApi.Client.Api
         InboxEntryModelGetCollectionResponse WorkflowApiSearchProcessesInboxEntries(InboxEntryFieldQuery inboxEntryFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for process instance inbox entries
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -152,7 +152,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Delete one process instance inbox entry
+        /// Delete a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -166,7 +166,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataProcessesInboxEntriesDeleteAsync(Guid processId, string identityId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one process instance inbox entry
+        /// Delete a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -179,7 +179,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataProcessesInboxEntriesDeleteWithHttpInfoAsync(Guid processId, string identityId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -193,7 +193,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataProcessesInboxEntriesDeleteCollectionAsync(Guid processId, List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -206,7 +206,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataProcessesInboxEntriesDeleteCollectionWithHttpInfoAsync(Guid processId, List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one process instance inbox entry
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -220,7 +220,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<InboxEntryModel> WorkflowApiDataProcessesInboxEntriesGetAsync(Guid processId, string identityId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one process instance inbox entry
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -233,7 +233,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (InboxEntryModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<InboxEntryModel>> WorkflowApiDataProcessesInboxEntriesGetWithHttpInfoAsync(Guid processId, string identityId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple process instance inbox entries with query
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -251,7 +251,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<InboxEntryModelGetCollectionResponse> WorkflowApiDataProcessesInboxEntriesGetCollectionAsync(Guid processId, string? search = default(string?), List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), List<InboxEntryFieldSort>? sorts = default(List<InboxEntryFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple process instance inbox entries with query
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -268,7 +268,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (InboxEntryModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<InboxEntryModelGetCollectionResponse>> WorkflowApiDataProcessesInboxEntriesGetCollectionWithHttpInfoAsync(Guid processId, string? search = default(string?), List<InboxEntryFieldFilter>? filters = default(List<InboxEntryFieldFilter>?), List<InboxEntryFieldSort>? sorts = default(List<InboxEntryFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for process instance inbox entries
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -281,7 +281,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<InboxEntryModelGetCollectionResponse> WorkflowApiSearchProcessesInboxEntriesAsync(InboxEntryFieldQuery inboxEntryFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for process instance inbox entries
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -413,7 +413,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance inbox entry 
+        /// Delete a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -427,7 +427,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance inbox entry 
+        /// Delete a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -492,7 +492,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance inbox entry 
+        /// Delete a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -507,7 +507,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance inbox entry 
+        /// Delete a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -575,7 +575,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter 
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -589,7 +589,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter 
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -651,7 +651,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter 
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -666,7 +666,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance inbox entries with filter 
+        /// Delete multiple inbox entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -731,7 +731,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance inbox entry 
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -745,7 +745,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance inbox entry 
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -810,7 +810,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance inbox entry 
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -825,7 +825,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance inbox entry 
+        /// Retrieve a single inbox entry for a specific process instance ID and identity ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -893,7 +893,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance inbox entries with query 
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -911,7 +911,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance inbox entries with query 
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -993,7 +993,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance inbox entries with query 
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1012,7 +1012,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance inbox entries with query 
+        /// Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1097,7 +1097,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance inbox entries 
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inboxEntryFieldQuery"></param>
@@ -1110,7 +1110,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance inbox entries 
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inboxEntryFieldQuery"></param>
@@ -1174,7 +1174,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance inbox entries 
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inboxEntryFieldQuery"></param>
@@ -1188,7 +1188,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance inbox entries 
+        /// Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="inboxEntryFieldQuery"></param>

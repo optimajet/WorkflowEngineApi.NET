@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Get one runtime instance
+        /// Retrieve a single runtime by ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -36,7 +36,7 @@ namespace WorkflowApi.Client.Api
         RuntimeModel WorkflowApiDataRuntimesGet(string id, int operationIndex = 0);
 
         /// <summary>
-        /// Get one runtime instance
+        /// Retrieve a single runtime by ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -47,7 +47,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of RuntimeModel</returns>
         ApiResponse<RuntimeModel> WorkflowApiDataRuntimesGetWithHttpInfo(string id, int operationIndex = 0);
         /// <summary>
-        /// Get runtime instances with query
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -60,7 +60,7 @@ namespace WorkflowApi.Client.Api
         RuntimeModelGetCollectionResponse WorkflowApiDataRuntimesGetCollection(string? search = default(string?), List<RuntimeFieldFilter>? filters = default(List<RuntimeFieldFilter>?), List<RuntimeFieldSort>? sorts = default(List<RuntimeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get runtime instances with query
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -75,7 +75,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of RuntimeModelGetCollectionResponse</returns>
         ApiResponse<RuntimeModelGetCollectionResponse> WorkflowApiDataRuntimesGetCollectionWithHttpInfo(string? search = default(string?), List<RuntimeFieldFilter>? filters = default(List<RuntimeFieldFilter>?), List<RuntimeFieldSort>? sorts = default(List<RuntimeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Search for runtime instances
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runtimeFieldQuery"></param>
@@ -84,7 +84,7 @@ namespace WorkflowApi.Client.Api
         RuntimeModelGetCollectionResponse WorkflowApiSearchRuntimes(RuntimeFieldQuery runtimeFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for runtime instances
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -104,7 +104,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Get one runtime instance
+        /// Retrieve a single runtime by ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -117,7 +117,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<RuntimeModel> WorkflowApiDataRuntimesGetAsync(string id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one runtime instance
+        /// Retrieve a single runtime by ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -129,7 +129,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (RuntimeModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<RuntimeModel>> WorkflowApiDataRuntimesGetWithHttpInfoAsync(string id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get runtime instances with query
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -146,7 +146,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<RuntimeModelGetCollectionResponse> WorkflowApiDataRuntimesGetCollectionAsync(string? search = default(string?), List<RuntimeFieldFilter>? filters = default(List<RuntimeFieldFilter>?), List<RuntimeFieldSort>? sorts = default(List<RuntimeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get runtime instances with query
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -162,7 +162,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (RuntimeModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<RuntimeModelGetCollectionResponse>> WorkflowApiDataRuntimesGetCollectionWithHttpInfoAsync(string? search = default(string?), List<RuntimeFieldFilter>? filters = default(List<RuntimeFieldFilter>?), List<RuntimeFieldSort>? sorts = default(List<RuntimeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for runtime instances
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -175,7 +175,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<RuntimeModelGetCollectionResponse> WorkflowApiSearchRuntimesAsync(RuntimeFieldQuery runtimeFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for runtime instances
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -307,7 +307,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one runtime instance 
+        /// Retrieve a single runtime by ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -320,7 +320,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one runtime instance 
+        /// Retrieve a single runtime by ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -383,7 +383,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one runtime instance 
+        /// Retrieve a single runtime by ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -397,7 +397,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one runtime instance 
+        /// Retrieve a single runtime by ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -463,7 +463,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get runtime instances with query 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -480,7 +480,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get runtime instances with query 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -560,7 +560,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get runtime instances with query 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -578,7 +578,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get runtime instances with query 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -661,7 +661,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for runtime instances 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runtimeFieldQuery"></param>
@@ -674,7 +674,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for runtime instances 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runtimeFieldQuery"></param>
@@ -738,7 +738,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for runtime instances 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runtimeFieldQuery"></param>
@@ -752,7 +752,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for runtime instances 
+        /// Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runtimeFieldQuery"></param>

@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Create one process instance parameter
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -38,7 +38,7 @@ namespace WorkflowApi.Client.Api
         Object WorkflowApiDataProcessesParametersCreate(Guid processId, string name, ParameterCreateRequest parameterCreateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Create one process instance parameter
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -51,7 +51,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of Object</returns>
         ApiResponse<Object> WorkflowApiDataProcessesParametersCreateWithHttpInfo(Guid processId, string name, ParameterCreateRequest parameterCreateRequest, int operationIndex = 0);
         /// <summary>
-        /// Create multiple process instance parameters
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -61,7 +61,7 @@ namespace WorkflowApi.Client.Api
         CreateCollectionResponse WorkflowApiDataProcessesParametersCreateCollection(Guid processId, List<ParameterCreateRequestWithName> parameterCreateRequestWithName, int operationIndex = 0);
 
         /// <summary>
-        /// Create multiple process instance parameters
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -73,7 +73,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of CreateCollectionResponse</returns>
         ApiResponse<CreateCollectionResponse> WorkflowApiDataProcessesParametersCreateCollectionWithHttpInfo(Guid processId, List<ParameterCreateRequestWithName> parameterCreateRequestWithName, int operationIndex = 0);
         /// <summary>
-        /// Delete one process instance parameter
+        /// Delete a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -83,7 +83,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataProcessesParametersDelete(Guid processId, string name, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one process instance parameter
+        /// Delete a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <remarks>
         /// 
@@ -95,7 +95,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataProcessesParametersDeleteWithHttpInfo(Guid processId, string name, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple process instance parameters with filter
+        /// Delete multiple parameters for a specific process instance ID, with optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -105,7 +105,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataProcessesParametersDeleteCollection(Guid processId, List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple process instance parameters with filter
+        /// Delete multiple parameters for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -117,7 +117,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataProcessesParametersDeleteCollectionWithHttpInfo(Guid processId, List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one process instance parameter
+        /// Retrieve a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -127,7 +127,7 @@ namespace WorkflowApi.Client.Api
         ParameterModel WorkflowApiDataProcessesParametersGet(Guid processId, string name, int operationIndex = 0);
 
         /// <summary>
-        /// Get one process instance parameter
+        /// Retrieve a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <remarks>
         /// 
@@ -139,7 +139,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of ParameterModel</returns>
         ApiResponse<ParameterModel> WorkflowApiDataProcessesParametersGetWithHttpInfo(Guid processId, string name, int operationIndex = 0);
         /// <summary>
-        /// Get multiple process instance parameters with query
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -153,7 +153,7 @@ namespace WorkflowApi.Client.Api
         ParameterModelGetCollectionResponse WorkflowApiDataProcessesParametersGetCollection(Guid processId, string? search = default(string?), List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), List<ParameterFieldSort>? sorts = default(List<ParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple process instance parameters with query
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -169,7 +169,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of ParameterModelGetCollectionResponse</returns>
         ApiResponse<ParameterModelGetCollectionResponse> WorkflowApiDataProcessesParametersGetCollectionWithHttpInfo(Guid processId, string? search = default(string?), List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), List<ParameterFieldSort>? sorts = default(List<ParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Update one process instance parameter
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -180,7 +180,7 @@ namespace WorkflowApi.Client.Api
         UpdateResponse WorkflowApiDataProcessesParametersUpdate(Guid processId, string name, ParameterUpdateRequest parameterUpdateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Update one process instance parameter
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -193,7 +193,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of UpdateResponse</returns>
         ApiResponse<UpdateResponse> WorkflowApiDataProcessesParametersUpdateWithHttpInfo(Guid processId, string name, ParameterUpdateRequest parameterUpdateRequest, int operationIndex = 0);
         /// <summary>
-        /// Search for process instance parameters
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="parameterFieldQuery"></param>
@@ -202,7 +202,7 @@ namespace WorkflowApi.Client.Api
         ParameterModelGetCollectionResponse WorkflowApiSearchProcessesParameters(ParameterFieldQuery parameterFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for process instance parameters
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -222,7 +222,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Create one process instance parameter
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -237,7 +237,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<Object> WorkflowApiDataProcessesParametersCreateAsync(Guid processId, string name, ParameterCreateRequest parameterCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create one process instance parameter
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -251,7 +251,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (Object)</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> WorkflowApiDataProcessesParametersCreateWithHttpInfoAsync(Guid processId, string name, ParameterCreateRequest parameterCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Create multiple process instance parameters
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -265,7 +265,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<CreateCollectionResponse> WorkflowApiDataProcessesParametersCreateCollectionAsync(Guid processId, List<ParameterCreateRequestWithName> parameterCreateRequestWithName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create multiple process instance parameters
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -278,7 +278,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (CreateCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCollectionResponse>> WorkflowApiDataProcessesParametersCreateCollectionWithHttpInfoAsync(Guid processId, List<ParameterCreateRequestWithName> parameterCreateRequestWithName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete one process instance parameter
+        /// Delete a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <remarks>
         /// 
@@ -292,7 +292,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataProcessesParametersDeleteAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one process instance parameter
+        /// Delete a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <remarks>
         /// 
@@ -305,7 +305,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataProcessesParametersDeleteWithHttpInfoAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple process instance parameters with filter
+        /// Delete multiple parameters for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -319,7 +319,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataProcessesParametersDeleteCollectionAsync(Guid processId, List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple process instance parameters with filter
+        /// Delete multiple parameters for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -332,7 +332,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataProcessesParametersDeleteCollectionWithHttpInfoAsync(Guid processId, List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one process instance parameter
+        /// Retrieve a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <remarks>
         /// 
@@ -346,7 +346,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<ParameterModel> WorkflowApiDataProcessesParametersGetAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one process instance parameter
+        /// Retrieve a single parameter for a specific process instance ID and parameter name.
         /// </summary>
         /// <remarks>
         /// 
@@ -359,7 +359,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (ParameterModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<ParameterModel>> WorkflowApiDataProcessesParametersGetWithHttpInfoAsync(Guid processId, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple process instance parameters with query
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -377,7 +377,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<ParameterModelGetCollectionResponse> WorkflowApiDataProcessesParametersGetCollectionAsync(Guid processId, string? search = default(string?), List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), List<ParameterFieldSort>? sorts = default(List<ParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple process instance parameters with query
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -394,7 +394,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (ParameterModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ParameterModelGetCollectionResponse>> WorkflowApiDataProcessesParametersGetCollectionWithHttpInfoAsync(Guid processId, string? search = default(string?), List<ParameterFieldFilter>? filters = default(List<ParameterFieldFilter>?), List<ParameterFieldSort>? sorts = default(List<ParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Update one process instance parameter
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -409,7 +409,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<UpdateResponse> WorkflowApiDataProcessesParametersUpdateAsync(Guid processId, string name, ParameterUpdateRequest parameterUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Update one process instance parameter
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -423,7 +423,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> WorkflowApiDataProcessesParametersUpdateWithHttpInfoAsync(Guid processId, string name, ParameterUpdateRequest parameterUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for process instance parameters
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -436,7 +436,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<ParameterModelGetCollectionResponse> WorkflowApiSearchProcessesParametersAsync(ParameterFieldQuery parameterFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for process instance parameters
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -568,7 +568,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance parameter 
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -583,7 +583,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance parameter 
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -657,7 +657,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance parameter 
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -673,7 +673,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one process instance parameter 
+        /// Create a single parameter for a specific process instance ID using parameter name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -750,7 +750,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance parameters 
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -764,7 +764,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance parameters 
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -830,7 +830,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance parameters 
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -845,7 +845,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple process instance parameters 
+        /// Create multiple parameters for a specific process instance ID from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -914,7 +914,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance parameter 
+        /// Delete a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -928,7 +928,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance parameter 
+        /// Delete a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -993,7 +993,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance parameter 
+        /// Delete a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1008,7 +1008,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance parameter 
+        /// Delete a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1076,7 +1076,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance parameters with filter 
+        /// Delete multiple parameters for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1090,7 +1090,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance parameters with filter 
+        /// Delete multiple parameters for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1152,7 +1152,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance parameters with filter 
+        /// Delete multiple parameters for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1167,7 +1167,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance parameters with filter 
+        /// Delete multiple parameters for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1232,7 +1232,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance parameter 
+        /// Retrieve a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1246,7 +1246,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance parameter 
+        /// Retrieve a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1311,7 +1311,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance parameter 
+        /// Retrieve a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1326,7 +1326,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance parameter 
+        /// Retrieve a single parameter for a specific process instance ID and parameter name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1394,7 +1394,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance parameters with query 
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1412,7 +1412,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance parameters with query 
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1494,7 +1494,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance parameters with query 
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1513,7 +1513,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance parameters with query 
+        /// Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1598,7 +1598,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance parameter 
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1613,7 +1613,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance parameter 
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1687,7 +1687,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance parameter 
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1703,7 +1703,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one process instance parameter 
+        /// Update a single parameter for a specific process instance ID and parameter name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1780,7 +1780,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance parameters 
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="parameterFieldQuery"></param>
@@ -1793,7 +1793,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance parameters 
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="parameterFieldQuery"></param>
@@ -1857,7 +1857,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance parameters 
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="parameterFieldQuery"></param>
@@ -1871,7 +1871,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance parameters 
+        /// Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="parameterFieldQuery"></param>

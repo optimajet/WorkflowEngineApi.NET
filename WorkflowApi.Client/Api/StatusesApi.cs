@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Get one process instance status
+        /// Retrieve a single process status by process ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -36,7 +36,7 @@ namespace WorkflowApi.Client.Api
         StatusModel WorkflowApiDataStatusesGet(Guid processId, int operationIndex = 0);
 
         /// <summary>
-        /// Get one process instance status
+        /// Retrieve a single process status by process ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -47,7 +47,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of StatusModel</returns>
         ApiResponse<StatusModel> WorkflowApiDataStatusesGetWithHttpInfo(Guid processId, int operationIndex = 0);
         /// <summary>
-        /// Get multiple process instance statuses with query
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -60,7 +60,7 @@ namespace WorkflowApi.Client.Api
         StatusModelGetCollectionResponse WorkflowApiDataStatusesGetCollection(string? search = default(string?), List<StatusFieldFilter>? filters = default(List<StatusFieldFilter>?), List<StatusFieldSort>? sorts = default(List<StatusFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple process instance statuses with query
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -75,7 +75,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of StatusModelGetCollectionResponse</returns>
         ApiResponse<StatusModelGetCollectionResponse> WorkflowApiDataStatusesGetCollectionWithHttpInfo(string? search = default(string?), List<StatusFieldFilter>? filters = default(List<StatusFieldFilter>?), List<StatusFieldSort>? sorts = default(List<StatusFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Search for process instance statuses
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusFieldQuery"></param>
@@ -84,7 +84,7 @@ namespace WorkflowApi.Client.Api
         StatusModelGetCollectionResponse WorkflowApiSearchStatuses(StatusFieldQuery statusFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for process instance statuses
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -104,7 +104,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Get one process instance status
+        /// Retrieve a single process status by process ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -117,7 +117,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<StatusModel> WorkflowApiDataStatusesGetAsync(Guid processId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one process instance status
+        /// Retrieve a single process status by process ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -129,7 +129,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (StatusModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<StatusModel>> WorkflowApiDataStatusesGetWithHttpInfoAsync(Guid processId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple process instance statuses with query
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -146,7 +146,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<StatusModelGetCollectionResponse> WorkflowApiDataStatusesGetCollectionAsync(string? search = default(string?), List<StatusFieldFilter>? filters = default(List<StatusFieldFilter>?), List<StatusFieldSort>? sorts = default(List<StatusFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple process instance statuses with query
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -162,7 +162,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (StatusModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<StatusModelGetCollectionResponse>> WorkflowApiDataStatusesGetCollectionWithHttpInfoAsync(string? search = default(string?), List<StatusFieldFilter>? filters = default(List<StatusFieldFilter>?), List<StatusFieldSort>? sorts = default(List<StatusFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for process instance statuses
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -175,7 +175,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<StatusModelGetCollectionResponse> WorkflowApiSearchStatusesAsync(StatusFieldQuery statusFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for process instance statuses
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -307,7 +307,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance status 
+        /// Retrieve a single process status by process ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -320,7 +320,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance status 
+        /// Retrieve a single process status by process ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -377,7 +377,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance status 
+        /// Retrieve a single process status by process ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -391,7 +391,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance status 
+        /// Retrieve a single process status by process ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -451,7 +451,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance statuses with query 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -468,7 +468,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance statuses with query 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -548,7 +548,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance statuses with query 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -566,7 +566,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance statuses with query 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -649,7 +649,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance statuses 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusFieldQuery"></param>
@@ -662,7 +662,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance statuses 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusFieldQuery"></param>
@@ -726,7 +726,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance statuses 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusFieldQuery"></param>
@@ -740,7 +740,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance statuses 
+        /// Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusFieldQuery"></param>

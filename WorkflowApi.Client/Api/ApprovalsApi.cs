@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Delete one process instance approval history entry
+        /// Delete a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -37,7 +37,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataProcessesApprovalsDelete(Guid processId, Guid id, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one process instance approval history entry
+        /// Delete a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -49,7 +49,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataProcessesApprovalsDeleteWithHttpInfo(Guid processId, Guid id, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -59,7 +59,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataProcessesApprovalsDeleteCollection(Guid processId, List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -71,7 +71,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataProcessesApprovalsDeleteCollectionWithHttpInfo(Guid processId, List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one process instance approval history entry
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -81,7 +81,7 @@ namespace WorkflowApi.Client.Api
         ApprovalModel WorkflowApiDataProcessesApprovalsGet(Guid processId, Guid id, int operationIndex = 0);
 
         /// <summary>
-        /// Get one process instance approval history entry
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -93,7 +93,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of ApprovalModel</returns>
         ApiResponse<ApprovalModel> WorkflowApiDataProcessesApprovalsGetWithHttpInfo(Guid processId, Guid id, int operationIndex = 0);
         /// <summary>
-        /// Get multiple process instance approval history entries with query
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -107,7 +107,7 @@ namespace WorkflowApi.Client.Api
         ApprovalModelGetCollectionResponse WorkflowApiDataProcessesApprovalsGetCollection(Guid processId, string? search = default(string?), List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), List<ApprovalFieldSort>? sorts = default(List<ApprovalFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple process instance approval history entries with query
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -123,7 +123,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of ApprovalModelGetCollectionResponse</returns>
         ApiResponse<ApprovalModelGetCollectionResponse> WorkflowApiDataProcessesApprovalsGetCollectionWithHttpInfo(Guid processId, string? search = default(string?), List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), List<ApprovalFieldSort>? sorts = default(List<ApprovalFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Search for process instance approval history entries
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="approvalFieldQuery"></param>
@@ -132,7 +132,7 @@ namespace WorkflowApi.Client.Api
         ApprovalModelGetCollectionResponse WorkflowApiSearchProcessesApprovals(ApprovalFieldQuery approvalFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for process instance approval history entries
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -152,7 +152,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Delete one process instance approval history entry
+        /// Delete a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -166,7 +166,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataProcessesApprovalsDeleteAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one process instance approval history entry
+        /// Delete a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -179,7 +179,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataProcessesApprovalsDeleteWithHttpInfoAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -193,7 +193,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataProcessesApprovalsDeleteCollectionAsync(Guid processId, List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -206,7 +206,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataProcessesApprovalsDeleteCollectionWithHttpInfoAsync(Guid processId, List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one process instance approval history entry
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -220,7 +220,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<ApprovalModel> WorkflowApiDataProcessesApprovalsGetAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one process instance approval history entry
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID.
         /// </summary>
         /// <remarks>
         /// 
@@ -233,7 +233,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (ApprovalModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApprovalModel>> WorkflowApiDataProcessesApprovalsGetWithHttpInfoAsync(Guid processId, Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple process instance approval history entries with query
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -251,7 +251,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<ApprovalModelGetCollectionResponse> WorkflowApiDataProcessesApprovalsGetCollectionAsync(Guid processId, string? search = default(string?), List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), List<ApprovalFieldSort>? sorts = default(List<ApprovalFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple process instance approval history entries with query
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -268,7 +268,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (ApprovalModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApprovalModelGetCollectionResponse>> WorkflowApiDataProcessesApprovalsGetCollectionWithHttpInfoAsync(Guid processId, string? search = default(string?), List<ApprovalFieldFilter>? filters = default(List<ApprovalFieldFilter>?), List<ApprovalFieldSort>? sorts = default(List<ApprovalFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for process instance approval history entries
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -281,7 +281,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<ApprovalModelGetCollectionResponse> WorkflowApiSearchProcessesApprovalsAsync(ApprovalFieldQuery approvalFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for process instance approval history entries
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -413,7 +413,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance approval history entry 
+        /// Delete a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -427,7 +427,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance approval history entry 
+        /// Delete a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -486,7 +486,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance approval history entry 
+        /// Delete a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -501,7 +501,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one process instance approval history entry 
+        /// Delete a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -563,7 +563,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter 
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -577,7 +577,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter 
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -639,7 +639,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter 
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -654,7 +654,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple process instance approval history entries with filter 
+        /// Delete multiple approval history entries for a specific process instance ID, with optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -719,7 +719,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance approval history entry 
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -733,7 +733,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance approval history entry 
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -792,7 +792,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance approval history entry 
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -807,7 +807,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one process instance approval history entry 
+        /// Retrieve a single approval history entry for a specific process instance ID and entry ID. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -869,7 +869,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance approval history entries with query 
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -887,7 +887,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance approval history entries with query 
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -969,7 +969,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance approval history entries with query 
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -988,7 +988,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple process instance approval history entries with query 
+        /// Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="processId"></param>
@@ -1073,7 +1073,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance approval history entries 
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="approvalFieldQuery"></param>
@@ -1086,7 +1086,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance approval history entries 
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="approvalFieldQuery"></param>
@@ -1150,7 +1150,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance approval history entries 
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="approvalFieldQuery"></param>
@@ -1164,7 +1164,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for process instance approval history entries 
+        /// Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="approvalFieldQuery"></param>

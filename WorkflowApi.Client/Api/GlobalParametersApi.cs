@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Create one global parameter
+        /// Create a single global parameter using type, name and creation request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -38,7 +38,7 @@ namespace WorkflowApi.Client.Api
         Object WorkflowApiDataGlobalParametersCreate(string type, string name, GlobalParameterCreateRequest globalParameterCreateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Create one global parameter
+        /// Create a single global parameter using type, name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -51,7 +51,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of Object</returns>
         ApiResponse<Object> WorkflowApiDataGlobalParametersCreateWithHttpInfo(string type, string name, GlobalParameterCreateRequest globalParameterCreateRequest, int operationIndex = 0);
         /// <summary>
-        /// Create multiple global parameters
+        /// Create multiple global parameters from an array of creation requests.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterCreateRequestWithTypeName"></param>
@@ -60,7 +60,7 @@ namespace WorkflowApi.Client.Api
         CreateCollectionResponse WorkflowApiDataGlobalParametersCreateCollection(List<GlobalParameterCreateRequestWithTypeName> globalParameterCreateRequestWithTypeName, int operationIndex = 0);
 
         /// <summary>
-        /// Create multiple global parameters
+        /// Create multiple global parameters from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -71,7 +71,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of CreateCollectionResponse</returns>
         ApiResponse<CreateCollectionResponse> WorkflowApiDataGlobalParametersCreateCollectionWithHttpInfo(List<GlobalParameterCreateRequestWithTypeName> globalParameterCreateRequestWithTypeName, int operationIndex = 0);
         /// <summary>
-        /// Delete one global parameter
+        /// Delete a single global parameter by type and name.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -81,7 +81,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataGlobalParametersDelete(string type, string name, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one global parameter
+        /// Delete a single global parameter by type and name.
         /// </summary>
         /// <remarks>
         /// 
@@ -93,7 +93,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataGlobalParametersDeleteWithHttpInfo(string type, string name, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple global parameters with filter
+        /// Delete multiple global parameters based on optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -102,7 +102,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataGlobalParametersDeleteCollection(List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple global parameters with filter
+        /// Delete multiple global parameters based on optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -113,7 +113,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataGlobalParametersDeleteCollectionWithHttpInfo(List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one global parameter
+        /// Retrieve a single global parameter by type and name.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -123,7 +123,7 @@ namespace WorkflowApi.Client.Api
         GlobalParameterModel WorkflowApiDataGlobalParametersGet(string type, string name, int operationIndex = 0);
 
         /// <summary>
-        /// Get one global parameter
+        /// Retrieve a single global parameter by type and name.
         /// </summary>
         /// <remarks>
         /// 
@@ -135,7 +135,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of GlobalParameterModel</returns>
         ApiResponse<GlobalParameterModel> WorkflowApiDataGlobalParametersGetWithHttpInfo(string type, string name, int operationIndex = 0);
         /// <summary>
-        /// Get multiple global parameters with query
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -148,7 +148,7 @@ namespace WorkflowApi.Client.Api
         GlobalParameterModelGetCollectionResponse WorkflowApiDataGlobalParametersGetCollection(string? search = default(string?), List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), List<GlobalParameterFieldSort>? sorts = default(List<GlobalParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple global parameters with query
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -163,7 +163,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of GlobalParameterModelGetCollectionResponse</returns>
         ApiResponse<GlobalParameterModelGetCollectionResponse> WorkflowApiDataGlobalParametersGetCollectionWithHttpInfo(string? search = default(string?), List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), List<GlobalParameterFieldSort>? sorts = default(List<GlobalParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Update one global parameter
+        /// Update a single global parameter by type and name, using an update request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -174,7 +174,7 @@ namespace WorkflowApi.Client.Api
         UpdateResponse WorkflowApiDataGlobalParametersUpdate(string type, string name, GlobalParameterUpdateRequest globalParameterUpdateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Update one global parameter
+        /// Update a single global parameter by type and name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -187,7 +187,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of UpdateResponse</returns>
         ApiResponse<UpdateResponse> WorkflowApiDataGlobalParametersUpdateWithHttpInfo(string type, string name, GlobalParameterUpdateRequest globalParameterUpdateRequest, int operationIndex = 0);
         /// <summary>
-        /// Search for global parameters
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterFieldQuery"></param>
@@ -196,7 +196,7 @@ namespace WorkflowApi.Client.Api
         GlobalParameterModelGetCollectionResponse WorkflowApiSearchGlobalParameters(GlobalParameterFieldQuery globalParameterFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for global parameters
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -216,7 +216,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Create one global parameter
+        /// Create a single global parameter using type, name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -231,7 +231,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<Object> WorkflowApiDataGlobalParametersCreateAsync(string type, string name, GlobalParameterCreateRequest globalParameterCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create one global parameter
+        /// Create a single global parameter using type, name and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -245,7 +245,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (Object)</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> WorkflowApiDataGlobalParametersCreateWithHttpInfoAsync(string type, string name, GlobalParameterCreateRequest globalParameterCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Create multiple global parameters
+        /// Create multiple global parameters from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -258,7 +258,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<CreateCollectionResponse> WorkflowApiDataGlobalParametersCreateCollectionAsync(List<GlobalParameterCreateRequestWithTypeName> globalParameterCreateRequestWithTypeName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create multiple global parameters
+        /// Create multiple global parameters from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -270,7 +270,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (CreateCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCollectionResponse>> WorkflowApiDataGlobalParametersCreateCollectionWithHttpInfoAsync(List<GlobalParameterCreateRequestWithTypeName> globalParameterCreateRequestWithTypeName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete one global parameter
+        /// Delete a single global parameter by type and name.
         /// </summary>
         /// <remarks>
         /// 
@@ -284,7 +284,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataGlobalParametersDeleteAsync(string type, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one global parameter
+        /// Delete a single global parameter by type and name.
         /// </summary>
         /// <remarks>
         /// 
@@ -297,7 +297,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataGlobalParametersDeleteWithHttpInfoAsync(string type, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple global parameters with filter
+        /// Delete multiple global parameters based on optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -310,7 +310,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataGlobalParametersDeleteCollectionAsync(List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple global parameters with filter
+        /// Delete multiple global parameters based on optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -322,7 +322,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataGlobalParametersDeleteCollectionWithHttpInfoAsync(List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one global parameter
+        /// Retrieve a single global parameter by type and name.
         /// </summary>
         /// <remarks>
         /// 
@@ -336,7 +336,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<GlobalParameterModel> WorkflowApiDataGlobalParametersGetAsync(string type, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one global parameter
+        /// Retrieve a single global parameter by type and name.
         /// </summary>
         /// <remarks>
         /// 
@@ -349,7 +349,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (GlobalParameterModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<GlobalParameterModel>> WorkflowApiDataGlobalParametersGetWithHttpInfoAsync(string type, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple global parameters with query
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -366,7 +366,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<GlobalParameterModelGetCollectionResponse> WorkflowApiDataGlobalParametersGetCollectionAsync(string? search = default(string?), List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), List<GlobalParameterFieldSort>? sorts = default(List<GlobalParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple global parameters with query
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -382,7 +382,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (GlobalParameterModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<GlobalParameterModelGetCollectionResponse>> WorkflowApiDataGlobalParametersGetCollectionWithHttpInfoAsync(string? search = default(string?), List<GlobalParameterFieldFilter>? filters = default(List<GlobalParameterFieldFilter>?), List<GlobalParameterFieldSort>? sorts = default(List<GlobalParameterFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Update one global parameter
+        /// Update a single global parameter by type and name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -397,7 +397,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<UpdateResponse> WorkflowApiDataGlobalParametersUpdateAsync(string type, string name, GlobalParameterUpdateRequest globalParameterUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Update one global parameter
+        /// Update a single global parameter by type and name, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -411,7 +411,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> WorkflowApiDataGlobalParametersUpdateWithHttpInfoAsync(string type, string name, GlobalParameterUpdateRequest globalParameterUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for global parameters
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -424,7 +424,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<GlobalParameterModelGetCollectionResponse> WorkflowApiSearchGlobalParametersAsync(GlobalParameterFieldQuery globalParameterFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for global parameters
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -556,7 +556,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one global parameter 
+        /// Create a single global parameter using type, name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -571,7 +571,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one global parameter 
+        /// Create a single global parameter using type, name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -651,7 +651,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one global parameter 
+        /// Create a single global parameter using type, name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -667,7 +667,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one global parameter 
+        /// Create a single global parameter using type, name and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -750,7 +750,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple global parameters 
+        /// Create multiple global parameters from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterCreateRequestWithTypeName"></param>
@@ -763,7 +763,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple global parameters 
+        /// Create multiple global parameters from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterCreateRequestWithTypeName"></param>
@@ -827,7 +827,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple global parameters 
+        /// Create multiple global parameters from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterCreateRequestWithTypeName"></param>
@@ -841,7 +841,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple global parameters 
+        /// Create multiple global parameters from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterCreateRequestWithTypeName"></param>
@@ -908,7 +908,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one global parameter 
+        /// Delete a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -922,7 +922,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one global parameter 
+        /// Delete a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -993,7 +993,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one global parameter 
+        /// Delete a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1008,7 +1008,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one global parameter 
+        /// Delete a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1082,7 +1082,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple global parameters with filter 
+        /// Delete multiple global parameters based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1095,7 +1095,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple global parameters with filter 
+        /// Delete multiple global parameters based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1155,7 +1155,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple global parameters with filter 
+        /// Delete multiple global parameters based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1169,7 +1169,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple global parameters with filter 
+        /// Delete multiple global parameters based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1232,7 +1232,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one global parameter 
+        /// Retrieve a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1246,7 +1246,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one global parameter 
+        /// Retrieve a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1317,7 +1317,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one global parameter 
+        /// Retrieve a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1332,7 +1332,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one global parameter 
+        /// Retrieve a single global parameter by type and name. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1406,7 +1406,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple global parameters with query 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1423,7 +1423,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple global parameters with query 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1503,7 +1503,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple global parameters with query 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1521,7 +1521,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple global parameters with query 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1604,7 +1604,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one global parameter 
+        /// Update a single global parameter by type and name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1619,7 +1619,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one global parameter 
+        /// Update a single global parameter by type and name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1699,7 +1699,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one global parameter 
+        /// Update a single global parameter by type and name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1715,7 +1715,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one global parameter 
+        /// Update a single global parameter by type and name, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="type"></param>
@@ -1798,7 +1798,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for global parameters 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterFieldQuery"></param>
@@ -1811,7 +1811,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for global parameters 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterFieldQuery"></param>
@@ -1875,7 +1875,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for global parameters 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterFieldQuery"></param>
@@ -1889,7 +1889,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for global parameters 
+        /// Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="globalParameterFieldQuery"></param>

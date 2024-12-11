@@ -8,7 +8,7 @@ paths:
     post:
       tags:
         - Approvals
-      summary: Search for process instance approval history entries
+      summary: 'Retrieve approval history entries collection and total count across all process instances, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.processes.approvals
       requestBody:
         content:
@@ -35,7 +35,7 @@ paths:
     get:
       tags:
         - Approvals
-      summary: Get multiple process instance approval history entries with query
+      summary: 'Retrieve approval history entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.processes.approvals.get-collection
       parameters:
         - name: processId
@@ -90,7 +90,7 @@ paths:
     delete:
       tags:
         - Approvals
-      summary: Delete multiple process instance approval history entries with filter
+      summary: 'Delete multiple approval history entries for a specific process instance ID, with optional filters.'
       operationId: workflow-api.data.processes.approvals.delete-collection
       parameters:
         - name: processId
@@ -124,7 +124,7 @@ paths:
     get:
       tags:
         - Approvals
-      summary: Get one process instance approval history entry
+      summary: Retrieve a single approval history entry for a specific process instance ID and entry ID.
       operationId: workflow-api.data.processes.approvals.get
       parameters:
         - name: processId
@@ -163,7 +163,7 @@ paths:
     delete:
       tags:
         - Approvals
-      summary: Delete one process instance approval history entry
+      summary: Delete a single approval history entry for a specific process instance ID and entry ID.
       operationId: workflow-api.data.processes.approvals.delete
       parameters:
         - name: processId
@@ -254,7 +254,7 @@ paths:
     post:
       tags:
         - GlobalParameters
-      summary: Search for global parameters
+      summary: 'Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.global-parameters
       requestBody:
         content:
@@ -281,7 +281,7 @@ paths:
     get:
       tags:
         - GlobalParameters
-      summary: Get multiple global parameters with query
+      summary: 'Retrieve global parameters collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.global-parameters.get-collection
       parameters:
         - name: search
@@ -330,7 +330,7 @@ paths:
     post:
       tags:
         - GlobalParameters
-      summary: Create multiple global parameters
+      summary: Create multiple global parameters from an array of creation requests.
       operationId: workflow-api.data.global-parameters.create-collection
       requestBody:
         content:
@@ -358,7 +358,7 @@ paths:
     delete:
       tags:
         - GlobalParameters
-      summary: Delete multiple global parameters with filter
+      summary: Delete multiple global parameters based on optional filters.
       operationId: workflow-api.data.global-parameters.delete-collection
       parameters:
         - name: filters
@@ -386,7 +386,7 @@ paths:
     get:
       tags:
         - GlobalParameters
-      summary: Get one global parameter
+      summary: Retrieve a single global parameter by type and name.
       operationId: workflow-api.data.global-parameters.get
       parameters:
         - name: type
@@ -423,7 +423,7 @@ paths:
     post:
       tags:
         - GlobalParameters
-      summary: Create one global parameter
+      summary: 'Create a single global parameter using type, name and creation request.'
       operationId: workflow-api.data.global-parameters.create
       parameters:
         - name: type
@@ -460,7 +460,7 @@ paths:
     put:
       tags:
         - GlobalParameters
-      summary: Update one global parameter
+      summary: 'Update a single global parameter by type and name, using an update request.'
       operationId: workflow-api.data.global-parameters.update
       parameters:
         - name: type
@@ -497,7 +497,7 @@ paths:
     delete:
       tags:
         - GlobalParameters
-      summary: Delete one global parameter
+      summary: Delete a single global parameter by type and name.
       operationId: workflow-api.data.global-parameters.delete
       parameters:
         - name: type
@@ -529,7 +529,7 @@ paths:
     post:
       tags:
         - InboxEntries
-      summary: Search for process instance inbox entries
+      summary: 'Retrieve inbox entries collection and total count across all process instances, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.processes.inbox-entries
       requestBody:
         content:
@@ -556,7 +556,7 @@ paths:
     get:
       tags:
         - InboxEntries
-      summary: Get multiple process instance inbox entries with query
+      summary: 'Retrieve inbox entries collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.processes.inbox-entries.get-collection
       parameters:
         - name: processId
@@ -611,7 +611,7 @@ paths:
     delete:
       tags:
         - InboxEntries
-      summary: Delete multiple process instance inbox entries with filter
+      summary: 'Delete multiple inbox entries for a specific process instance ID, with optional filters.'
       operationId: workflow-api.data.processes.inbox-entries.delete-collection
       parameters:
         - name: processId
@@ -645,7 +645,7 @@ paths:
     get:
       tags:
         - InboxEntries
-      summary: Get one process instance inbox entry
+      summary: Retrieve a single inbox entry for a specific process instance ID and identity ID.
       operationId: workflow-api.data.processes.inbox-entries.get
       parameters:
         - name: processId
@@ -683,7 +683,7 @@ paths:
     delete:
       tags:
         - InboxEntries
-      summary: Delete one process instance inbox entry
+      summary: Delete a single inbox entry for a specific process instance ID and identity ID.
       operationId: workflow-api.data.processes.inbox-entries.delete
       parameters:
         - name: processId
@@ -716,7 +716,7 @@ paths:
     post:
       tags:
         - Parameters
-      summary: Search for process instance parameters
+      summary: 'Retrieve parameters collection and total count across all process instances, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.processes.parameters
       requestBody:
         content:
@@ -743,7 +743,7 @@ paths:
     get:
       tags:
         - Parameters
-      summary: Get multiple process instance parameters with query
+      summary: 'Retrieve parameters collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.processes.parameters.get-collection
       parameters:
         - name: processId
@@ -798,7 +798,7 @@ paths:
     post:
       tags:
         - Parameters
-      summary: Create multiple process instance parameters
+      summary: Create multiple parameters for a specific process instance ID from an array of creation requests.
       operationId: workflow-api.data.processes.parameters.create-collection
       parameters:
         - name: processId
@@ -833,7 +833,7 @@ paths:
     delete:
       tags:
         - Parameters
-      summary: Delete multiple process instance parameters with filter
+      summary: 'Delete multiple parameters for a specific process instance ID, with optional filters.'
       operationId: workflow-api.data.processes.parameters.delete-collection
       parameters:
         - name: processId
@@ -867,7 +867,7 @@ paths:
     get:
       tags:
         - Parameters
-      summary: Get one process instance parameter
+      summary: Retrieve a single parameter for a specific process instance ID and parameter name.
       operationId: workflow-api.data.processes.parameters.get
       parameters:
         - name: processId
@@ -905,7 +905,7 @@ paths:
     post:
       tags:
         - Parameters
-      summary: Create one process instance parameter
+      summary: Create a single parameter for a specific process instance ID using parameter name and creation request.
       operationId: workflow-api.data.processes.parameters.create
       parameters:
         - name: processId
@@ -943,7 +943,7 @@ paths:
     put:
       tags:
         - Parameters
-      summary: Update one process instance parameter
+      summary: 'Update a single parameter for a specific process instance ID and parameter name, using an update request.'
       operationId: workflow-api.data.processes.parameters.update
       parameters:
         - name: processId
@@ -981,7 +981,7 @@ paths:
     delete:
       tags:
         - Parameters
-      summary: Delete one process instance parameter
+      summary: Delete a single parameter for a specific process instance ID and parameter name.
       operationId: workflow-api.data.processes.parameters.delete
       parameters:
         - name: processId
@@ -1014,7 +1014,7 @@ paths:
     post:
       tags:
         - Processes
-      summary: Search for process instances
+      summary: 'Retrieve processes collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.processes
       requestBody:
         content:
@@ -1041,7 +1041,7 @@ paths:
     get:
       tags:
         - Processes
-      summary: Get multiple process instances with query
+      summary: 'Retrieve processes collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.processes.get-collection
       parameters:
         - name: search
@@ -1091,7 +1091,7 @@ paths:
     get:
       tags:
         - Processes
-      summary: Get one process instance
+      summary: Retrieve a single process by ID.
       operationId: workflow-api.data.processes.get
       parameters:
         - name: id
@@ -1124,7 +1124,7 @@ paths:
     put:
       tags:
         - Processes
-      summary: Update one process instance
+      summary: Update a single process by ID.
       operationId: workflow-api.data.processes.update
       parameters:
         - name: id
@@ -1158,7 +1158,7 @@ paths:
     post:
       tags:
         - Runtimes
-      summary: Search for runtime instances
+      summary: 'Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.runtimes
       requestBody:
         content:
@@ -1185,7 +1185,7 @@ paths:
     get:
       tags:
         - Runtimes
-      summary: Get runtime instances with query
+      summary: 'Retrieve runtimes collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.runtimes.get-collection
       parameters:
         - name: search
@@ -1235,7 +1235,7 @@ paths:
     get:
       tags:
         - Runtimes
-      summary: Get one runtime instance
+      summary: Retrieve a single runtime by ID.
       operationId: workflow-api.data.runtimes.get
       parameters:
         - name: id
@@ -1268,7 +1268,7 @@ paths:
     post:
       tags:
         - Schemes
-      summary: Search for workflow schemes
+      summary: 'Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.schemes
       requestBody:
         content:
@@ -1295,7 +1295,7 @@ paths:
     get:
       tags:
         - Schemes
-      summary: Get multiple workflow schemes with query
+      summary: 'Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.schemes.get-collection
       parameters:
         - name: search
@@ -1344,7 +1344,7 @@ paths:
     post:
       tags:
         - Schemes
-      summary: Create multiple workflow schemes
+      summary: Create multiple schemes from an array of creation requests.
       operationId: workflow-api.data.schemes.create-collection
       requestBody:
         content:
@@ -1372,7 +1372,7 @@ paths:
     delete:
       tags:
         - Schemes
-      summary: Delete multiple workflow schemes with filter
+      summary: Delete multiple schemes based on optional filters.
       operationId: workflow-api.data.schemes.delete-collection
       parameters:
         - name: filters
@@ -1400,7 +1400,7 @@ paths:
     get:
       tags:
         - Schemes
-      summary: Get one workflow scheme
+      summary: Retrieve a single scheme by code.
       operationId: workflow-api.data.schemes.get
       parameters:
         - name: code
@@ -1432,7 +1432,7 @@ paths:
     post:
       tags:
         - Schemes
-      summary: Create one workflow scheme
+      summary: Create a single scheme using code and creation request.
       operationId: workflow-api.data.schemes.create
       parameters:
         - name: code
@@ -1464,7 +1464,7 @@ paths:
     put:
       tags:
         - Schemes
-      summary: Update one workflow scheme
+      summary: 'Update a single scheme by code, using an update request.'
       operationId: workflow-api.data.schemes.update
       parameters:
         - name: code
@@ -1496,7 +1496,7 @@ paths:
     delete:
       tags:
         - Schemes
-      summary: Delete one workflow scheme
+      summary: Delete a single scheme by code.
       operationId: workflow-api.data.schemes.delete
       parameters:
         - name: code
@@ -1523,7 +1523,7 @@ paths:
     post:
       tags:
         - Statuses
-      summary: Search for process instance statuses
+      summary: 'Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.statuses
       requestBody:
         content:
@@ -1550,7 +1550,7 @@ paths:
     get:
       tags:
         - Statuses
-      summary: Get multiple process instance statuses with query
+      summary: 'Retrieve process statuses collection and total count, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.statuses.get-collection
       parameters:
         - name: search
@@ -1600,7 +1600,7 @@ paths:
     get:
       tags:
         - Statuses
-      summary: Get one process instance status
+      summary: Retrieve a single process status by process ID.
       operationId: workflow-api.data.statuses.get
       parameters:
         - name: processId
@@ -1634,7 +1634,7 @@ paths:
     post:
       tags:
         - Timers
-      summary: Search for process instance timers
+      summary: 'Retrieve timers collection and total count across all process instances, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.processes.timers
       requestBody:
         content:
@@ -1661,7 +1661,7 @@ paths:
     get:
       tags:
         - Timers
-      summary: Get multiple process instance timers with query
+      summary: 'Retrieve timers collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.processes.timers.get-collection
       parameters:
         - name: processId
@@ -1716,7 +1716,7 @@ paths:
     post:
       tags:
         - Timers
-      summary: Create multiple process instance timers
+      summary: Create multiple timers for a specific process instance ID from an array of creation requests.
       operationId: workflow-api.data.processes.timers.create-collection
       parameters:
         - name: processId
@@ -1751,7 +1751,7 @@ paths:
     delete:
       tags:
         - Timers
-      summary: Delete multiple process instance timers with filter
+      summary: 'Delete multiple timers for a specific process instance ID, with optional filters.'
       operationId: workflow-api.data.processes.timers.delete-collection
       parameters:
         - name: processId
@@ -1785,7 +1785,7 @@ paths:
     get:
       tags:
         - Timers
-      summary: Get one process instance timer
+      summary: Retrieve a single timer for a specific process instance ID and timer name.
       operationId: workflow-api.data.processes.timers.get
       parameters:
         - name: processId
@@ -1823,7 +1823,7 @@ paths:
     post:
       tags:
         - Timers
-      summary: Create one process instance timer
+      summary: 'Create a single timer for a specific process instance ID, using timer name and creation request.'
       operationId: workflow-api.data.processes.timers.create
       parameters:
         - name: processId
@@ -1861,7 +1861,7 @@ paths:
     put:
       tags:
         - Timers
-      summary: Update one process instance timer
+      summary: 'Update a single timer for a specific process instance ID and timer name, using an update request.'
       operationId: workflow-api.data.processes.timers.update
       parameters:
         - name: processId
@@ -1899,7 +1899,7 @@ paths:
     delete:
       tags:
         - Timers
-      summary: Delete one process instance timer
+      summary: Delete a single timer for a specific process instance ID and timer name.
       operationId: workflow-api.data.processes.timers.delete
       parameters:
         - name: processId
@@ -1932,7 +1932,7 @@ paths:
     post:
       tags:
         - Transitions
-      summary: Search for process instance transition history entries
+      summary: 'Retrieve transitions collection and total count across all process instances, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.search.processes.transitions
       requestBody:
         content:
@@ -1959,7 +1959,7 @@ paths:
     get:
       tags:
         - Transitions
-      summary: Get multiple process instance transition history entries with query
+      summary: 'Retrieve transitions collection and total count for a specific process instance ID, with optional search, filters, sorting, and paging.'
       operationId: workflow-api.data.processes.transitions.get-collection
       parameters:
         - name: processId
@@ -2014,7 +2014,7 @@ paths:
     delete:
       tags:
         - Transitions
-      summary: Delete multiple process instance transition history entries with filter
+      summary: 'Delete multiple transitions for a specific process instance ID, with optional filters.'
       operationId: workflow-api.data.processes.transitions.delete-collection
       parameters:
         - name: processId
@@ -2048,7 +2048,7 @@ paths:
     get:
       tags:
         - Transitions
-      summary: Get one process instance transition history entry
+      summary: Retrieve a single transition for a specific process instance ID and transition ID.
       operationId: workflow-api.data.processes.transitions.get
       parameters:
         - name: processId
@@ -2087,7 +2087,7 @@ paths:
     delete:
       tags:
         - Transitions
-      summary: Delete one process instance transition history entry
+      summary: Delete a single transition for a specific process instance ID and transition ID.
       operationId: workflow-api.data.processes.transitions.delete
       parameters:
         - name: processId
@@ -2121,7 +2121,7 @@ paths:
     get:
       tags:
         - WorkflowApi
-      summary: Check service health
+      summary: Check services and database connection health
       operationId: workflow-api.health
       responses:
         '200':

@@ -27,7 +27,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Create one workflow scheme
+        /// Create a single scheme using code and creation request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -37,7 +37,7 @@ namespace WorkflowApi.Client.Api
         Object WorkflowApiDataSchemesCreate(string code, SchemeCreateRequest schemeCreateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Create one workflow scheme
+        /// Create a single scheme using code and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -49,7 +49,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of Object</returns>
         ApiResponse<Object> WorkflowApiDataSchemesCreateWithHttpInfo(string code, SchemeCreateRequest schemeCreateRequest, int operationIndex = 0);
         /// <summary>
-        /// Create multiple workflow schemes
+        /// Create multiple schemes from an array of creation requests.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeCreateRequestWithCode"></param>
@@ -58,7 +58,7 @@ namespace WorkflowApi.Client.Api
         CreateCollectionResponse WorkflowApiDataSchemesCreateCollection(List<SchemeCreateRequestWithCode> schemeCreateRequestWithCode, int operationIndex = 0);
 
         /// <summary>
-        /// Create multiple workflow schemes
+        /// Create multiple schemes from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -69,7 +69,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of CreateCollectionResponse</returns>
         ApiResponse<CreateCollectionResponse> WorkflowApiDataSchemesCreateCollectionWithHttpInfo(List<SchemeCreateRequestWithCode> schemeCreateRequestWithCode, int operationIndex = 0);
         /// <summary>
-        /// Delete one workflow scheme
+        /// Delete a single scheme by code.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -78,7 +78,7 @@ namespace WorkflowApi.Client.Api
         DeleteResponse WorkflowApiDataSchemesDelete(string code, int operationIndex = 0);
 
         /// <summary>
-        /// Delete one workflow scheme
+        /// Delete a single scheme by code.
         /// </summary>
         /// <remarks>
         /// 
@@ -89,7 +89,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> WorkflowApiDataSchemesDeleteWithHttpInfo(string code, int operationIndex = 0);
         /// <summary>
-        /// Delete multiple workflow schemes with filter
+        /// Delete multiple schemes based on optional filters.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -98,7 +98,7 @@ namespace WorkflowApi.Client.Api
         DeleteCollectionResponse WorkflowApiDataSchemesDeleteCollection(List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), int operationIndex = 0);
 
         /// <summary>
-        /// Delete multiple workflow schemes with filter
+        /// Delete multiple schemes based on optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -109,7 +109,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of DeleteCollectionResponse</returns>
         ApiResponse<DeleteCollectionResponse> WorkflowApiDataSchemesDeleteCollectionWithHttpInfo(List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), int operationIndex = 0);
         /// <summary>
-        /// Get one workflow scheme
+        /// Retrieve a single scheme by code.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -118,7 +118,7 @@ namespace WorkflowApi.Client.Api
         SchemeModel WorkflowApiDataSchemesGet(string code, int operationIndex = 0);
 
         /// <summary>
-        /// Get one workflow scheme
+        /// Retrieve a single scheme by code.
         /// </summary>
         /// <remarks>
         /// 
@@ -129,7 +129,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of SchemeModel</returns>
         ApiResponse<SchemeModel> WorkflowApiDataSchemesGetWithHttpInfo(string code, int operationIndex = 0);
         /// <summary>
-        /// Get multiple workflow schemes with query
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -142,7 +142,7 @@ namespace WorkflowApi.Client.Api
         SchemeModelGetCollectionResponse WorkflowApiDataSchemesGetCollection(string? search = default(string?), List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), List<SchemeFieldSort>? sorts = default(List<SchemeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
 
         /// <summary>
-        /// Get multiple workflow schemes with query
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -157,7 +157,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of SchemeModelGetCollectionResponse</returns>
         ApiResponse<SchemeModelGetCollectionResponse> WorkflowApiDataSchemesGetCollectionWithHttpInfo(string? search = default(string?), List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), List<SchemeFieldSort>? sorts = default(List<SchemeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0);
         /// <summary>
-        /// Update one workflow scheme
+        /// Update a single scheme by code, using an update request.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -167,7 +167,7 @@ namespace WorkflowApi.Client.Api
         UpdateResponse WorkflowApiDataSchemesUpdate(string code, SchemeUpdateRequest schemeUpdateRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Update one workflow scheme
+        /// Update a single scheme by code, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -179,7 +179,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>ApiResponse of UpdateResponse</returns>
         ApiResponse<UpdateResponse> WorkflowApiDataSchemesUpdateWithHttpInfo(string code, SchemeUpdateRequest schemeUpdateRequest, int operationIndex = 0);
         /// <summary>
-        /// Search for workflow schemes
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeFieldQuery"></param>
@@ -188,7 +188,7 @@ namespace WorkflowApi.Client.Api
         SchemeModelGetCollectionResponse WorkflowApiSearchSchemes(SchemeFieldQuery schemeFieldQuery, int operationIndex = 0);
 
         /// <summary>
-        /// Search for workflow schemes
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -208,7 +208,7 @@ namespace WorkflowApi.Client.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Create one workflow scheme
+        /// Create a single scheme using code and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -222,7 +222,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<Object> WorkflowApiDataSchemesCreateAsync(string code, SchemeCreateRequest schemeCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create one workflow scheme
+        /// Create a single scheme using code and creation request.
         /// </summary>
         /// <remarks>
         /// 
@@ -235,7 +235,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (Object)</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> WorkflowApiDataSchemesCreateWithHttpInfoAsync(string code, SchemeCreateRequest schemeCreateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Create multiple workflow schemes
+        /// Create multiple schemes from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -248,7 +248,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<CreateCollectionResponse> WorkflowApiDataSchemesCreateCollectionAsync(List<SchemeCreateRequestWithCode> schemeCreateRequestWithCode, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create multiple workflow schemes
+        /// Create multiple schemes from an array of creation requests.
         /// </summary>
         /// <remarks>
         /// 
@@ -260,7 +260,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (CreateCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCollectionResponse>> WorkflowApiDataSchemesCreateCollectionWithHttpInfoAsync(List<SchemeCreateRequestWithCode> schemeCreateRequestWithCode, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete one workflow scheme
+        /// Delete a single scheme by code.
         /// </summary>
         /// <remarks>
         /// 
@@ -273,7 +273,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteResponse> WorkflowApiDataSchemesDeleteAsync(string code, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete one workflow scheme
+        /// Delete a single scheme by code.
         /// </summary>
         /// <remarks>
         /// 
@@ -285,7 +285,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> WorkflowApiDataSchemesDeleteWithHttpInfoAsync(string code, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Delete multiple workflow schemes with filter
+        /// Delete multiple schemes based on optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -298,7 +298,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<DeleteCollectionResponse> WorkflowApiDataSchemesDeleteCollectionAsync(List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete multiple workflow schemes with filter
+        /// Delete multiple schemes based on optional filters.
         /// </summary>
         /// <remarks>
         /// 
@@ -310,7 +310,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (DeleteCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteCollectionResponse>> WorkflowApiDataSchemesDeleteCollectionWithHttpInfoAsync(List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get one workflow scheme
+        /// Retrieve a single scheme by code.
         /// </summary>
         /// <remarks>
         /// 
@@ -323,7 +323,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<SchemeModel> WorkflowApiDataSchemesGetAsync(string code, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get one workflow scheme
+        /// Retrieve a single scheme by code.
         /// </summary>
         /// <remarks>
         /// 
@@ -335,7 +335,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (SchemeModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<SchemeModel>> WorkflowApiDataSchemesGetWithHttpInfoAsync(string code, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get multiple workflow schemes with query
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -352,7 +352,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<SchemeModelGetCollectionResponse> WorkflowApiDataSchemesGetCollectionAsync(string? search = default(string?), List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), List<SchemeFieldSort>? sorts = default(List<SchemeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get multiple workflow schemes with query
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -368,7 +368,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (SchemeModelGetCollectionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SchemeModelGetCollectionResponse>> WorkflowApiDataSchemesGetCollectionWithHttpInfoAsync(string? search = default(string?), List<SchemeFieldFilter>? filters = default(List<SchemeFieldFilter>?), List<SchemeFieldSort>? sorts = default(List<SchemeFieldSort>?), long? skip = default(long?), long? take = default(long?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Update one workflow scheme
+        /// Update a single scheme by code, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -382,7 +382,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<UpdateResponse> WorkflowApiDataSchemesUpdateAsync(string code, SchemeUpdateRequest schemeUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Update one workflow scheme
+        /// Update a single scheme by code, using an update request.
         /// </summary>
         /// <remarks>
         /// 
@@ -395,7 +395,7 @@ namespace WorkflowApi.Client.Api
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> WorkflowApiDataSchemesUpdateWithHttpInfoAsync(string code, SchemeUpdateRequest schemeUpdateRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Search for workflow schemes
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -408,7 +408,7 @@ namespace WorkflowApi.Client.Api
         System.Threading.Tasks.Task<SchemeModelGetCollectionResponse> WorkflowApiSearchSchemesAsync(SchemeFieldQuery schemeFieldQuery, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Search for workflow schemes
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging.
         /// </summary>
         /// <remarks>
         /// 
@@ -540,7 +540,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one workflow scheme 
+        /// Create a single scheme using code and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -554,7 +554,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one workflow scheme 
+        /// Create a single scheme using code and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -626,7 +626,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one workflow scheme 
+        /// Create a single scheme using code and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -641,7 +641,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create one workflow scheme 
+        /// Create a single scheme using code and creation request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -716,7 +716,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple workflow schemes 
+        /// Create multiple schemes from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeCreateRequestWithCode"></param>
@@ -729,7 +729,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple workflow schemes 
+        /// Create multiple schemes from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeCreateRequestWithCode"></param>
@@ -793,7 +793,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple workflow schemes 
+        /// Create multiple schemes from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeCreateRequestWithCode"></param>
@@ -807,7 +807,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Create multiple workflow schemes 
+        /// Create multiple schemes from an array of creation requests. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeCreateRequestWithCode"></param>
@@ -874,7 +874,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one workflow scheme 
+        /// Delete a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -887,7 +887,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one workflow scheme 
+        /// Delete a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -950,7 +950,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one workflow scheme 
+        /// Delete a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -964,7 +964,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete one workflow scheme 
+        /// Delete a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1030,7 +1030,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple workflow schemes with filter 
+        /// Delete multiple schemes based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1043,7 +1043,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple workflow schemes with filter 
+        /// Delete multiple schemes based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1103,7 +1103,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple workflow schemes with filter 
+        /// Delete multiple schemes based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1117,7 +1117,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Delete multiple workflow schemes with filter 
+        /// Delete multiple schemes based on optional filters. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="filters"> (optional)</param>
@@ -1180,7 +1180,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one workflow scheme 
+        /// Retrieve a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1193,7 +1193,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one workflow scheme 
+        /// Retrieve a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1256,7 +1256,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one workflow scheme 
+        /// Retrieve a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1270,7 +1270,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get one workflow scheme 
+        /// Retrieve a single scheme by code. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1336,7 +1336,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple workflow schemes with query 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1353,7 +1353,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple workflow schemes with query 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1433,7 +1433,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple workflow schemes with query 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1451,7 +1451,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Get multiple workflow schemes with query 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="search"> (optional)</param>
@@ -1534,7 +1534,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one workflow scheme 
+        /// Update a single scheme by code, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1548,7 +1548,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one workflow scheme 
+        /// Update a single scheme by code, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1620,7 +1620,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one workflow scheme 
+        /// Update a single scheme by code, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1635,7 +1635,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Update one workflow scheme 
+        /// Update a single scheme by code, using an update request. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code"></param>
@@ -1710,7 +1710,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for workflow schemes 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeFieldQuery"></param>
@@ -1723,7 +1723,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for workflow schemes 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeFieldQuery"></param>
@@ -1787,7 +1787,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for workflow schemes 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeFieldQuery"></param>
@@ -1801,7 +1801,7 @@ namespace WorkflowApi.Client.Api
         }
 
         /// <summary>
-        /// Search for workflow schemes 
+        /// Retrieve schemes collection and total count, with optional search, filters, sorting, and paging. 
         /// </summary>
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="schemeFieldQuery"></param>
