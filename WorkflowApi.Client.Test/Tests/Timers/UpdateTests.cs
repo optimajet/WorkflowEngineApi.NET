@@ -128,7 +128,6 @@ public class UpdateTests
         Assert.AreEqual(0, result?.UpdatedCount);
     }
 
-    [Ignore] //No constraints
     [ClientTest]
     [TestMethod]
     public async Task ConflictTest(TestService service)

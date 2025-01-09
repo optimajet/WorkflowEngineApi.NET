@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OptimaJet.DataEngine;
 using WorkflowApi.Client.Client;
 using WorkflowApi.Client.Model;
 using WorkflowApi.Client.Test.Helpers;
@@ -100,8 +101,7 @@ public class CreateCollectionTests
         Assert.AreEqual(403, exception.ErrorCode);
     }
 
-    [Ignore] //No constraints
-    [ClientTest]
+    [ClientTest(ProviderName.Mongo)] //No constraints
     [TestMethod]
     public async Task ConflictTest(TestService service)
     {
@@ -119,13 +119,13 @@ public class CreateCollectionTests
         // Act
 
         var requests = ParameterHelper.CreateRequests(model);
-
-        var createResult = await api.WorkflowApiDataProcessesParametersCreateCollectionAsync(processId, requests);
-
-        TestLogger.LogApiCalled(new {processId, requests}, createResult);
+        
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(
+            async () => await api.WorkflowApiDataProcessesParametersCreateCollectionAsync(processId, requests)
+        );
 
         // Assert
 
-        Assert.AreEqual(0, createResult?.CreatedCount);
+        Assert.AreEqual(400, exception.ErrorCode);
     }
 }

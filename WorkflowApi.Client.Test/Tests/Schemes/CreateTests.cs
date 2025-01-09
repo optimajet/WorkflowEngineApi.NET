@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OptimaJet.DataEngine;
 using WorkflowApi.Client.Client;
 using WorkflowApi.Client.Test.Helpers;
 using WorkflowApi.Client.Test.Runner;
@@ -88,7 +87,7 @@ public class CreateTests
         Assert.AreEqual(403, exception.ErrorCode);
     }
 
-    [ClientTest(ProviderName.Mssql, ProviderName.Mysql, ProviderName.Oracle, ProviderName.Postgres, ProviderName.Sqlite)] //No constraints
+    [ClientTest]
     [TestMethod]
     public async Task ConflictTest(TestService service)
     {

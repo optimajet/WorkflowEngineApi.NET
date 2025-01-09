@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OptimaJet.DataEngine;
-using OptimaJet.Workflow.Api.Models;
 using WorkflowApi.Client.Client;
 using WorkflowApi.Client.Test.Helpers;
+using WorkflowApi.Client.Test.Models;
 using WorkflowApi.Client.Test.Runner;
 using SchemeUpdateRequest = WorkflowApi.Client.Model.SchemeUpdateRequest;
 
@@ -226,7 +225,7 @@ public class UpdateTests
         Assert.AreEqual(0, result?.UpdatedCount);
     }
 
-    [ClientTest(ProviderName.Mongo)] //No constraints
+    [ClientTest]
     [TestMethod]
     public async Task ConflictTest(TestService service)
     {

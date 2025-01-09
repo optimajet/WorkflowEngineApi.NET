@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using OptimaJet.Workflow.Api.Models;
 using WorkflowApi.Client.Api;
+using WorkflowApi.Client.Test.Models;
 using WorkflowApi.Client.Test.Runner;
-using Scheme = WorkflowApi.Client.Model.Scheme;
 using SchemeCreateRequest = WorkflowApi.Client.Model.SchemeCreateRequest;
 using SchemeCreateRequestWithCode = WorkflowApi.Client.Model.SchemeCreateRequestWithCode;
 using SchemeModel = WorkflowApi.Client.Model.SchemeModel;
@@ -148,9 +147,9 @@ public static class SchemeHelper
         return api;
     }
 
-    private static Scheme GenerateScheme()
+    private static WorkflowApi.Client.Model.Scheme GenerateScheme()
     {
-        var scheme = JsonConvert.DeserializeObject<Scheme>(Scheme)
+        var scheme = JsonConvert.DeserializeObject<WorkflowApi.Client.Model.Scheme>(Scheme)
                      ?? throw new InvalidOperationException("Failed to deserialize scheme.");
         scheme.Name = Guid.NewGuid().ToString();
         return scheme;

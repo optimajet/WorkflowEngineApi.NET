@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OptimaJet.DataEngine.Attributes;
-using OptimaJet.Workflow.Api.Models;
+using WorkflowApi.Client.Test.Models;
 
 namespace WorkflowApi.Client.Test.Repositories.Sql.Entities;
 

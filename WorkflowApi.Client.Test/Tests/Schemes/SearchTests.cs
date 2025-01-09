@@ -1,14 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using OptimaJet.DataEngine;
-using OptimaJet.Workflow.Api.Models;
 using WorkflowApi.Client.Client;
 using WorkflowApi.Client.Model;
 using WorkflowApi.Client.Test.Helpers;
+using WorkflowApi.Client.Test.Models;
 using WorkflowApi.Client.Test.Runner;
 using Direction = WorkflowApi.Client.Model.Direction;
 using FilterType = WorkflowApi.Client.Model.FilterType;
-using Scheme = OptimaJet.Workflow.Api.Models.Scheme;
+using Scheme = WorkflowApi.Client.Test.Models.Scheme;
 using SchemeField = WorkflowApi.Client.Model.SchemeField;
 
 namespace WorkflowApi.Client.Test.Tests.Schemes;

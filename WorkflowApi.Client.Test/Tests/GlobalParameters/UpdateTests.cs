@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OptimaJet.DataEngine;
 using WorkflowApi.Client.Client;
 using WorkflowApi.Client.Model;
 using WorkflowApi.Client.Test.Helpers;
@@ -128,7 +127,7 @@ public class UpdateTests
         Assert.AreEqual(0, result?.UpdatedCount);
     }
 
-    [ClientTest(ProviderName.Mongo, ProviderName.Mysql, ProviderName.Oracle, ProviderName.Postgres, ProviderName.Sqlite)] //No constraints
+    [ClientTest]
     [TestMethod]
     public async Task ConflictTest(TestService service)
     {
@@ -155,7 +154,7 @@ public class UpdateTests
         Assert.AreEqual(400, exception.ErrorCode);
     }
 
-    [ClientTest(ProviderName.Mongo, ProviderName.Mysql, ProviderName.Oracle, ProviderName.Postgres, ProviderName.Sqlite)] //No constraints
+    [ClientTest]
     [TestMethod]
     public async Task ConflictTypeOnlyTest(TestService service)
     {
@@ -183,7 +182,7 @@ public class UpdateTests
         Assert.AreEqual(400, exception.ErrorCode);
     }
 
-    [ClientTest(ProviderName.Mongo, ProviderName.Mysql, ProviderName.Oracle, ProviderName.Postgres, ProviderName.Sqlite)] //No constraints
+    [ClientTest]
     [TestMethod]
     public async Task ConflictNameOnlyTest(TestService service)
     {

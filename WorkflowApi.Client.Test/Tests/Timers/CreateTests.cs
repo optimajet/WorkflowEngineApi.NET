@@ -89,7 +89,6 @@ public class CreateTests
         Assert.AreEqual(403, exception.ErrorCode);
     }
 
-    [Ignore] //No constraints
     [ClientTest]
     [TestMethod]
     public async Task ConflictTest(TestService service)

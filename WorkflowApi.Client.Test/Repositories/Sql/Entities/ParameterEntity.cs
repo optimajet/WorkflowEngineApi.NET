@@ -1,5 +1,5 @@
 ﻿using OptimaJet.DataEngine.Attributes;
-using OptimaJet.Workflow.Api.Models;
+using WorkflowApi.Client.Test.Models;
 using ParameterModel = WorkflowApi.Client.Model.ParameterModel;
 
 namespace WorkflowApi.Client.Test.Repositories.Sql.Entities;

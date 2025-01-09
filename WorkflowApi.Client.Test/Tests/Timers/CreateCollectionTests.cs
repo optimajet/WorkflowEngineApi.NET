@@ -89,7 +89,6 @@ public class CreateCollectionTests
         Assert.AreEqual(403, exception.ErrorCode);
     }
 
-    [Ignore] //No constraints
     [ClientTest]
     [TestMethod]
     public async Task ConflictTest(TestService service)
@@ -109,10 +108,12 @@ public class CreateCollectionTests
 
         var requests = TimerHelper.CreateRequests(model);
 
-        var createResult = await api.WorkflowApiDataProcessesTimersCreateCollectionAsync(processId, requests);
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(
+            async () => await api.WorkflowApiDataProcessesTimersCreateCollectionAsync(processId, requests)
+        );
 
         // Assert
 
-        Assert.AreEqual(0, createResult?.CreatedCount);
+        Assert.AreEqual(400, exception.ErrorCode);
     }
 }

@@ -6,8 +6,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>WorkflowApi.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <!-- Nuget -->
     <PropertyGroup>

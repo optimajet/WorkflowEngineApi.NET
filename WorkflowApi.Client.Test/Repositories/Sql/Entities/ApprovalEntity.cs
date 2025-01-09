@@ -1,5 +1,5 @@
 ﻿using OptimaJet.DataEngine.Attributes;
-using OptimaJet.Workflow.Api.Models;
+using WorkflowApi.Client.Test.Models;
 using ApprovalModel = WorkflowApi.Client.Model.ApprovalModel;
 
 namespace WorkflowApi.Client.Test.Repositories.Sql.Entities;
