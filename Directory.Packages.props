@@ -4,13 +4,13 @@
   </PropertyGroup>
   <!-- Workflow API packages -->
   <ItemGroup>
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mongo" Version="17.0.0" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mssql" Version="17.0.0" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mysql" Version="17.0.0" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Oracle" Version="17.0.0" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Postgres" Version="17.0.0" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Sqlite" Version="17.0.0" />
-    <PackageVersion Include="OptimaJet.Workflow.Api" Version="17.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mongo" Version="17.1.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mssql" Version="17.1.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mysql" Version="17.1.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Oracle" Version="17.1.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Postgres" Version="17.1.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Sqlite" Version="17.1.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api" Version="17.1.0" />
   </ItemGroup>
   <!-- Microsoft packages -->
   <ItemGroup>
@@ -19,12 +19,13 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageVersion Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
   <!-- Third-party packages -->
   <ItemGroup>
     <PackageVersion Include="JsonSubTypes" Version="2.0.1" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageVersion Include="RestSharp" Version="110.2.0" />
+    <PackageVersion Include="RestSharp" Version="112.1.0" />
     <PackageVersion Include="Polly" Version="8.1.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.6.2" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.6.2" />
@@ -33,7 +34,7 @@
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    <PackageVersion Include="MongoDB.Driver" Version="2.24.0" />
+    <PackageVersion Include="MongoDB.Driver" Version="2.30.0" />
     <PackageVersion Include="MSTest.TestAdapter" Version="3.4.1" />
     <PackageVersion Include="MSTest.TestFramework" Version="3.4.1" />
     <PackageVersion Include="StrongNamer" Version="0.2.5" />

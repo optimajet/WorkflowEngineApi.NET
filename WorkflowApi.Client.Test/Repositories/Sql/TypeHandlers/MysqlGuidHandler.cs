@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using OptimaJet.DataEngine.Sql.TypeHandlers;
 
 namespace WorkflowApi.Client.Test.Repositories.Sql.TypeHandlers;

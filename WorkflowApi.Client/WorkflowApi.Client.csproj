@@ -21,6 +21,7 @@
         <PackageReference Include="RestSharp" />
         <PackageReference Include="Polly" />
         <PackageReference Include="System.ComponentModel.Annotations" />
+        <PackageReference Include="System.Text.Json" />
     </ItemGroup>
     <!-- Includes -->
     <ItemGroup>
