@@ -1,16 +1,16 @@
 # Workflow Engine API Sample
 
 This repository contains a sample integration of the Workflow Engine API into an ASP.NET application. The Workflow
-Engine Web API is a library for the ASP.NET framework that allows you to integrate a ready-made API into your
-application for managing data and processes within Workflow Engine instances. This module is easily integrable and
-highly customizable, saving you from the routine development needed to integrate Workflow Engine into your web
-ecosystem.
+Engine Web API is a library for the ASP.NET framework that allows you to integrate a ready-made API into
+your application for managing data and processes within Workflow Engine Runtime instances. This module is easily
+integrable and highly customizable, saving you from the routine development needed to integrate Workflow Engine into
+your web ecosystem.
 
 ### Key Features
 
 1. **RESTful Data API**: Safely interact with the Workflow Engine database without risking internal process disruptions.
-2. **RPC API** *(Coming soon…)*: Remotely manage the Workflow Engine Runtime instance.
-3. **Permission-based Security**: Fine-tune access to each API endpoint and generate claims for your users.
+2. **RPC API**: Remotely manage the Workflow Engine Runtime instances in single- or multi- tenant modes.
+3. **Permission-based Security**: Fine-tune access to each API operation and generate claims for your users.
 
 Learn more about Workflow Engine API on the [documentation website](https://workflowengine.io/documentation/web-api).
 
@@ -107,8 +107,9 @@ The solution consists of three projects:
 
 - **WorkflowApi** — A sample web application that demonstrates how to use the `OptimaJet.Workflow.Api` library.
 - **WorkflowApi.Client** — A sample WorkflowApi client application generated using OpenAPI specification.
-- **WorkflowApi.Client.Tests** — An integration tests project based on WorkflowApi client that checks all API endpoints
-  work correctly.
+- **WorkflowApi.Client.Tests** — An integration tests infrastructure project based on WorkflowApi client.
+- **WorkflowApi.Client.Data.Tests** — An integration tests project for testing Data operations using WorkflowApi client.
+- **WorkflowApi.Client.Rpc.Tests** — An integration tests project for testing RPC operations using WorkflowApi client.
 
 ### Solution Building Pipeline
 
@@ -124,7 +125,7 @@ When you run the build of the solution in the `Debug` configuration, an unusual 
 5. In the same script, the generated client is copied to the `./WorkflowApi.Client` project except for
    the `WorkflowApi.Client.csproj` file.
 6. Build `WorkflowApi.Client`.
-7. Build `WorkflowApi.Client.Tests`.
+7. Build all tests projects.
 
 ### Scripts
 
@@ -180,7 +181,7 @@ To quickly get an API access token with all privileges, send a GET request to th
 username `admin` and password `admin`.
 
 The auth controller has a POST method allowing you to create a new user with any set of privileges. Privileges are
-specified in dot format, such as `workflow-api.health`. You can learn more about privileges in
+specified in dot format, such as `workflow-api.readiness`. You can learn more about privileges in
 the [documentation](https://workflowengine.io/documentation/web-api/security) or use the convenient builder in
 the `IWorkflowApiPermissions` service to get or validate a list of privileges.
 
@@ -194,7 +195,7 @@ based on the JWT configuration and returned as a string.
 
 Using the `openapitools/openapi-generator-cli` tool hosted in Docker, a C# client code for Workflow API is generated.
 This client is generated based on the `swagger.yaml` API specification. The client is essentially boilerplate code for
-working with API endpoints. It includes DTO classes for models, code for forming request objects, request settings,
+working with API operations. It includes DTO classes for models, code for forming request objects, request settings,
 exception handling, creating an HTTP client, making requests, and data serialization and deserialization.
 
 This tool can generate clients not only for C# but also for almost any popular language, such as TypeScript, Python, Go,

@@ -41,32 +41,18 @@ namespace WorkflowApi.Client.Model
         /// Initializes a new instance of the <see cref="Error" /> class.
         /// </summary>
         /// <param name="code">code.</param>
-        /// <param name="exception">exception.</param>
-        public Error(ErrorCode? code = default(ErrorCode?), ExceptionModel exception = default(ExceptionModel))
+        /// <param name="message">message.</param>
+        public Error(ErrorCode? code = default(ErrorCode?), string message = default(string))
         {
             this.Code = code;
-            this.Exception = exception;
+            this.Message = message;
         }
 
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
         [DataMember(Name = "message", EmitDefaultValue = true)]
-        public string Message { get; private set; }
-
-        /// <summary>
-        /// Returns false as Message should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeMessage()
-        {
-            return false;
-        }
-        /// <summary>
-        /// Gets or Sets Exception
-        /// </summary>
-        [DataMember(Name = "exception", EmitDefaultValue = false)]
-        public ExceptionModel Exception { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,7 +64,6 @@ namespace WorkflowApi.Client.Model
             sb.Append("class Error {\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  Exception: ").Append(Exception).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

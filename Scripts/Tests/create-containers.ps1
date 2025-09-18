@@ -19,7 +19,6 @@ $Root = "$( $PSScriptRoot )/../.."
 function CreateMongoContainer($Container)
 {
     docker network create $Container.Name
-    CheckExitCode
     docker run --name $( $Container.Name ) --network $Container.Name -p "$( $Container.Port ):27017" -d "mongo:7.0" mongod --replSet mongoReplicaSet --bind_ip "localhost,$( $Container.Name )"
     CheckExitCode
 
@@ -27,8 +26,12 @@ function CreateMongoContainer($Container)
     docker exec $Container.Name mongosh --eval "rs.initiate({ _id: 'mongoReplicaSet', members: [ {_id: 0, host: '$( $Container.Name )'} ]})"
     CheckExitCode
 
-    Write-Host "$( $Container.Name ) container created, connection string:" -ForegroundColor Yellow
-    Write-Host "mongodb://localhost:$( $Container.Port )/$( $Container.Database )" -ForegroundColor Cyan
+    Write-Host "$( $Container.Name ) container created, connection strings:" -ForegroundColor Yellow
+    
+    foreach ($Database in $Container.Databases)
+    {
+        Write-Host "mongodb://localhost:$( $Container.Port )/$( $Database )" -ForegroundColor Cyan
+    }
 }
 
 function CreateMssqlContainer($Container)
@@ -37,7 +40,11 @@ function CreateMssqlContainer($Container)
     CheckExitCode
 
     Write-Host "$( $Container.Name ) container created, connection string:" -ForegroundColor Yellow
-    Write-Host "Server=localhost,$( $Container.Port );Database=master;User Id=$( $Container.User );Password=$( $Container.Password );" -ForegroundColor Cyan
+    
+    foreach ($Database in $Container.Databases)
+    {
+        Write-Host "Server=localhost,$( $Container.Port );Database=$( $Database );User Id=$( $Container.User );Password=$( $Container.Password );" -ForegroundColor Cyan
+    }
 }
 
 function CreateMysqlContainer($Container)
@@ -46,16 +53,28 @@ function CreateMysqlContainer($Container)
     CheckExitCode
 
     Write-Host "$( $Container.Name ) container created, connection string:" -ForegroundColor Yellow
-    Write-Host "Host=localhost;Port=$( $Container.Port );Database=$( $Container.Database );User ID=$( $Container.User );Password=$( $Container.Password );" -ForegroundColor Cyan
+    
+    foreach ($Database in $Container.Databases)
+    {
+        Write-Host "Host=localhost;Port=$( $Container.Port );Database=$( $Database );User ID=$( $Container.User );Password=$( $Container.Password );" -ForegroundColor Cyan
+    }
 }
 
 function CreateOracleContainer($Container)
 {
-    docker run --name $Container.Name -p "$( $Container.Port ):1521" -e "APP_USER=$( $Container.Database )" -e "ORACLE_PASSWORD=$( $Container.Password )" -e "APP_USER_PASSWORD=$( $Container.Password )" -d gvenzl/oracle-free
-    CheckExitCode
+    for ($i = 0; $i -lt $Container.Databases.Length; $i++)
+    {
+        $Database = $Container.Databases[$i]
+        docker run --name "$( $Container.Name )_$( $i )" -p "$( $Container.Port + $i ):1521" -e "APP_USER=$( $Database )" -e "ORACLE_PASSWORD=$( $Container.Password )" -e "APP_USER_PASSWORD=$( $Container.Password )" -d gvenzl/oracle-free
+        CheckExitCode
+    }
 
     Write-Host "$( $Container.Name ) container created, connection string:" -ForegroundColor Yellow
-    Write-Host "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=$( $Container.Port )))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=$( $Container.Database );Password=$( $Container.Password );" -ForegroundColor Cyan
+    
+    foreach ($Database in $Container.Databases)
+    {
+        Write-Host "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=$( $Container.Port )))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=$( $Database );Password=$( $Container.Password );" -ForegroundColor Cyan
+    }
 }
 
 function CreatePostgresContainer($Container)
@@ -64,7 +83,11 @@ function CreatePostgresContainer($Container)
     CheckExitCode
 
     Write-Host "$( $Container.Name ) container created, connection string:" -ForegroundColor Yellow
-    Write-Host "Host=localhost;Port=$( $Container.Port );Database=postgres;User Id=$( $Container.User );Password=$( $Container.Password );" -ForegroundColor Cyan
+    
+    foreach ($Database in $Container.Databases)
+    {
+        Write-Host "Host=localhost;Port=$( $Container.Port );Database=$( $Database );User Id=$( $Container.User );Password=$( $Container.Password );" -ForegroundColor Cyan
+    }
 }
 
 function CreateContainer($Container)
@@ -100,7 +123,7 @@ function InitMongoContainer($Container)
 
     for ($i = 0; $i -lt 10; $i++)
     {
-        docker exec $Container.Name mongosh "$( $Container.Database )" --eval "load('/indexes.js')"
+        docker exec $Container.Name mongosh --eval "db.adminCommand('ping')"
 
         if ($LASTEXITCODE -ne 0)
         {
@@ -109,6 +132,13 @@ function InitMongoContainer($Container)
         }
         else
         {
+            Write-Host "Initializing $( $Container.Name ) container databases" -ForegroundColor Yellow
+            
+            foreach ($Database in $Container.Databases)
+            {
+                docker exec $Container.Name mongosh "$( $Database )" --eval "load('/indexes.js')"
+            }
+            
             break
         }
 
@@ -132,6 +162,13 @@ function InitMssqlContainer($Container)
         }
         else
         {
+            Write-Host "Initializing $( $Container.Name ) container databases" -ForegroundColor Yellow
+            
+            foreach ($Database in $Container.Databases)
+            {
+                docker exec $Container.Name /opt/mssql-tools18/bin/sqlcmd -S localhost -U $Container.User -C -P $Container.Password -Q "CREATE DATABASE $( $Database );"
+            }
+            
             return
         }
 
@@ -143,7 +180,7 @@ function InitMysqlContainer($Container)
 {
     for ($i = 0; $i -lt 30; $i++)
     {
-        docker exec $Container.Name mysql "-u$( $Container.User )" "-p$( $Container.Password )" -e "CREATE DATABASE IF NOT EXISTS $( $Container.Database );"
+        docker exec $Container.Name mysql "-u$( $Container.User )" "-p$( $Container.Password )" -e "SELECT 1"
 
         if ($LASTEXITCODE -ne 0)
         {
@@ -152,6 +189,13 @@ function InitMysqlContainer($Container)
         }
         else
         {
+            Write-Host "Initializing $( $Container.Name ) container databases" -ForegroundColor Yellow
+            
+            foreach ($Database in $Container.Databases)
+            {
+                docker exec $Container.Name mysql "-u$( $Container.User )" "-p$( $Container.Password )" -e "CREATE DATABASE IF NOT EXISTS $( $Database );"
+            }
+            
             return
         }
 
@@ -166,7 +210,29 @@ function InitOracleContainer($Container)
 
 function InitPostgresContainer($Container)
 {
+    for ($i = 0; $i -lt 30; $i++)
+    {
+        docker exec $Container.Name psql -U $Container.User -d postgres -c "SELECT 1"
 
+        if ($LASTEXITCODE -ne 0)
+        {
+            Write-Host "Waiting for $( $Container.Name ) container to become healthy..." -ForegroundColor Yellow
+            Start-Sleep -Seconds 5
+        }
+        else
+        {
+            Write-Host "Initializing $( $Container.Name ) container databases" -ForegroundColor Yellow
+            
+            foreach ($Database in $Container.Databases)
+            {
+                docker exec $Container.Name psql -U $Container.User -d postgres -c "CREATE DATABASE $( $Database );"
+            }
+            
+            return
+        }
+
+    }
+    throw "Failed to initialize $( $Container.Name ) container"
 }
 
 function InitContainer($Container)

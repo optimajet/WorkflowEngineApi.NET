@@ -9,13 +9,10 @@ public class SchemeEntity
 {
     public SchemeEntity() { }
 
-    public SchemeEntity(WorkflowApi.Client.Model.SchemeModel model)
+    public SchemeEntity(Model.SchemeModel model)
     {
         Code = model.Code;
-        Scheme = Converter.ToSchemaString(
-            JsonConvert.DeserializeObject<Scheme>(JsonConvert.SerializeObject(model.Scheme))
-            ?? throw new InvalidOperationException("Failed to deserialize scheme from model.")
-        );
+        Scheme = Converter.ToSchemaString(model.Scheme);
         CanBeInlined = model.CanBeInlined;
         InlinedSchemes = Converter.ToJsonString(model.InlinedSchemes);
         Tags = Converter.ToTagString(model.Tags);
@@ -35,9 +32,9 @@ public class SchemeEntity
     
     public string? Tags { get; set; }
 
-    public WorkflowApi.Client.Model.SchemeModel ToModel()
+    public Model.SchemeModel ToModel()
     {
-        return new WorkflowApi.Client.Model.SchemeModel(
+        return new Model.SchemeModel(
             Code,
             JsonConvert.DeserializeObject<WorkflowApi.Client.Model.Scheme>(JsonConvert.SerializeObject(Converter.FromSchemaString(Scheme))),
             CanBeInlined,

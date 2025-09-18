@@ -13,8 +13,21 @@ public static class Extensions
     /// <returns>The web application builder.</returns>
     public static WebApplicationBuilder Configure<TOptions>(this WebApplicationBuilder builder) where TOptions : class
     {
-        var optionsName = typeof(TOptions).Name;
-        builder.Services.Configure<TOptions>(builder.Configuration.GetSection(optionsName));
+        var sectionName = typeof(TOptions).Name;
+        return builder.Configure<TOptions>(sectionName);
+    }
+    
+    /// <summary>
+    /// Configures the specified options using the configuration section with the specified name.
+    /// </summary>
+    /// <param name="builder">The web application builder.</param>
+    /// <param name="sectionName">The name of the configuration section.</param>
+    /// <typeparam name="TOptions">The type of options to configure.</typeparam>
+    /// <returns>The web application builder.</returns>
+    public static WebApplicationBuilder Configure<TOptions>(this WebApplicationBuilder builder, string sectionName) where TOptions : class
+    {
+        var section = builder.Configuration.GetSection(sectionName);
+        builder.Services.Configure<TOptions>(section);
         return builder;
     }
 

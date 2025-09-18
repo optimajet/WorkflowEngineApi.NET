@@ -1,6 +1,6 @@
 ﻿namespace WorkflowApi.Client.Test.Models;
 
-internal class DisposableCollection : IDisposable, IAsyncDisposable
+public class DisposableCollection : IDisposable, IAsyncDisposable
 {
     public DisposableCollection(params IDisposable[] disposables)
     {

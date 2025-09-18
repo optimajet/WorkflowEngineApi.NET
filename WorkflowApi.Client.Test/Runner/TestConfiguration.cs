@@ -1,8 +1,8 @@
 ﻿namespace WorkflowApi.Client.Test.Runner;
 
-public record TestConfiguration
+public class TestConfiguration
 {
-    public string Name { get; set; } = "";
+    public string Id { get; set; } = "";
     public int Port { get; set; }
     public AppCredentials AppCredentials { get; set; } = new();
     public Configuration AppConfiguration { get; set; } = new();

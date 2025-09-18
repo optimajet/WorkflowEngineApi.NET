@@ -1,6 +1,6 @@
 ﻿namespace WorkflowApi.Client.Test.Models;
 
-internal record Scheme(
+public record Scheme(
     string Name,
     Scheme.Designer DesignerSettings,
     List<Scheme.Actor> Actors,

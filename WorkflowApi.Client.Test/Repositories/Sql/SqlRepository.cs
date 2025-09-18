@@ -6,6 +6,7 @@ using OptimaJet.DataEngine.Oracle;
 using OptimaJet.DataEngine.Postgres;
 using OptimaJet.DataEngine.Sql.TypeHandlers;
 using OptimaJet.DataEngine.Sqlite;
+using OptimaJet.Workflow.Core;
 using WorkflowApi.Client.Test.Repositories.Sql.Entities;
 using WorkflowApi.Client.Test.Repositories.Sql.TypeHandlers;
 using WorkflowApi.Client.Test.Runner;
@@ -56,8 +57,8 @@ public class SqlRepository : IRepository
 
     public SqlRepository(TestService testService)
     {
-        _provider = testService.Configuration.AppConfiguration.Provider;
-        _connectionString = testService.Configuration.AppConfiguration.ConnectionStrings[_provider.ToString()];
+        _providerId = testService.TenantOptions.DataProviderId;
+        _connectionString = testService.TenantOptions.ConnectionString;
 
         Approvals = new SqlApprovalRepository();
         GlobalParameters = new SqlGlobalParameterRepository();
@@ -73,14 +74,14 @@ public class SqlRepository : IRepository
 
     public IAsyncDisposable Use()
     {
-        return _provider switch
+        return _providerId switch
         {
-            Provider.Mssql => MssqlProvider.Use(_connectionString),
-            Provider.Mysql => MysqlProvider.Use(_connectionString),
-            Provider.Oracle => OracleProvider.Use(_connectionString),
-            Provider.Postgres => PostgresProvider.Use(_connectionString),
-            Provider.Sqlite => SqliteProvider.Use(_connectionString),
-            _ => throw new ArgumentOutOfRangeException(nameof(_provider))
+            PersistenceProviderId.Mssql => MssqlProvider.Use(_connectionString),
+            PersistenceProviderId.Mysql => MysqlProvider.Use(_connectionString),
+            PersistenceProviderId.Oracle => OracleProvider.Use(_connectionString),
+            PersistenceProviderId.Postgres => PostgresProvider.Use(_connectionString),
+            PersistenceProviderId.Sqlite => SqliteProvider.Use(_connectionString),
+            _ => throw new ArgumentOutOfRangeException(nameof(_providerId))
         };
     }
 
@@ -95,6 +96,6 @@ public class SqlRepository : IRepository
     public ITimerRepository Timers { get; }
     public ITransitionRepository Transitions { get; }
 
-    private readonly Provider _provider;
+    private readonly string? _providerId;
     private readonly string _connectionString;
 }

@@ -6,7 +6,7 @@ using OptimaJet.Workflow.Core.Runtime;
 
 namespace WorkflowApi.Client.Test.Models;
 
-internal static class Converter
+public static class Converter
 {
     public static string ToCommaSeparatedString(IEnumerable<string> list)
     {
@@ -32,6 +32,13 @@ internal static class Converter
     public static List<string> FromJsonStringList(string? value)
     {
         return JsonConvert.DeserializeObject<List<string>>(value ?? "[]") ?? [];
+    }
+
+    public static string ToSchemaString(WorkflowApi.Client.Model.Scheme schema)
+    {
+        Scheme scheme = JsonConvert.DeserializeObject<Scheme>(ToJsonString(schema))
+                        ?? throw new InvalidOperationException("Failed to deserialize scheme from model.");
+        return ToSchemaString(scheme);
     }
 
     public static string ToSchemaString(Scheme schema)

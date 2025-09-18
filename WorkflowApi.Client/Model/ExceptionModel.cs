@@ -34,9 +34,23 @@ namespace WorkflowApi.Client.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionModel" /> class.
         /// </summary>
+        /// <param name="type">type.</param>
+        /// <param name="message">message.</param>
+        /// <param name="data">data.</param>
+        /// <param name="stackTrace">stackTrace.</param>
+        /// <param name="source">source.</param>
+        /// <param name="helpLink">helpLink.</param>
+        /// <param name="hResult">hResult.</param>
         /// <param name="innerException">innerException.</param>
-        public ExceptionModel(ExceptionModel innerException = default(ExceptionModel))
+        public ExceptionModel(string type = default(string), string message = default(string), Dictionary<string, Object> data = default(Dictionary<string, Object>), string stackTrace = default(string), string source = default(string), string helpLink = default(string), int hResult = default(int), ExceptionModel innerException = default(ExceptionModel))
         {
+            this.Type = type;
+            this.Message = message;
+            this.Data = data;
+            this.StackTrace = stackTrace;
+            this.Source = source;
+            this.HelpLink = helpLink;
+            this.HResult = hResult;
             this.InnerException = innerException;
         }
 
@@ -44,100 +58,44 @@ namespace WorkflowApi.Client.Model
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = true)]
-        public string Type { get; private set; }
+        public string Type { get; set; }
 
-        /// <summary>
-        /// Returns false as Type should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeType()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets Message
         /// </summary>
         [DataMember(Name = "message", EmitDefaultValue = true)]
-        public string Message { get; private set; }
+        public string Message { get; set; }
 
-        /// <summary>
-        /// Returns false as Message should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeMessage()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", EmitDefaultValue = true)]
-        public Dictionary<string, Object> Data { get; private set; }
+        public Dictionary<string, Object> Data { get; set; }
 
-        /// <summary>
-        /// Returns false as Data should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeData()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets StackTrace
         /// </summary>
         [DataMember(Name = "stackTrace", EmitDefaultValue = true)]
-        public string StackTrace { get; private set; }
+        public string StackTrace { get; set; }
 
-        /// <summary>
-        /// Returns false as StackTrace should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeStackTrace()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets Source
         /// </summary>
         [DataMember(Name = "source", EmitDefaultValue = true)]
-        public string Source { get; private set; }
+        public string Source { get; set; }
 
-        /// <summary>
-        /// Returns false as Source should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeSource()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets HelpLink
         /// </summary>
         [DataMember(Name = "helpLink", EmitDefaultValue = true)]
-        public string HelpLink { get; private set; }
+        public string HelpLink { get; set; }
 
-        /// <summary>
-        /// Returns false as HelpLink should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeHelpLink()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets HResult
         /// </summary>
         [DataMember(Name = "hResult", EmitDefaultValue = false)]
-        public int HResult { get; private set; }
+        public int HResult { get; set; }
 
-        /// <summary>
-        /// Returns false as HResult should not be serialized given that it's read-only.
-        /// </summary>
-        /// <returns>false (boolean)</returns>
-        public bool ShouldSerializeHResult()
-        {
-            return false;
-        }
         /// <summary>
         /// Gets or Sets InnerException
         /// </summary>

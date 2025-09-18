@@ -3,14 +3,15 @@
     "name": "wfe-api-mongo",
     "provider": "mongo",
     "port": 47017,
-    "database": "workflow-engine"
+    "databases": ["data-tests", "rpc-tests", "workflow-engine"]
   },
   {
     "name": "wfe-api-mssql",
     "provider": "mssql",
     "user": "SA",
     "password": "P@ssw0rd",
-    "port": 41433
+    "port": 41433,
+    "databases": ["data_tests", "rpc_tests", "workflow_engine"]
   },
   {
     "name": "wfe-api-mysql",
@@ -18,20 +19,21 @@
     "user": "root",
     "password": "P@ssw0rd",
     "port": 43306,
-    "database": "workflow_engine"
+    "databases": ["data_tests", "rpc_tests", "workflow_engine"]
   },
   {
     "name": "wfe-api-oracle",
     "provider": "oracle",
     "password": "password",
     "port": 41521,
-    "database": "WORKFLOW_ENGINE"
+    "databases": ["DATA_TESTS", "RPC_TESTS", "WORKFLOW_ENGINE"]
   },
   {
     "name": "wfe-api-postgres",
     "provider": "postgres",
     "user": "postgres",
     "password": "P@ssw0rd",
-    "port": 45432
+    "port": 45432,
+    "databases": ["data_tests", "rpc_tests", "workflow_engine"]
   }
 ]

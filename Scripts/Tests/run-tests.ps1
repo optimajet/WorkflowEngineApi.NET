@@ -25,7 +25,7 @@ Push-Location $TestsDir
 try
 {
     Write-Host "Running tests..." -ForegroundColor Yellow
-    $env:RUNNING_CONFIGURATIONS=$( $ProvidersString )
+    $env:RUNNING_PROVIDERS=$( $ProvidersString )
     dotnet test --logger html --logger "console;verbosity=normal" --logger trx --blame --blame-hang-timeout 10m
     CheckExitCode
     Write-Host "Tests completed successfully" -ForegroundColor Green

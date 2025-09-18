@@ -34,6 +34,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{
 		Scripts\Providers\MongoIndexes.js = Scripts\Providers\MongoIndexes.js
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowApi.Client.Data.Test", "WorkflowApi.Client.Data.Test\WorkflowApi.Client.Data.Test.csproj", "{3B9C355F-0D87-4096-B97C-90C87C45AEDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowApi.Client.Rpc.Test", "WorkflowApi.Client.Rpc.Test\WorkflowApi.Client.Rpc.Test.csproj", "{D87E90F6-3777-4C2B-9707-41D5DA0CEB3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,14 @@ Global
 		{BDEC2E38-EE87-4538-9164-E89B75A2CDF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDEC2E38-EE87-4538-9164-E89B75A2CDF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDEC2E38-EE87-4538-9164-E89B75A2CDF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9C355F-0D87-4096-B97C-90C87C45AEDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9C355F-0D87-4096-B97C-90C87C45AEDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9C355F-0D87-4096-B97C-90C87C45AEDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9C355F-0D87-4096-B97C-90C87C45AEDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D87E90F6-3777-4C2B-9707-41D5DA0CEB3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D87E90F6-3777-4C2B-9707-41D5DA0CEB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D87E90F6-3777-4C2B-9707-41D5DA0CEB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D87E90F6-3777-4C2B-9707-41D5DA0CEB3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A6AD724B-4C7C-4457-B559-5A8F6B9074CC} = {B1DA4B7C-2A52-4F4A-8463-E35CC42D87AB}

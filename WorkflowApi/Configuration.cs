@@ -1,4 +1,5 @@
 ﻿using OptimaJet.Workflow.Api.Options;
+using OptimaJet.Workflow.Core;
 
 namespace WorkflowApi;
 
@@ -9,6 +10,8 @@ public record Configuration
 {
     /// <summary>
     /// Basic settings of the Workflow Engine API.
+    /// If the <see cref="MultipleTenantMode"/> is set to <c>true</c>,
+    /// <see cref="OptimaJet.Workflow.Api.Options.WorkflowApiCoreOptions.DefaultTenantId"/> property will be forced to null.
     /// </summary>
     public WorkflowApiCoreOptions WorkflowApiCoreOptions { get; set; } = new();
 
@@ -16,6 +19,27 @@ public record Configuration
     /// Security settings of the Workflow Engine API.
     /// </summary>
     public WorkflowApiSecurityOptions WorkflowApiSecurityOptions { get; set; } = new();
+
+    /// <summary>
+    /// Workflow Engine runtime options for the Workflow Engine API in single tenant mode.
+    /// If the <see cref="MultipleTenantMode"/> is set to <c>true</c>, this option will be ignored.
+    /// </summary>
+    public WorkflowEngineTenantCreationOptions WorkflowEngineTenantCreationOptions { get; set; } = new()
+    {
+        DataProviderId = PersistenceProviderId.Sqlite,
+        ConnectionString = DefaultConnectionStrings.Sqlite
+    };
+    
+    /// <summary>
+    /// Indicates whether the Workflow Engine API is running in multiple tenant mode.
+    /// </summary>
+    public bool MultipleTenantMode { get; set; }
+    
+    /// <summary>
+    /// Workflow Engine runtime tenants configuration for the Workflow Engine API in multiple tenant mode.
+    /// If the <see cref="MultipleTenantMode"/> is set to <c>false</c>, this option will be ignored.
+    /// </summary>
+    public WorkflowEngineTenantCreationOptions[] TenantsConfiguration { get; set; } = [];
 
     /// <summary>
     /// Jwt Authentication settings.
@@ -33,22 +57,11 @@ public record Configuration
     public string AllowedHosts { get; set; } = "*";
 
     /// <summary>
-    /// Database provider to use.
-    /// </summary>
-    public Provider Provider { get; set; } = Provider.Sqlite;
-
-    /// <summary>
     /// Connection strings for the database providers.
     /// </summary>
     public Dictionary<string, string> ConnectionStrings { get; set; } = new()
     {
-        ["Default"] = "InMemoryDatabase",
-        ["Mongo"] = "mongodb://localhost:47017/workflow-engine",
-        ["Mssql"] = "Server=localhost,41433;Database=master;User Id=SA;Password=P@ssw0rd;TrustServerCertificate=True;",
-        ["Mysql"] = "Host=localhost;Port=43306;Database=workflow_engine;User ID=root;Password=P@ssw0rd;",
-        ["Oracle"] = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=41521))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=WORKFLOW_ENGINE;Password=password;",
-        ["Postgres"] = "Host=localhost;Port=45432;Database=postgres;User Id=postgres;Password=P@ssw0rd;",
-        ["Sqlite"] = "Data Source=workflow_engine.db"
+        ["Default"] = "InMemoryDatabase"
     };
 }
 
@@ -90,14 +103,14 @@ public record Logging
 }
 
 /// <summary>
-/// Enum representing the database providers.
+/// Default connection strings for the database providers.
 /// </summary>
-public enum Provider
+public static class DefaultConnectionStrings
 {
-    Mongo,
-    Mssql,
-    Mysql,
-    Oracle,
-    Postgres,
-    Sqlite,
+    public const string Mongo = "mongodb://localhost:47017/workflow-engine";
+    public const string Mssql = "Server=localhost,41433;Database=workflow_engine;User Id=SA;Password=P@ssw0rd;TrustServerCertificate=True;";
+    public const string Mysql = "Host=localhost;Port=43306;Database=workflow_engine;User ID=root;Password=P@ssw0rd;";
+    public const string Oracle = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=41523))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=WORKFLOW_ENGINE;Password=password;";
+    public const string Postgres = "Host=localhost;Port=45432;Database=workflow_engine;User Id=postgres;Password=P@ssw0rd;";
+    public const string Sqlite = "Data Source=workflow_engine.db";
 }

@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OptimaJet.DataEngine.Sql;
 using OptimaJet.Workflow.Api;
 using OptimaJet.Workflow.Api.Mongo;
 using OptimaJet.Workflow.Api.Mssql;
@@ -18,14 +17,7 @@ using OptimaJet.Workflow.Api.Options;
 using OptimaJet.Workflow.Api.Oracle;
 using OptimaJet.Workflow.Api.Postgres;
 using OptimaJet.Workflow.Api.Sqlite;
-using OptimaJet.Workflow.Core.Persistence;
 using OptimaJet.Workflow.Core.Runtime;
-using OptimaJet.Workflow.DbPersistence;
-using OptimaJet.Workflow.Migrator;
-using OptimaJet.Workflow.MySQL;
-using OptimaJet.Workflow.Oracle;
-using OptimaJet.Workflow.PostgreSQL;
-using OptimaJet.Workflow.SQLite;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WorkflowApi.Data;
 using WorkflowApi.Models;
@@ -64,11 +56,14 @@ public class AppBuilder
     public void ConfigureServices()
     {
         if (_servicesConfigured) return;
-
+        
+        // Default values from Configuration object being added to the configuration.
         Builder.Configuration.AddObject(Configuration);
         Builder.Configure<WorkflowApiCoreOptions>();
         Builder.Configure<WorkflowApiSecurityOptions>();
+        Builder.Configure<WorkflowEngineTenantCreationOptions>();
 
+        // Basic ASP.NET Core services configuration.
         Builder.Services.AddSingleton(Configuration);
         Builder.Services.AddControllers().AddJsonOptions(ConfigureJson);
         Builder.Services.AddAuthentication(ConfigureAuthentication).AddJwtBearer(ConfigureJwtBearer);
@@ -76,17 +71,44 @@ public class AppBuilder
         Builder.Services.AddEndpointsApiExplorer();
         Builder.Services.AddSwaggerGen(ConfigureSwagger);
         Builder.Services.AddDbContext<DataContext>(ConfigureDbContext);
-
-        _dataInitializeActions.TryGetValue(Configuration.Provider, out var initializeAction);
         
-        if (initializeAction == null)
+        // Workflow Engine API Data Provider configuration.
+        // If not specified explicitly, the first found implementation will be used.
+        Builder.Services.AddWorkflowApiMongo();
+        Builder.Services.AddWorkflowApiMssql();
+        Builder.Services.AddWorkflowApiMysql();
+        Builder.Services.AddWorkflowApiOracle();
+        Builder.Services.AddWorkflowApiPostgres();
+        Builder.Services.AddWorkflowApiSqlite();
+
+        if (!Configuration.MultipleTenantMode)
         {
-            throw new NotSupportedException($"The data provider {Configuration.Provider} is not supported.");
+            // Workflow Engine API quick (single-tenant) setup.
+            Builder.Services.AddWorkflowApi(new WorkflowApiOptionsSetup
+            {
+                SetupCore = ConfigureCore,
+                SetupSecurity = ConfigureSecurity,
+                SetupWorkflowRuntime = ConfigureWorkflowEngine
+            });
         }
-        
-        initializeAction(this);
+        else
+        {
+            // Workflow Engine API multi-tenant setup.
+            Builder.Services.AddWorkflowApiCore(options =>
+            {
+                ConfigureCore(options);
+                options.DefaultTenantId = null;
+            });
 
-        Builder.Services.AddWorkflowApi(ConfigureWorkflowApi);
+            Builder.Services.AddWorkflowApiSecurity(ConfigureSecurity);
+
+            foreach (var option in Configuration.TenantsConfiguration)
+            {
+                option.RuntimeCreationOptions.ConfigureWorkflowRuntime = ConfigureWorkflowEngine;
+            }
+
+            Builder.Services.AddWorkflowEngineRuntimeTenants(Configuration.TenantsConfiguration);
+        }
 
         _servicesConfigured = true;
     }
@@ -101,15 +123,16 @@ public class AppBuilder
         
         var app = Builder.Build();
         
-        app.UseExceptionHandler(HandleException);
-        
         if (app.Environment.IsDevelopment())
         {
+            app.UseExceptionHandler(HandleException);
             app.UseSwagger();
             app.UseSwaggerUI();
         }
         
         app.UseHttpsRedirection();
+        
+        // Workflow Engine API middleware.
         app.UseWorkflowApi();
 
         app.MapControllers();
@@ -119,9 +142,10 @@ public class AppBuilder
 
     private void HandleException(IApplicationBuilder app)
     {
+        // Handling and formatting exceptions as JSON.
         app.Run(async context =>
         {
-            context.Response.StatusCode = StatusCodes.Status400BadRequest;
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Response.ContentType = MediaTypeNames.Application.Json;
                 
             var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
@@ -164,6 +188,7 @@ public class AppBuilder
     
     private static void ConfigureSwagger(SwaggerGenOptions options)
     {
+        // Swagger document configuration.
         options.SwaggerDoc("v1", new OpenApiInfo
         {
             Title = "Workflow Engine API", 
@@ -171,6 +196,8 @@ public class AppBuilder
             Description = "A Workflow Engine Web API",
         });
         
+        // It's necessary to add the security definition to the Swagger document
+        // for proper Workflow Engine API specification generation.
         options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
@@ -185,75 +212,32 @@ public class AppBuilder
         options.OperationFilter<OperationIdOperationFilter>();
     }
 
-    private static void ConfigureWorkflowApi(WorkflowApiSetupOptions setupOptions)
+    private static void ConfigureCore(WorkflowApiCoreOptions options)
     {
+        
+    }
+    
+    private static void ConfigureSecurity(WorkflowApiSecurityOptions options)
+    {
+        
+    }
+    
+    private static void ConfigureWorkflowEngine(WorkflowEngineTenantCreationOptions options)
+    {
+        // Additional Workflow Engine single-tenant configuration can be done here.
+        options.RuntimeCreationOptions.ConfigureWorkflowRuntime = ConfigureWorkflowEngine;
+    }
 
+    private static void ConfigureWorkflowEngine(WorkflowRuntime runtime)
+    {
+        // Additional Workflow Engine runtime configuration can be done here
+        // for both single-tenant and multi-tenant modes.
+        runtime.AsSingleServer();
     }
     
     private void ConfigureDbContext(DbContextOptionsBuilder options)
     {
         options.UseInMemoryDatabase(Configuration.ConnectionStrings["Default"]);
-    }
-
-    private readonly Dictionary<Provider, Action<AppBuilder>> _dataInitializeActions = new()
-    {
-        {
-            Provider.Mongo, builder =>
-            {
-                var connectionString = builder.Configuration.ConnectionStrings[Provider.Mongo.ToString()];
-                builder.Builder.Services.AddWorkflowApiMongo(connectionString);
-            }
-        },
-        {
-            Provider.Mssql, builder =>
-            {
-                var connectionString = builder.Configuration.ConnectionStrings[Provider.Mssql.ToString()];
-                builder.Builder.Services.AddWorkflowApiMssql(connectionString, ConfigureWorkflowApiSqlProvider);
-                RunMigrations(new MSSQLProvider(connectionString));
-            }
-        },
-        {
-            Provider.Mysql, builder =>
-            {
-                var connectionString = builder.Configuration.ConnectionStrings[Provider.Mysql.ToString()];
-                builder.Builder.Services.AddWorkflowApiMysql(connectionString, ConfigureWorkflowApiSqlProvider);
-                RunMigrations(new MySQLProvider(connectionString));
-            }
-        },
-        {
-            Provider.Oracle, builder =>
-            {
-                var connectionString = builder.Configuration.ConnectionStrings[Provider.Oracle.ToString()];
-                builder.Builder.Services.AddWorkflowApiOracle(connectionString, ConfigureWorkflowApiSqlProvider);
-                RunMigrations(new OracleProvider(connectionString));
-            }
-        },
-        {
-            Provider.Postgres, builder =>
-            {
-                var connectionString = builder.Configuration.ConnectionStrings[Provider.Postgres.ToString()];
-                builder.Builder.Services.AddWorkflowApiPostgres(connectionString, ConfigureWorkflowApiSqlProvider);
-                RunMigrations(new PostgreSQLProvider(connectionString));
-            }
-        },
-        {
-            Provider.Sqlite, builder =>
-            {
-                var connectionString = builder.Configuration.ConnectionStrings[Provider.Sqlite.ToString()];
-                builder.Builder.Services.AddWorkflowApiSqlite(connectionString, ConfigureWorkflowApiSqlProvider);
-                RunMigrations(new SqliteProvider(connectionString));
-            }
-        },
-    };
-
-    private static void ConfigureWorkflowApiSqlProvider(SqlOptions options)
-    {
-
-    }
-    
-    private static void RunMigrations(IPersistenceProvider provider)
-    {
-        new WorkflowRuntime().WithPersistenceProvider(provider).RunMigrations();
     }
 
     private bool _servicesConfigured;

@@ -7,14 +7,11 @@ public class SchemeEntity
 {
     public SchemeEntity() { }
 
-    public SchemeEntity(WorkflowApi.Client.Model.SchemeModel model)
+    public SchemeEntity(Model.SchemeModel model)
     {
         Id = model.Code;
         Code = model.Code;
-        Scheme = Converter.ToSchemaString(
-            JsonConvert.DeserializeObject<Scheme>(JsonConvert.SerializeObject(model.Scheme))
-            ?? throw new InvalidOperationException("Failed to deserialize scheme from model.")
-        );
+        Scheme = Converter.ToSchemaString(model.Scheme);
         CanBeInlined = model.CanBeInlined;
         InlinedSchemes = model.InlinedSchemes;
         Tags = Converter.SimplifyTags(model.Tags);
@@ -27,9 +24,9 @@ public class SchemeEntity
     public List<string> InlinedSchemes { get; set; } = new();
     public List<string> Tags { get; set; } = new();
 
-    public WorkflowApi.Client.Model.SchemeModel ToModel()
+    public Model.SchemeModel ToModel()
     {
-        return new WorkflowApi.Client.Model.SchemeModel(
+        return new Model.SchemeModel(
             Code,
             JsonConvert.DeserializeObject<WorkflowApi.Client.Model.Scheme>(JsonConvert.SerializeObject(Converter.FromSchemaString(Scheme))),
             CanBeInlined,

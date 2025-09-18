@@ -21,6 +21,16 @@ function RemoveDockerContainer ($Container) {
     docker rm $Container.Name
 }
 
+function RemoveOracleContainer ($Container) {
+    Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
+
+    for ($i = 0; $i -lt $Container.Databases.Length; $i++)
+    {
+        docker kill "$( $Container.Name )_$( $i )"
+        docker rm "$( $Container.Name )_$( $i )"
+    }
+}
+
 function RemoveContainer($Container) {
     Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
 
@@ -35,7 +45,7 @@ function RemoveContainer($Container) {
             RemoveDockerContainer $Container
         }
         "Oracle" {
-            RemoveDockerContainer $Container
+            RemoveOracleContainer $Container
         }
         "Postgres" {
             RemoveDockerContainer $Container

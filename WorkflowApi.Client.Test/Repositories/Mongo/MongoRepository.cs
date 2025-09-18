@@ -8,8 +8,7 @@ public class MongoRepository : IRepository
 {
     public MongoRepository(TestService testService)
     {
-        var provider = testService.Configuration.AppConfiguration.Provider.ToString();
-        var url = testService.Configuration.AppConfiguration.ConnectionStrings[provider];
+        var url = testService.TenantOptions.ConnectionString;
 
         var client = new MongoClient(url);
         var database = client.GetDatabase(new MongoUrl(url).DatabaseName);

@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <WarningLevel>0</WarningLevel>
-        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>WorkflowApi.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>

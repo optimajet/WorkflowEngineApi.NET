@@ -38,12 +38,6 @@ namespace WorkflowApi.Client.Model
         Unknown,
 
         /// <summary>
-        /// Enum Exception for value: Exception
-        /// </summary>
-        [EnumMember(Value = "Exception")]
-        Exception,
-
-        /// <summary>
         /// Enum NotFound for value: NotFound
         /// </summary>
         [EnumMember(Value = "NotFound")]
@@ -53,7 +47,13 @@ namespace WorkflowApi.Client.Model
         /// Enum InsertFailed for value: InsertFailed
         /// </summary>
         [EnumMember(Value = "InsertFailed")]
-        InsertFailed
+        InsertFailed,
+
+        /// <summary>
+        /// Enum BadRequest for value: BadRequest
+        /// </summary>
+        [EnumMember(Value = "BadRequest")]
+        BadRequest
     }
 
 }
