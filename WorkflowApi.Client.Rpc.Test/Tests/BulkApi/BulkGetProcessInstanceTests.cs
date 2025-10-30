@@ -77,7 +77,7 @@ public class BulkGetProcessInstanceTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkGetProcessInstance).WorkflowApiRpcBulkGetProcessInstanceAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetProcessInstance).WorkflowApiRpcBulkGetProcessInstanceAsync(request);
 
         // Assert
 

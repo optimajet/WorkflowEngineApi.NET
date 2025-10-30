@@ -523,7 +523,7 @@ public class SetProcessParameterTests
         // Act
         
         var setRequest = new SetProcessParameterRequest(processId, parameterName, parameterValue);
-        await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcSetProcessParameter).WorkflowApiRpcSetProcessParameterAsync(setRequest);
+        await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcSetProcessParameter).WorkflowApiRpcSetProcessParameterAsync(setRequest);
 
         // Assert
         

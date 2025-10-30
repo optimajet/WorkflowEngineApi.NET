@@ -24,7 +24,7 @@ public class CreateTests
 
         // Act
         
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -57,7 +57,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -90,7 +90,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -123,7 +123,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -156,7 +156,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -190,7 +190,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -223,7 +223,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -265,7 +265,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -303,7 +303,7 @@ public class CreateTests
 
         // Act
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(model.ProcessId));
         }
@@ -336,7 +336,7 @@ public class CreateTests
         var processId = Guid.NewGuid();
         var models = ParameterHelper.Generate(processId, 3);
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -373,7 +373,7 @@ public class CreateTests
         var processId = Guid.NewGuid();
         var models = ParameterHelper.Generate(processId, 3);
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -429,7 +429,7 @@ public class CreateTests
         var processId = Guid.NewGuid();
         var model = ParameterHelper.Generate(processId);
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }

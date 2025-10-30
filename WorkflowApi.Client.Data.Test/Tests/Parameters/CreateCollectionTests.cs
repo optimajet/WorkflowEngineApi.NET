@@ -26,7 +26,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -62,7 +62,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -101,7 +101,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -139,7 +139,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -177,7 +177,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -217,7 +217,7 @@ public class CreateCollectionTests
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
         
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -257,7 +257,7 @@ public class CreateCollectionTests
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
         
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -314,7 +314,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -360,7 +360,7 @@ public class CreateCollectionTests
         
         await using var context = service.Repository.Use();
         var repository = service.Repository.Parameters;
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -396,7 +396,7 @@ public class CreateCollectionTests
         var models = ParameterHelper.Generate(processId, 3);
         var requests = ParameterHelper.CreateRequests(models);
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }
@@ -432,7 +432,7 @@ public class CreateCollectionTests
         var models = ParameterHelper.Generate(processId, 3);
         var requests = ParameterHelper.CreateRequests(models);
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }

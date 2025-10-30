@@ -31,12 +31,12 @@ public class Host : IDisposable
     {
         Configuration = configuration;
         _app = builder.Build();
-        TenantRegistry = _app.Services.GetRequiredService<IWorkflowApiTenantRegistry>();
+        TenantRegistry = _app.Services.GetRequiredService<IWorkflowTenantRegistry>();
     }
     
     public TestConfiguration Configuration { get; }
     public IReadOnlyCollection<TestService> Services => _services;
-    public IWorkflowApiTenantRegistry TenantRegistry;
+    public IWorkflowTenantRegistry TenantRegistry;
     public string Id => Configuration.Id;
     public bool IsRunning { get; private set; }
     public string Uri => _app.Urls.First();

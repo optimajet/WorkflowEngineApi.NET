@@ -24,9 +24,9 @@ public record Configuration
     /// Workflow Engine runtime options for the Workflow Engine API in single tenant mode.
     /// If the <see cref="MultipleTenantMode"/> is set to <c>true</c>, this option will be ignored.
     /// </summary>
-    public WorkflowEngineTenantCreationOptions WorkflowEngineTenantCreationOptions { get; set; } = new()
+    public WorkflowTenantCreationOptions WorkflowTenantCreationOptions { get; set; } = new()
     {
-        DataProviderId = PersistenceProviderId.Sqlite,
+        PersistenceProviderId = PersistenceProviderId.Sqlite,
         ConnectionString = DefaultConnectionStrings.Sqlite
     };
     
@@ -39,7 +39,7 @@ public record Configuration
     /// Workflow Engine runtime tenants configuration for the Workflow Engine API in multiple tenant mode.
     /// If the <see cref="MultipleTenantMode"/> is set to <c>false</c>, this option will be ignored.
     /// </summary>
-    public WorkflowEngineTenantCreationOptions[] TenantsConfiguration { get; set; } = [];
+    public WorkflowTenantCreationOptions[] TenantsConfiguration { get; set; } = [];
 
     /// <summary>
     /// Jwt Authentication settings.

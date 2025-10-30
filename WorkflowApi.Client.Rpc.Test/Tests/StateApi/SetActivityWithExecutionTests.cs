@@ -112,7 +112,7 @@ public class SetActivityWithExecutionTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcSetActivityWithExecution).WorkflowApiRpcSetActivityWithExecutionAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetActivityWithExecution).WorkflowApiRpcSetActivityWithExecutionAsync(request);
 
         // Assert
 

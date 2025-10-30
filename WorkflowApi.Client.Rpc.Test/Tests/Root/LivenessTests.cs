@@ -20,7 +20,7 @@ public class LivenessTests
     [TestMethod]
     public async Task PermissionAllowedTest(TestService service)
     {
-        await service.Client.ExclusivePermissions(c => c.RootApi, [OperationId.Liveness]).WorkflowApiLivenessAsync();
+        await service.Client.ExclusivePermissions(c => c.RootApi, [WorkflowApiOperationId.Liveness]).WorkflowApiLivenessAsync();
         
         //Exception will be thrown on unsuccessful response
     }

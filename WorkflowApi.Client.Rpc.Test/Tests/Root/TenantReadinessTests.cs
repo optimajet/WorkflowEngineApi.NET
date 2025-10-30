@@ -39,7 +39,7 @@ public class TenantReadinessTests
     public async Task PermissionAllowedTest(TestService service)
     {
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RootApi, [OperationId.TenantReadiness]).WorkflowApiTenantReadinessAsync()
+            async () => await service.Client.ExclusivePermissions(c => c.RootApi, [WorkflowApiOperationId.TenantReadiness]).WorkflowApiTenantReadinessAsync()
         );
 
         Assert.AreEqual(503, exception.ErrorCode);

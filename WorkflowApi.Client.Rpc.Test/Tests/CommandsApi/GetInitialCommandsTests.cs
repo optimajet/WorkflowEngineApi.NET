@@ -169,7 +169,7 @@ public class GetInitialCommandsTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, OperationId.RpcGetInitialCommands).WorkflowApiRpcGetInitialCommandsAsync(new(schemeCode));
+        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcGetInitialCommands).WorkflowApiRpcGetInitialCommandsAsync(new(schemeCode));
 
         // Assert
 

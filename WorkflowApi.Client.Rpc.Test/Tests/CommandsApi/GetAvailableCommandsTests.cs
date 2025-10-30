@@ -374,7 +374,7 @@ public class GetAvailableCommandsTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, OperationId.RpcGetAvailableCommands).WorkflowApiRpcGetAvailableCommandsAsync(new(processId));
+        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcGetAvailableCommands).WorkflowApiRpcGetAvailableCommandsAsync(new(processId));
 
         // Assert
 

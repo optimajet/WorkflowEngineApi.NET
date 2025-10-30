@@ -56,9 +56,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mongo],
-                        DataProviderId = PersistenceProviderId.Mongo,
+                        PersistenceProviderId = PersistenceProviderId.Mongo,
                         ConnectionString = "mongodb://localhost:47017/data-tests",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -66,9 +66,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mssql],
-                        DataProviderId = PersistenceProviderId.Mssql,
+                        PersistenceProviderId = PersistenceProviderId.Mssql,
                         ConnectionString = "Server=localhost,41433;Database=data_tests;User Id=SA;Password=P@ssw0rd;TrustServerCertificate=True;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -76,9 +76,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mysql],
-                        DataProviderId = PersistenceProviderId.Mysql,
+                        PersistenceProviderId = PersistenceProviderId.Mysql,
                         ConnectionString = "Host=localhost;Port=43306;Database=data_tests;User ID=root;Password=P@ssw0rd;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -86,9 +86,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Oracle],
-                        DataProviderId = PersistenceProviderId.Oracle,
+                        PersistenceProviderId = PersistenceProviderId.Oracle,
                         ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=41521))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=DATA_TESTS;Password=password;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -96,9 +96,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Postgres],
-                        DataProviderId = PersistenceProviderId.Postgres,
+                        PersistenceProviderId = PersistenceProviderId.Postgres,
                         ConnectionString = "Host=localhost;Port=45432;Database=data_tests;User Id=postgres;Password=P@ssw0rd;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -106,9 +106,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Sqlite],
-                        DataProviderId = PersistenceProviderId.Sqlite,
+                        PersistenceProviderId = PersistenceProviderId.Sqlite,
                         ConnectionString = "Data Source=data_tests.db",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -131,9 +131,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mongo],
-                        DataProviderId = PersistenceProviderId.Mongo,
+                        PersistenceProviderId = PersistenceProviderId.Mongo,
                         ConnectionString = "mongodb://localhost:47017/rpc-tests",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -141,9 +141,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mssql],
-                        DataProviderId = PersistenceProviderId.Mssql,
+                        PersistenceProviderId = PersistenceProviderId.Mssql,
                         ConnectionString = "Server=localhost,41433;Database=rpc_tests;User Id=SA;Password=P@ssw0rd;TrustServerCertificate=True;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -151,9 +151,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mysql],
-                        DataProviderId = PersistenceProviderId.Mysql,
+                        PersistenceProviderId = PersistenceProviderId.Mysql,
                         ConnectionString = "Host=localhost;Port=43306;Database=rpc_tests;User ID=root;Password=P@ssw0rd;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -161,9 +161,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Oracle],
-                        DataProviderId = PersistenceProviderId.Oracle,
+                        PersistenceProviderId = PersistenceProviderId.Oracle,
                         ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=41522))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=RPC_TESTS;Password=password;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -171,9 +171,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Postgres],
-                        DataProviderId = PersistenceProviderId.Postgres,
+                        PersistenceProviderId = PersistenceProviderId.Postgres,
                         ConnectionString = "Host=localhost;Port=45432;Database=rpc_tests;User Id=postgres;Password=P@ssw0rd;",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -181,9 +181,9 @@ public class TestHostRegister : IDisposable
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Sqlite],
-                        DataProviderId = PersistenceProviderId.Sqlite,
+                        PersistenceProviderId = PersistenceProviderId.Sqlite,
                         ConnectionString = "Data Source=rpc_tests.db",
-                        RuntimeCreationOptions =
+                        WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
                         }
@@ -205,7 +205,7 @@ public class TestHostRegister : IDisposable
 
         // Exclude configurations with data providers that are not in the list of running providers
         configuration.AppConfiguration.TenantsConfiguration = configuration.AppConfiguration.TenantsConfiguration
-            .Where(option => option.DataProviderId == null || RunningProviders.Contains(option.DataProviderId))
+            .Where(option => option.PersistenceProviderId == null || RunningProviders.Contains(option.PersistenceProviderId))
             .ToArray();
         
         var host = await Host.CreateAsync(configuration);

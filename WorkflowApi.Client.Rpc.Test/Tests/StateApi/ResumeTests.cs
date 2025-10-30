@@ -593,7 +593,7 @@ public class ResumeTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcResume).WorkflowApiRpcResumeAsync(new(processId));
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcResume).WorkflowApiRpcResumeAsync(new(processId));
 
         // Assert
         

@@ -150,7 +150,7 @@ public class PreExecuteFromCurrentActivityTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcPreExecution, [OperationId.RpcPreExecuteFromCurrentActivity]).WorkflowApiRpcPreExecuteFromCurrentActivityAsync(new(processId));
+        var response = await service.Client.ExclusivePermissions(c => c.RpcPreExecution, [WorkflowApiOperationId.RpcPreExecuteFromCurrentActivity]).WorkflowApiRpcPreExecuteFromCurrentActivityAsync(new(processId));
 
         // Assert
 

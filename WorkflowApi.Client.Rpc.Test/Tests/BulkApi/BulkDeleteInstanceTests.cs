@@ -83,7 +83,7 @@ public class BulkDeleteInstanceTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkDeleteInstance).WorkflowApiRpcBulkDeleteInstanceAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkDeleteInstance).WorkflowApiRpcBulkDeleteInstanceAsync(request);
 
         // Assert
 

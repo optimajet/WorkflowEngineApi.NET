@@ -94,7 +94,7 @@ public class GetProcessInstanceTests
         
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcGetProcessInstance).WorkflowApiRpcGetProcessInstanceAsync(request);
+        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessInstance).WorkflowApiRpcGetProcessInstanceAsync(request);
 
         // Assert
         

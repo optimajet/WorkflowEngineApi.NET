@@ -66,7 +66,7 @@ public class GetInitialStateTests
         // Act
 
         var request = new GetInitialStateRequest(schemeCode);
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcGetInitialState).WorkflowApiRpcGetInitialStateAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetInitialState).WorkflowApiRpcGetInitialStateAsync(request);
 
         // Assert
 

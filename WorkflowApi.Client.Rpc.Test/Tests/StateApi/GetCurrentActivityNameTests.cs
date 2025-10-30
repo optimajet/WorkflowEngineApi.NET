@@ -98,7 +98,7 @@ public class GetCurrentActivityNameTests
         // Act
 
         var request = new GetCurrentActivityNameRequest(processId);
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcGetCurrentActivityName).WorkflowApiRpcGetCurrentActivityNameAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetCurrentActivityName).WorkflowApiRpcGetCurrentActivityNameAsync(request);
 
         // Assert
 

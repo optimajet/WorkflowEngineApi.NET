@@ -57,7 +57,7 @@ public class SqlRepository : IRepository
 
     public SqlRepository(TestService testService)
     {
-        _providerId = testService.TenantOptions.DataProviderId;
+        _providerId = testService.TenantOptions.PersistenceProviderId;
         _connectionString = testService.TenantOptions.ConnectionString;
 
         Approvals = new SqlApprovalRepository();

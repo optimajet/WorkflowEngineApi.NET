@@ -54,7 +54,7 @@ public class GetProcessSchemeTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcScheme, OperationId.RpcGetProcessScheme).WorkflowApiRpcGetProcessSchemeAsync(new(processId));
+        var response = await service.Client.ExclusivePermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcGetProcessScheme).WorkflowApiRpcGetProcessSchemeAsync(new(processId));
 
         // Assert
 

@@ -104,7 +104,7 @@ public class LogDebugTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcLog, OperationId.RpcLogDebug).WorkflowApiRpcLogDebugAsync(new("Test message"));
+        await service.Client.ExclusivePermissions(c => c.RpcLog, WorkflowApiOperationId.RpcLogDebug).WorkflowApiRpcLogDebugAsync(new("Test message"));
     }
 
     [ClientTest(HostId.RpcHost)]

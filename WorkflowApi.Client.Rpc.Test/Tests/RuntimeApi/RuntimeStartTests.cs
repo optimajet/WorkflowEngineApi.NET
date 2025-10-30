@@ -42,7 +42,7 @@ public class RuntimeStartTests
         {
             // Act
 
-            var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, OperationId.RpcRuntimeStart).WorkflowApiRpcRuntimeStartAsync(new());
+            var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeStart).WorkflowApiRpcRuntimeStartAsync(new());
 
             // Assert
 

@@ -167,7 +167,7 @@ public class GetProcessHistoryTests
         
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcGetProcessHistory).WorkflowApiRpcGetProcessHistoryAsync(request);
+        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessHistory).WorkflowApiRpcGetProcessHistoryAsync(request);
 
         // Assert
 

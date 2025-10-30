@@ -60,7 +60,7 @@ public class RuntimeShutDownTests
 
             // Act
 
-            await service.Client.ExclusivePermissions(c => c.RpcRuntime, OperationId.RpcRuntimeShutDown).WorkflowApiRpcRuntimeShutDownAsync(new());
+            await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeShutDown).WorkflowApiRpcRuntimeShutDownAsync(new());
 
             // Assert
 

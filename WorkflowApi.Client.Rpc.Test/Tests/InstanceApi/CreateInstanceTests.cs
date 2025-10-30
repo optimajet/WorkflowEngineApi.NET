@@ -186,7 +186,7 @@ public class CreateInstanceTests
         
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcCreateInstance).WorkflowApiRpcCreateInstanceAsync(request);
+        await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcCreateInstance).WorkflowApiRpcCreateInstanceAsync(request);
 
         // Assert
 

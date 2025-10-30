@@ -61,7 +61,7 @@ public class AppBuilder
         Builder.Configuration.AddObject(Configuration);
         Builder.Configure<WorkflowApiCoreOptions>();
         Builder.Configure<WorkflowApiSecurityOptions>();
-        Builder.Configure<WorkflowEngineTenantCreationOptions>();
+        Builder.Configure<WorkflowTenantCreationOptions>();
 
         // Basic ASP.NET Core services configuration.
         Builder.Services.AddSingleton(Configuration);
@@ -84,12 +84,9 @@ public class AppBuilder
         if (!Configuration.MultipleTenantMode)
         {
             // Workflow Engine API quick (single-tenant) setup.
-            Builder.Services.AddWorkflowApi(new WorkflowApiOptionsSetup
-            {
-                SetupCore = ConfigureCore,
-                SetupSecurity = ConfigureSecurity,
-                SetupWorkflowRuntime = ConfigureWorkflowEngine
-            });
+            Builder.Services.AddWorkflowApiCore(ConfigureCore);
+            Builder.Services.AddWorkflowApiSecurity(ConfigureSecurity);
+            Builder.Services.AddWorkflowRuntime(ConfigureWorkflowEngine);
         }
         else
         {
@@ -104,10 +101,10 @@ public class AppBuilder
 
             foreach (var option in Configuration.TenantsConfiguration)
             {
-                option.RuntimeCreationOptions.ConfigureWorkflowRuntime = ConfigureWorkflowEngine;
+                option.WorkflowRuntimeCreationOptions.ConfigureWorkflowRuntime = ConfigureWorkflowRuntime;
             }
 
-            Builder.Services.AddWorkflowEngineRuntimeTenants(Configuration.TenantsConfiguration);
+            Builder.Services.AddWorkflowTenants(Configuration.TenantsConfiguration);
         }
 
         _servicesConfigured = true;
@@ -131,9 +128,12 @@ public class AppBuilder
         }
         
         app.UseHttpsRedirection();
-        
-        // Workflow Engine API middleware.
-        app.UseWorkflowApi();
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        // Workflow Engine Web API endpoints mapping.
+        app.MapWorkflowApi();
 
         app.MapControllers();
         
@@ -202,7 +202,7 @@ public class AppBuilder
         {
             In = ParameterLocation.Header,
             Type = SecuritySchemeType.Http,
-            Scheme = JwtBearerDefaults.AuthenticationScheme,
+            Scheme = JwtBearerDefaults.AuthenticationScheme.ToLower(),
             BearerFormat = "JWT",
             Name = "Authorization",
             Description = "Please insert JWT Bearer token into field"
@@ -222,13 +222,13 @@ public class AppBuilder
         
     }
     
-    private static void ConfigureWorkflowEngine(WorkflowEngineTenantCreationOptions options)
+    private static void ConfigureWorkflowEngine(WorkflowTenantCreationOptions options)
     {
         // Additional Workflow Engine single-tenant configuration can be done here.
-        options.RuntimeCreationOptions.ConfigureWorkflowRuntime = ConfigureWorkflowEngine;
+        options.WorkflowRuntimeCreationOptions.ConfigureWorkflowRuntime = ConfigureWorkflowRuntime;
     }
 
-    private static void ConfigureWorkflowEngine(WorkflowRuntime runtime)
+    private static void ConfigureWorkflowRuntime(WorkflowRuntime runtime)
     {
         // Additional Workflow Engine runtime configuration can be done here
         // for both single-tenant and multi-tenant modes.

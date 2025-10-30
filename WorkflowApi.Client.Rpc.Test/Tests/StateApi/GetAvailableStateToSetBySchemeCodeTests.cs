@@ -130,7 +130,7 @@ public class GetAvailableStateToSetBySchemeCodeTests
         // Act
         
         var request = new GetAvailableStatesToSetBySchemeCodeRequest(schemeCode);
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcGetAvailableStatesToSetBySchemeCode).WorkflowApiRpcGetAvailableStatesToSetBySchemeCodeAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetAvailableStatesToSetBySchemeCode).WorkflowApiRpcGetAvailableStatesToSetBySchemeCodeAsync(request);
 
         // Assert
 

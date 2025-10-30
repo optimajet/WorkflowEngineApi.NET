@@ -55,7 +55,7 @@ public class SetSchemeIsObsoleteTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcScheme, OperationId.RpcSetSchemeIsObsolete).WorkflowApiRpcSetSchemeIsObsoleteAsync(new (schemeCode));
+        var result = await service.Client.ExclusivePermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcSetSchemeIsObsolete).WorkflowApiRpcSetSchemeIsObsoleteAsync(new (schemeCode));
 
         // Assert
 

@@ -63,7 +63,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -97,7 +97,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -131,7 +131,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -165,7 +165,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -199,7 +199,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -233,7 +233,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -267,7 +267,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -300,7 +300,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -337,7 +337,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -371,7 +371,7 @@ public class SearchTests
         {
             var actual = result.Collection.FirstOrDefault(x => x.Name == model.Name);
             Assert.IsNotNull(actual);
-            ParameterHelper.AssertModels(model, actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
     
@@ -405,7 +405,7 @@ public class SearchTests
         for (int i = 0; i < models.Length; i++)
         {
             var actual = result.Collection.FirstOrDefault(x => x.ProcessId == models[i].ProcessId && x.Name == models[i].Name);
-            ParameterHelper.AssertModels(models[i], actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(models[i], actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -442,7 +442,7 @@ public class SearchTests
         Assert.AreEqual(1, collection.Count);
         var actual = collection.First();
 
-        ParameterHelper.AssertModels(models.First(), actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(models.First(), actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost, ExcludeProviders = [ProviderName.Mongo])] // Mongo does not support parameter id field
@@ -639,7 +639,7 @@ public class SearchTests
 
         Assert.AreEqual(1, result.Total);
         Assert.AreEqual(1, result.Collection.Count);
-        ParameterHelper.AssertModels(expected, result.Collection.First(), service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(expected, result.Collection.First(), service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -676,7 +676,7 @@ public class SearchTests
 
         Assert.AreEqual(1, result.Total);
         Assert.AreEqual(1, result.Collection.Count);
-        ParameterHelper.AssertModels(expected, result.Collection.First(), service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(expected, result.Collection.First(), service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)] 
@@ -715,7 +715,7 @@ public class SearchTests
         foreach (var model in result.Collection)
         {
             var expectedModel = models.First(x => x.ProcessId == model.ProcessId && x.Name == model.Name);
-            ParameterHelper.AssertModels(expectedModel, model, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(expectedModel, model, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -827,7 +827,7 @@ public class SearchTests
             foreach (var model in page.Collection)
             {
                 var expected = models.First(x => x.ProcessId == model.ProcessId && x.Name == model.Name);
-                ParameterHelper.AssertModels(expected, model, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+                ParameterHelper.AssertModels(expected, model, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
             }
         }
     }
@@ -862,7 +862,7 @@ public class SearchTests
         for (int i = 0; i < models.Length; i++)
         {
             var actual = result.Collection.FirstOrDefault(x => x.ProcessId == models[i].ProcessId && x.Name == models[i].Name);
-            ParameterHelper.AssertModels(models[i], actual, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(models[i], actual, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 

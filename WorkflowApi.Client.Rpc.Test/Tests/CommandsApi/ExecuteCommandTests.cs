@@ -276,7 +276,7 @@ public class ExecuteCommandTests
         // Act
 
         var command = new WorkflowCommand(processId, nextCommand.Name, validForActivityName: initialActivity.Name);
-        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, OperationId.RpcExecuteCommand).WorkflowApiRpcExecuteCommandAsync(new(command));
+        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcExecuteCommand).WorkflowApiRpcExecuteCommandAsync(new(command));
 
         // Assert
 

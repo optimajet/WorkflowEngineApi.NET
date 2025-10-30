@@ -104,7 +104,7 @@ public class LogInfoTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcLog, OperationId.RpcLogInfo).WorkflowApiRpcLogInfoAsync(new("Test message"));
+        await service.Client.ExclusivePermissions(c => c.RpcLog, WorkflowApiOperationId.RpcLogInfo).WorkflowApiRpcLogInfoAsync(new("Test message"));
     }
 
     [ClientTest(HostId.RpcHost)]

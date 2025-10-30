@@ -383,7 +383,7 @@ public class UpdateTests
 
         var processId = Guid.NewGuid();
 
-        if (service.TenantOptions.DataProviderId == PersistenceProviderId.Mongo)
+        if (service.TenantOptions.PersistenceProviderId == PersistenceProviderId.Mongo)
         {
             await service.Repository.Processes.CreateAsync(new ProcessModel(processId));
         }

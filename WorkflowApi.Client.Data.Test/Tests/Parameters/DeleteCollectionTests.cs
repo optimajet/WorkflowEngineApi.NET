@@ -83,7 +83,7 @@ public class DeleteCollectionTests
         foreach (var model in models.Where(m => m.Id != expected.Id))
         {
             var notDeletedModel = await repository.GetAsync(processId, model.Name);
-            ParameterHelper.AssertModels(model, notDeletedModel, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(model, notDeletedModel, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -129,7 +129,7 @@ public class DeleteCollectionTests
         for (int i = filters.Count; i < models.Length; i++)
         {
             var notDeletedModel = await repository.GetAsync(processId, models[i].Name);
-            ParameterHelper.AssertModels(models[i], notDeletedModel, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(models[i], notDeletedModel, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -170,7 +170,7 @@ public class DeleteCollectionTests
         for (int i = 0; i < filters.Count; i++)
         {
             var notDeletedModel = await repository.GetAsync(processId, models[i].Name);
-            ParameterHelper.AssertModels(models[i], notDeletedModel, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(models[i], notDeletedModel, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
 
         for (int i = filters.Count; i < models.Length; i++)

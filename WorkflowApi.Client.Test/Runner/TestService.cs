@@ -22,14 +22,14 @@ public sealed class TestService
     {
         Host = host;
         TenantId = tenantId;
-        WorkflowRuntime = host.TenantRegistry.Get(tenantId).Runtime;
+        WorkflowRuntime = host.TenantRegistry.Get(tenantId).WorkflowRuntime;
         TenantOptions = Configuration.AppConfiguration.TenantsConfiguration
             .First(option => option.TenantIds.Contains(TenantId));
 
         RuleProvider = new TestRuleProvider();
         WorkflowRuntime.WithRuleProvider(RuleProvider);
         
-        Repository = TenantOptions.DataProviderId switch
+        Repository = TenantOptions.PersistenceProviderId switch
         {
             PersistenceProviderId.Mongo => new MongoRepository(this),
             _ => new SqlRepository(this)
@@ -41,8 +41,8 @@ public sealed class TestService
     public string TenantId { get; }
     public WorkflowRuntime WorkflowRuntime { get; }
     public TestRuleProvider RuleProvider { get; }
-    public WorkflowEngineTenantCreationOptions TenantOptions { get; }
-    public string DataProviderId => TenantOptions.DataProviderId ?? throw new NotInitializedException(nameof(DataProviderId));
+    public WorkflowTenantCreationOptions TenantOptions { get; }
+    public string DataProviderId => TenantOptions.PersistenceProviderId ?? throw new NotInitializedException(nameof(DataProviderId));
     public IRepository Repository { get; }
     public Client Client => _client ?? throw new NotInitializedException(nameof(Client));
     

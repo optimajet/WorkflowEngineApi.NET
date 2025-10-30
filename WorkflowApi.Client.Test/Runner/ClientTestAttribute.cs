@@ -14,7 +14,7 @@ public class ClientTestAttribute : TestCategoryBaseAttribute, ITestDataSource
             .ToArray();
         
         _providerIds = _hosts
-            .SelectMany(host => host.Configuration.AppConfiguration.TenantsConfiguration.Select(tenant => tenant.DataProviderId).Distinct())
+            .SelectMany(host => host.Configuration.AppConfiguration.TenantsConfiguration.Select(tenant => tenant.PersistenceProviderId).Distinct())
             .Distinct()
             .Where(id => id != null)
             .Cast<string>()
@@ -27,7 +27,7 @@ public class ClientTestAttribute : TestCategoryBaseAttribute, ITestDataSource
     public IEnumerable<object[]> GetData(MethodInfo methodInfo)
     {
         return _hosts.SelectMany(host => host.Services)
-            .Where(service => FilteredProviderIds.Contains(service.TenantOptions.DataProviderId))
+            .Where(service => FilteredProviderIds.Contains(service.TenantOptions.PersistenceProviderId))
             .Select(service => new object[] { service });
     }
 

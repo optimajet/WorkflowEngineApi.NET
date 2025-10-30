@@ -64,7 +64,7 @@ public class BulkUpdateSchemeIfObsoleteTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkUpdateSchemeIfObsolete).WorkflowApiRpcBulkUpdateSchemeIfObsoleteAsync(new([]));
+        await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkUpdateSchemeIfObsolete).WorkflowApiRpcBulkUpdateSchemeIfObsoleteAsync(new([]));
 
         // Assert
 

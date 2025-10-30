@@ -154,7 +154,7 @@ public class GetAvailableStatesToSetTests
         // Act
 
         var request = new GetAvailableStatesToSetRequest(processId);
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcGetAvailableStatesToSet)
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetAvailableStatesToSet)
             .WorkflowApiRpcGetAvailableStatesToSetAsync(request);
 
         // Assert

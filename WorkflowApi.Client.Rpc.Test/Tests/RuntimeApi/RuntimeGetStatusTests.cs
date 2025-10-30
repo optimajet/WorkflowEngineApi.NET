@@ -33,7 +33,7 @@ public class RuntimeGetStatusTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, OperationId.RpcRuntimeGetRunningStatus).WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
+        var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeGetRunningStatus).WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
 
         // Assert
 

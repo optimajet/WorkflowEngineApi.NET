@@ -463,7 +463,7 @@ public class BulkGetAvailableCommandsTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkGetAvailableCommands).WorkflowApiRpcBulkGetAvailableCommandsAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetAvailableCommands).WorkflowApiRpcBulkGetAvailableCommandsAsync(request);
 
         // Assert
 

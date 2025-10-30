@@ -73,7 +73,7 @@ public class DeleteInstanceTests
         
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcDeleteInstance).WorkflowApiRpcDeleteInstanceAsync(request);
+        await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcDeleteInstance).WorkflowApiRpcDeleteInstanceAsync(request);
 
         // Assert
         

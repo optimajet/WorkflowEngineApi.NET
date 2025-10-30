@@ -160,7 +160,7 @@ public class GetCurrentStateTests
         // Act
 
         var request = new GetCurrentStateRequest(processId);
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcGetCurrentState).WorkflowApiRpcGetCurrentStateAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetCurrentState).WorkflowApiRpcGetCurrentStateAsync(request);
 
         // Assert
 

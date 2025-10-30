@@ -102,7 +102,7 @@ public class LogErrorTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcLog, OperationId.RpcLogError).WorkflowApiRpcLogErrorAsync(new("Test message"));
+        await service.Client.ExclusivePermissions(c => c.RpcLog, WorkflowApiOperationId.RpcLogError).WorkflowApiRpcLogErrorAsync(new("Test message"));
     }
 
     [ClientTest(HostId.RpcHost)]

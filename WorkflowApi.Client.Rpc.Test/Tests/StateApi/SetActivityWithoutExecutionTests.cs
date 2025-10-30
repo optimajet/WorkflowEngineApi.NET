@@ -67,7 +67,7 @@ public class SetActivityWithoutExecutionTests
         // Act
         
         var request = new SetActivityWithoutExecutionRequest(processId, "Activity2");
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, OperationId.RpcSetActivityWithoutExecution).WorkflowApiRpcSetActivityWithoutExecutionAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetActivityWithoutExecution).WorkflowApiRpcSetActivityWithoutExecutionAsync(request);
 
         // Assert
 

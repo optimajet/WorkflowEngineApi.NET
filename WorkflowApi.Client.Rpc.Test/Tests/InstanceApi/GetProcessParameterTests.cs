@@ -492,7 +492,7 @@ public class GetProcessParameterTests
         // Act
         
         var request = new GetProcessParameterRequest(processId, "ProcessId");
-        var result = await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcGetProcessParameter).WorkflowApiRpcGetProcessParameterAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessParameter).WorkflowApiRpcGetProcessParameterAsync(request);
 
         // Assert
 

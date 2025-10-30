@@ -42,7 +42,7 @@ public class RuntimeColdStartTests
         {
             // Act
 
-            var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, OperationId.RpcRuntimeColdStart).WorkflowApiRpcRuntimeColdStartAsync(new());
+            var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeColdStart).WorkflowApiRpcRuntimeColdStartAsync(new());
 
             // Assert
 

@@ -348,7 +348,7 @@ public class BulkExecuteCommandTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkExecuteCommand).WorkflowApiRpcBulkExecuteCommandAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkExecuteCommand).WorkflowApiRpcBulkExecuteCommandAsync(request);
 
         // Assert
 

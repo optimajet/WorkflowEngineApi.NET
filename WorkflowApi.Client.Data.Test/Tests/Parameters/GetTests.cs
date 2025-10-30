@@ -31,7 +31,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -55,7 +55,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -79,7 +79,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -103,7 +103,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -127,7 +127,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -151,7 +151,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -175,7 +175,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -208,7 +208,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -237,7 +237,7 @@ public class GetTests
         
         // Assert
 
-        ParameterHelper.AssertModels(model, result, service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+        ParameterHelper.AssertModels(model, result, service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
     }
 
     [ClientTest(HostId.DataHost)]
@@ -272,7 +272,7 @@ public class GetTests
 
         for (int i = 0; i < models.Length; i++)
         {
-            ParameterHelper.AssertModels(models[i], results[i], service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(models[i], results[i], service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 
@@ -308,7 +308,7 @@ public class GetTests
 
         for (int i = 0; i < models.Length; i++)
         {
-            ParameterHelper.AssertModels(models[i], results[i], service.TenantOptions.DataProviderId != PersistenceProviderId.Mongo);
+            ParameterHelper.AssertModels(models[i], results[i], service.TenantOptions.PersistenceProviderId != PersistenceProviderId.Mongo);
         }
     }
 

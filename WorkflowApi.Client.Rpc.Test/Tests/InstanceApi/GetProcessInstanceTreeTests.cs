@@ -148,7 +148,7 @@ public class GetProcessInstanceTreeTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcGetProcessInstanceTree)
+        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessInstanceTree)
             .WorkflowApiRpcGetProcessInstanceTreeAsync(request);
 
         // Assert

@@ -70,7 +70,7 @@ public class BulkIsProcessExistsTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkIsProcessExists).WorkflowApiRpcBulkIsProcessExistsAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkIsProcessExists).WorkflowApiRpcBulkIsProcessExistsAsync(request);
 
         // Assert
 

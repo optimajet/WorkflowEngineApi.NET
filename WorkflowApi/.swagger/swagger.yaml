@@ -250,6 +250,25 @@ paths:
       responses:
         '200':
           description: OK
+  /workflow-api/designer:
+    post:
+      tags:
+        - Designer
+      operationId: workflow-api.designer
+      responses:
+        '200':
+          description: OK
+      security:
+        - Bearer: [ ]
+    get:
+      tags:
+        - Designer
+      operationId: workflow-api.designer.get
+      responses:
+        '200':
+          description: OK
+      security:
+        - Bearer: [ ]
   /workflow-api/data/global-parameters:
     post:
       tags:
@@ -6912,5 +6931,5 @@ components:
     Bearer:
       type: http
       description: Please insert JWT Bearer token into field
-      scheme: Bearer
+      scheme: bearer
       bearerFormat: JWT

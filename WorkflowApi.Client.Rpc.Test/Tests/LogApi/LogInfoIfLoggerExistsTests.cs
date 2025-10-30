@@ -85,7 +85,7 @@ public class LogInfoIfLoggerExistsTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcLog, OperationId.RpcLogInfoIfLoggerExists).WorkflowApiRpcLogInfoIfLoggerExistsAsync(new("Test message"));
+        await service.Client.ExclusivePermissions(c => c.RpcLog, WorkflowApiOperationId.RpcLogInfoIfLoggerExists).WorkflowApiRpcLogInfoIfLoggerExistsAsync(new("Test message"));
     }
 
     [ClientTest(HostId.RpcHost)]

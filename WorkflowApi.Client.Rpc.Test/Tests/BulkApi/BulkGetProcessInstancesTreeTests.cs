@@ -105,7 +105,7 @@ public class BulkGetProcessInstancesTreeTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, OperationId.RpcBulkGetProcessInstancesTree).WorkflowApiRpcBulkGetProcessInstancesTreeAsync(request);
+        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetProcessInstancesTree).WorkflowApiRpcBulkGetProcessInstancesTreeAsync(request);
 
         // Assert
 

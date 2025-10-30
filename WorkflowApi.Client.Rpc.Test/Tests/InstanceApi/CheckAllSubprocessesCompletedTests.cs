@@ -72,7 +72,7 @@ public class CheckAllSubprocessesCompletedTests
         
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcCheckAllSubprocessesCompleted)
+        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcCheckAllSubprocessesCompleted)
             .WorkflowApiRpcCheckAllSubprocessesCompletedAsync(new (rootProcessId));
 
         // Assert

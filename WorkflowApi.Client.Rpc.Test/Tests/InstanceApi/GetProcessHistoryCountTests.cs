@@ -70,7 +70,7 @@ public class GetProcessHistoryCountTests
         
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, OperationId.RpcGetProcessHistoryCount).WorkflowApiRpcGetProcessHistoryCountAsync(request);
+        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessHistoryCount).WorkflowApiRpcGetProcessHistoryCountAsync(request);
 
         // Assert
 
