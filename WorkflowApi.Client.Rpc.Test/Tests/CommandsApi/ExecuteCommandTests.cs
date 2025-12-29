@@ -117,6 +117,281 @@ public class ExecuteCommandTests
         Assert.AreEqual(parameter.TypeName, actualParameter.Type);
         Assert.AreEqual(ParameterPurpose.Persistence, actualParameter.Purpose);
     }
+    
+    [ClientTest(HostId.RpcHost)]
+    [TestMethod]
+    public async Task ShouldExecuteCommand_WithImplicitComplexObjectParameter(TestService service)
+    {
+        // Arrange
+
+        var processId = Guid.NewGuid();
+        var schemeCode = Guid.NewGuid().ToString();
+
+        var builder = ProcessDefinitionBuilder.Create(schemeCode)
+            .CreateActivity("Initial").Initial().State("InitialState").Ref(out ActivityDefinition initialActivity)
+            .CreateActivity("Final").Ref(out ActivityDefinition finalActivity)
+            .CreateCommand("Next").Ref(out CommandDefinition nextCommand)
+            .CreateTransition("Initial_Final", initialActivity, finalActivity)
+            .Direct()
+            .TriggeredByCommand(nextCommand);
+
+        await service.Client.Schemes.CreateSchemeFromBuilderAsync(builder);
+        await service.Client.RpcInstance.WorkflowApiRpcCreateInstanceAsync(new(schemeCode, processId));
+
+        // Act
+
+        var parameterValue = builder.ProcessDefinition.Transitions.First();
+
+        var parameter = new CommandParameter()
+        {
+            Name = "Object_Parameter",
+            TypeName = typeof(TransitionDefinition).FullName,
+            Value = parameterValue,
+            Purpose = ParameterPurposeWithoutSystem.Persistence
+        };
+
+        var command = new WorkflowCommand(
+            processId,
+            nextCommand.Name,
+            validForActivityName: initialActivity.Name,
+            parameters: [parameter]
+        );
+
+        var response = await service.Client.RpcCommands.WorkflowApiRpcExecuteCommandAsync(new(command));
+
+        // Assert
+
+        Assert.IsNotNull(response);
+        Assert.AreEqual(nextCommand.Name, response.CommandName);
+        Assert.IsTrue(response.WasExecuted);
+        Assert.IsNull(response.Message);
+
+        var processInstance = response.ProcessInstance;
+        Assert.IsNotNull(processInstance);
+        Assert.AreEqual(processId, processInstance.ProcessId);
+        Assert.AreEqual(finalActivity.Name, processInstance.CurrentActivityName);
+        
+        var parameters = processInstance.ProcessParameters;
+        Assert.IsNotNull(parameters);
+        Assert.AreNotEqual(0, parameters.Count);
+        
+        var actualParameter = parameters.Find(p => p.Name == parameter.Name);
+        Assert.IsNotNull(actualParameter);
+        Assert.AreEqual(parameter.Name, actualParameter.Name);
+        Assert.AreEqual(typeof(Newtonsoft.Json.Linq.JObject), actualParameter.Value.GetType());
+        Assert.AreEqual(parameter.TypeName, actualParameter.Type);
+        Assert.AreEqual(ParameterPurpose.Persistence, actualParameter.Purpose);
+        
+        var actualTransitionDefinition = Newtonsoft.Json.JsonConvert.DeserializeObject<TransitionDefinition>(actualParameter.Value.ToString()!);
+        Assert.IsNotNull(actualTransitionDefinition);
+        var expectedJson = Newtonsoft.Json.JsonConvert.SerializeObject(parameterValue);
+        var actualJson = Newtonsoft.Json.JsonConvert.SerializeObject(actualTransitionDefinition);
+        Assert.AreEqual(expectedJson, actualJson);
+    }
+
+    [ClientTest(HostId.RpcHost)]
+    [TestMethod]
+    public async Task ShouldExecuteCommand_WithExplicitComplexObjectParameter(TestService service)
+    {
+        // Arrange
+
+        var processId = Guid.NewGuid();
+        var schemeCode = Guid.NewGuid().ToString();
+
+        var builder = ProcessDefinitionBuilder.Create(schemeCode)
+            .CreateActivity("Initial").Initial().State("InitialState").Ref(out ActivityDefinition initialActivity)
+            .CreateActivity("Final").Ref(out ActivityDefinition finalActivity)
+            .CreateCommand("Next").Ref(out CommandDefinition nextCommand)
+            .CreateTransition("Initial_Final", initialActivity, finalActivity)
+            .Direct()
+            .TriggeredByCommand(nextCommand)
+            .CreateParameter("Object_Parameter", typeof(TransitionDefinition), OptimaJet.Workflow.Core.Model.ParameterPurpose.Persistence);
+
+        await service.Client.Schemes.CreateSchemeFromBuilderAsync(builder);
+        await service.Client.RpcInstance.WorkflowApiRpcCreateInstanceAsync(new(schemeCode, processId));
+        
+        // Act
+
+        var parameterValue = builder.ProcessDefinition.Transitions.First();
+
+        var parameter = new CommandParameter()
+        {
+            Name = "Object_Parameter",
+            TypeName = typeof(TransitionDefinition).FullName,
+            Value = parameterValue,
+            Purpose = ParameterPurposeWithoutSystem.Persistence
+        };
+
+        var command = new WorkflowCommand(
+            processId,
+            nextCommand.Name,
+            validForActivityName: initialActivity.Name,
+            parameters: [parameter]
+        );
+
+        var response = await service.Client.RpcCommands.WorkflowApiRpcExecuteCommandAsync(new(command));
+        
+        // Assert
+
+        Assert.IsNotNull(response);
+        Assert.AreEqual(nextCommand.Name, response.CommandName);
+        Assert.IsTrue(response.WasExecuted);
+        Assert.IsNull(response.Message);
+
+        var processInstance = response.ProcessInstance;
+        Assert.IsNotNull(processInstance);
+        Assert.AreEqual(processId, processInstance.ProcessId);
+        Assert.AreEqual(finalActivity.Name, processInstance.CurrentActivityName);
+
+        var parameters = processInstance.ProcessParameters;
+        Assert.IsNotNull(parameters);
+        Assert.AreNotEqual(0, parameters.Count);
+
+        var actualParameter = parameters.Find(p => p.Name == parameter.Name);
+        Assert.IsNotNull(actualParameter);
+        Assert.AreEqual(parameter.Name, actualParameter.Name);
+        Assert.AreEqual(typeof(Newtonsoft.Json.Linq.JObject), actualParameter.Value.GetType());
+        Assert.AreEqual(parameter.TypeName, actualParameter.Type);
+        Assert.AreEqual(ParameterPurpose.Persistence, actualParameter.Purpose);
+
+        var actualTransitionDefinition = Newtonsoft.Json.JsonConvert.DeserializeObject<TransitionDefinition>(actualParameter.Value.ToString()!);
+        Assert.IsNotNull(actualTransitionDefinition);
+        var expectedJson = Newtonsoft.Json.JsonConvert.SerializeObject(parameterValue);
+        var actualJson = Newtonsoft.Json.JsonConvert.SerializeObject(actualTransitionDefinition);
+        Assert.AreEqual(expectedJson, actualJson);
+    }
+
+    [ClientTest(HostId.RpcHost)]
+    [TestMethod]
+    public async Task ShouldNotExecuteCommand_WithWrongTypeParameter(TestService service)
+    {
+        // Arrange
+
+        var processId = Guid.NewGuid();
+        var schemeCode = Guid.NewGuid().ToString();
+
+        var builder = ProcessDefinitionBuilder.Create(schemeCode)
+            .CreateParameter("Object_Parameter", typeof(TransitionDefinition), OptimaJet.Workflow.Core.Model.ParameterPurpose.Persistence)
+            .Ref(out ParameterDefinition commandParameter)
+            .CreateActivity("Initial").Initial().State("InitialState").Ref(out ActivityDefinition initialActivity)
+            .CreateActivity("Final").Ref(out ActivityDefinition finalActivity)
+            .CreateCommand("Next").Ref(out CommandDefinition nextCommand)
+            .CreateCommandParameter("Command_Parameter", commandParameter)
+            .CreateTransition("Initial_Final", initialActivity, finalActivity)
+            .Direct()
+            .TriggeredByCommand(nextCommand);
+
+        await service.Client.Schemes.CreateSchemeFromBuilderAsync(builder);
+        await service.Client.RpcInstance.WorkflowApiRpcCreateInstanceAsync(new(schemeCode, processId));
+        
+        // Act
+
+        var parameterValue = builder.ProcessDefinition.Activities.First(a => a.Name == initialActivity.Name);
+
+        var parameter = new CommandParameter()
+        {
+            Name = "Command_Parameter",
+            TypeName = typeof(ActivityDefinition).FullName,
+            Value = parameterValue,
+            Purpose = ParameterPurposeWithoutSystem.Persistence
+        };
+
+        var command = new WorkflowCommand(
+            processId,
+            nextCommand.Name,
+            validForActivityName: initialActivity.Name,
+            parameters: [parameter]
+        );
+
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () =>
+            await service.Client.RpcCommands.WorkflowApiRpcExecuteCommandAsync(new(command)));
+        
+        // Assert
+
+        Assert.AreEqual(500, exception.ErrorCode);
+        Assert.IsTrue(exception.Message.Contains("has a wrong type"));
+    }
+    
+    
+    [ClientTest(HostId.RpcHost)]
+    [TestMethod]
+    public async Task ShouldExecuteCommand_WithExistedParameter(TestService service)
+    {
+        // Arrange
+
+        var processId = Guid.NewGuid();
+        var schemeCode = Guid.NewGuid().ToString();
+
+        var builder = ProcessDefinitionBuilder.Create(schemeCode)
+            .CreateParameter("StringParameter", typeof(string), OptimaJet.Workflow.Core.Model.ParameterPurpose.Persistence)
+            .Ref(out var parameterDefinition)
+            .CreateCodeAction("FillParameters")
+            .Code(
+                "processInstance.SetParameter<TransitionDefinition>(\"TransitionParameter\", processInstance.ProcessScheme.Transitions.FirstOrDefault(), ParameterPurpose.Persistence);")
+            .CreateActivity("Initial").Initial().State("InitialState").Ref(out ActivityDefinition initialActivity)
+            .CreateImplementationAtBegin("FillParameters")
+            .CreateActivity("Final").Ref(out ActivityDefinition finalActivity)
+            .CreateCommand("Next").Ref(out CommandDefinition nextCommand).CreateCommandParameter("CommandParameter", parameterDefinition)
+            .CreateTransition("Initial_Final", initialActivity, finalActivity)
+            .Direct()
+            .TriggeredByCommand(nextCommand);
+
+        await service.Client.Schemes.CreateSchemeFromBuilderAsync(builder);
+        await service.Client.RpcInstance.WorkflowApiRpcCreateInstanceAsync(new(schemeCode, processId));
+
+        // Act
+
+        var parameterValue = "Parameter value";
+
+        var parameter = new CommandParameter()
+        {
+            Name = "StringParameter",
+            TypeName = typeof(string).FullName,
+            Value = parameterValue,
+            Purpose = ParameterPurposeWithoutSystem.Persistence
+        };
+
+        var command = new WorkflowCommand(
+            processId,
+            nextCommand.Name,
+            validForActivityName: initialActivity.Name,
+            parameters: [parameter]
+        );
+
+        var response = await service.Client.RpcCommands.WorkflowApiRpcExecuteCommandAsync(new(command));
+
+        // Assert
+
+        Assert.IsNotNull(response);
+        Assert.AreEqual(nextCommand.Name, response.CommandName);
+        Assert.IsTrue(response.WasExecuted);
+        Assert.IsNull(response.Message);
+
+        var processInstance = response.ProcessInstance;
+        Assert.IsNotNull(processInstance);
+        Assert.AreEqual(processId, processInstance.ProcessId);
+        Assert.AreEqual(finalActivity.Name, processInstance.CurrentActivityName);
+
+        var parameters = processInstance.ProcessParameters;
+        Assert.IsNotNull(parameters);
+        Assert.AreNotEqual(0, parameters.Count);
+
+        var actualParameter = parameters.Find(p => p.Name == "TransitionParameter");
+        Assert.IsNotNull(actualParameter);
+        var expectedTransitionDefinition = builder.ProcessDefinition.Transitions.First();
+        expectedTransitionDefinition.To.ExceptionsHandlers = [];
+        expectedTransitionDefinition.To.Annotations = [];
+        expectedTransitionDefinition.To.NestingLevel = 0;
+        expectedTransitionDefinition.From.ExceptionsHandlers = [];
+        expectedTransitionDefinition.From.Annotations = [];
+        expectedTransitionDefinition.From.NestingLevel = 0;
+        
+        var actualTransitionDefinition = Newtonsoft.Json.JsonConvert.DeserializeObject<TransitionDefinition>(actualParameter.Value.ToString()!);
+        Assert.IsNotNull(actualTransitionDefinition);
+        var expectedJson = Newtonsoft.Json.JsonConvert.SerializeObject(builder.ProcessDefinition.Transitions.First());
+        var actualJson = Newtonsoft.Json.JsonConvert.SerializeObject(actualTransitionDefinition);
+        Assert.AreEqual(expectedJson, actualJson);
+    }
 
     [ClientTest(HostId.RpcHost)]
     [TestMethod]
