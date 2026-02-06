@@ -4,13 +4,13 @@
   </PropertyGroup>
   <!-- Workflow API packages -->
   <ItemGroup>
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mongo" Version="20.0.4" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mssql" Version="20.0.4" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mysql" Version="20.0.4" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Oracle" Version="20.0.4" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Postgres" Version="20.0.4" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Sqlite" Version="20.0.4" />
-    <PackageVersion Include="OptimaJet.Workflow.Api" Version="20.0.4" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mongo" Version="20.0.5" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mssql" Version="20.0.5" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mysql" Version="20.0.5" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Oracle" Version="20.0.5" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Postgres" Version="20.0.5" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Sqlite" Version="20.0.5" />
+    <PackageVersion Include="OptimaJet.Workflow.Api" Version="20.0.5" />
   </ItemGroup>
   <!-- Microsoft packages -->
   <ItemGroup>
