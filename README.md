@@ -32,12 +32,12 @@ Learn more about Workflow Engine API on the [documentation website](https://work
     cd workflow-api-sample
     ```
 
-6. Add your license key to the `./WorkflowApi/appsettings.json` file:
+6. Add your license key to the `./WorkflowApi/appsettings.json` file. If you do not have the key, request one from our sales team at sales@optimajet.com.
 
     ```json
     {
       "WorkflowApiCoreOptions": {
-        "LicenseKey": "your_license_key"
+        "LicenseKey": "PUT YOUR LICENSE KEY HERE"
       }
     }
     ```

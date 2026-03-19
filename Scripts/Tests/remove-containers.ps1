@@ -1,71 +1,58 @@
 param(
     [Parameter(Mandatory=$false)]
-    [string[]]$Providers=@("Mongo", "Mssql", "Mysql", "Oracle", "Postgres", "Sqlite")
+    [ValidateSet("mongo", "mssql", "mysql", "oracle", "postgres")]
+    [string[]]$Providers=@("mongo", "mssql", "mysql", "oracle", "postgres")
 )
 
 $ErrorActionPreference = "Stop"
 $Providers = $Providers | ForEach-Object { $_.Trim() }
-
-function RemoveMongoContainer($Container) {
-    Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
-
-    docker kill $Container.Name
-    docker rm $Container.Name
-
-    docker network rm $Container.Name
-}
-
-function RemoveDockerContainer ($Container) {
-    Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
-    docker kill $Container.Name
-    docker rm $Container.Name
-}
-
-function RemoveOracleContainer ($Container) {
-    Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
-
-    for ($i = 0; $i -lt $Container.Databases.Length; $i++)
-    {
-        docker kill "$( $Container.Name )_$( $i )"
-        docker rm "$( $Container.Name )_$( $i )"
-    }
-}
-
-function RemoveContainer($Container) {
-    Write-Host "Removing $( $Container.Name ) container" -ForegroundColor Yellow
-
-    switch ($Container.Provider) {
-        "Mongo" {
-            RemoveMongoContainer $Container
-        }
-        "Mssql" {
-            RemoveDockerContainer $Container
-        }
-        "Mysql" {
-            RemoveDockerContainer $Container
-        }
-        "Oracle" {
-            RemoveOracleContainer $Container
-        }
-        "Postgres" {
-            RemoveDockerContainer $Container
-        }
-    }
-}
-
-$Containers = Get-Content -Raw "$( $PSScriptRoot )/containers.json" | ConvertFrom-Json
+$ManageContainerScript = Join-Path $PSScriptRoot "manage-container.ps1"
 
 Write-Host "Removing docker containers" -ForegroundColor Yellow
 
-foreach ($Container in $Containers) {
-    if ($Providers -contains $Container.Provider)
-    {
-        RemoveContainer $Container
-    }
-    else
-    {
-        Write-Host "Container $( $Container.Name ) is skipped" -ForegroundColor Magenta
-    }
+if ($Providers -contains "mongo")
+{
+    & $ManageContainerScript -Action remove -Name "wfe-api-mongo" -Provider "mongo"
+}
+else
+{
+    Write-Host "Container wfe-api-mongo is skipped" -ForegroundColor Magenta
+}
+
+if ($Providers -contains "mssql")
+{
+    & $ManageContainerScript -Action remove -Name "wfe-api-mssql" -Provider "mssql"
+}
+else
+{
+    Write-Host "Container wfe-api-mssql is skipped" -ForegroundColor Magenta
+}
+
+if ($Providers -contains "mysql")
+{
+    & $ManageContainerScript -Action remove -Name "wfe-api-mysql" -Provider "mysql"
+}
+else
+{
+    Write-Host "Container wfe-api-mysql is skipped" -ForegroundColor Magenta
+}
+
+if ($Providers -contains "oracle")
+{
+    & $ManageContainerScript -Action remove -Name "wfe-api-oracle" -Provider "oracle"
+}
+else
+{
+    Write-Host "Container wfe-api-oracle is skipped" -ForegroundColor Magenta
+}
+
+if ($Providers -contains "postgres")
+{
+    & $ManageContainerScript -Action remove -Name "wfe-api-postgres" -Provider "postgres"
+}
+else
+{
+    Write-Host "Container wfe-api-postgres is skipped" -ForegroundColor Magenta
 }
 
 Write-Host "Removing completed, containers removed!" -ForegroundColor Green

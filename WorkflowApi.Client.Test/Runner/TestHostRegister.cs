@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Runtime.InteropServices;
 using OptimaJet.Workflow.Core;
 
@@ -116,6 +117,8 @@ public class TestHostRegister : IDisposable
                 ]
             }
         };
+
+        CleanupSqliteDatabases(dataHostConfiguration);
         
         await register.CreateHostAsync(dataHostConfiguration);
         
@@ -191,6 +194,8 @@ public class TestHostRegister : IDisposable
                 ]
             }
         };
+
+        CleanupSqliteDatabases(rpcHostConfiguration);
         
         await register.CreateHostAsync(rpcHostConfiguration);
         
@@ -222,6 +227,80 @@ public class TestHostRegister : IDisposable
     }
 
     private readonly List<Host> _hosts = [];
+
+    private static void CleanupSqliteDatabases(TestConfiguration configuration)
+    {
+        var tenants = configuration.AppConfiguration.TenantsConfiguration
+            .Where(option => option.PersistenceProviderId == PersistenceProviderId.Sqlite);
+        
+        foreach (var tenant in tenants)
+        {
+            CleanupSqliteDatabase(tenant.ConnectionString);
+        }
+    }
+
+    private static void CleanupSqliteDatabase(string? connectionString)
+    {
+        if (String.IsNullOrWhiteSpace(connectionString))
+        {
+            return;
+        }
+
+        var builder = new DbConnectionStringBuilder
+        {
+            ConnectionString = connectionString
+        };
+
+        if (!builder.TryGetValue("Data Source", out var dataSourceValue) || dataSourceValue is not string dataSource)
+        {
+            return;
+        }
+
+        if (String.IsNullOrWhiteSpace(dataSource) || dataSource == ":memory:")
+        {
+            return;
+        }
+
+        foreach (var databasePath in GetDatabasePaths(dataSource))
+        {
+            DeleteIfExists(databasePath);
+            DeleteIfExists($"{databasePath}-wal");
+            DeleteIfExists($"{databasePath}-shm");
+            DeleteIfExists($"{databasePath}-journal");
+        }
+    }
+
+    private static void DeleteIfExists(string path)
+    {
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
+
+    private static IEnumerable<string> GetDatabasePaths(string dataSource)
+    {
+        if (Path.IsPathRooted(dataSource))
+        {
+            yield return dataSource;
+            yield break;
+        }
+
+        var seenPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var candidatePaths = new[]
+        {
+            Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, dataSource)),
+            Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, dataSource))
+        };
+
+        foreach (var candidatePath in candidatePaths)
+        {
+            if (seenPaths.Add(candidatePath))
+            {
+                yield return candidatePath;
+            }
+        }
+    }
 
     #region IDisposable Implementation
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using WorkflowApi.Client.Client;
 using WorkflowApi.Client.Data.Test.Helpers;
 using WorkflowApi.Client.Test.Runner;
@@ -112,5 +113,27 @@ public class CreateCollectionTests
         // Assert
 
         Assert.AreEqual(500, exception.ErrorCode);
+    }
+
+    [ClientTest(HostId.DataHost)]
+    [TestMethod]
+    public async Task EmptySchemesTest(TestService service)
+    {
+        // Arrange
+        await using var context = service.Repository.Use();
+        var api = service.Client.Schemes;
+        
+        var models = SchemeHelper.CreateRequests([SchemeHelper.GetEmptyScheme("Code")]);
+        
+        // Act
+
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () =>
+            await api.WorkflowApiDataSchemesCreateCollectionAsync(models));
+
+        // Assert
+        
+        Assert.AreEqual(500, exception.ErrorCode);
+        var errorContent = JObject.Parse(exception.ErrorContent.ToString()!);
+        Assert.AreEqual("Exception", errorContent.Value<string>("code"));
     }
 }

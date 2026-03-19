@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using WorkflowApi.Client.Api;
 using WorkflowApi.Client.Test.Models;
 using WorkflowApi.Client.Test.Runner;
+using Scheme = WorkflowApi.Client.Model.Scheme;
 using SchemeCreateRequest = WorkflowApi.Client.Model.SchemeCreateRequest;
 using SchemeCreateRequestWithCode = WorkflowApi.Client.Model.SchemeCreateRequestWithCode;
 using SchemeModel = WorkflowApi.Client.Model.SchemeModel;
@@ -39,6 +40,44 @@ public static class SchemeHelper
         TestLogger.LogModelsGenerated(models, model => model.Code);
 
         return models;
+    }
+
+    public static SchemeModel GetEmptyScheme(string code)
+    {
+        return new SchemeModel
+        {
+            CanBeInlined = false,
+            Code = code,
+            InlinedSchemes = [],
+            Tags = [],
+            Scheme = new Scheme
+            {
+                Activities = [],
+                Actors = [],
+                AdditionalParams = new(),
+                AllowedActivities = [],
+                CalendarName = string.Empty,
+                CanBeInlined = false,
+                CodeActions = [],
+                CodeActionsCommonUsings = string.Empty,
+                Commands = [],
+                Comments = [],
+                DefiningParametersString = string.Empty,
+                DesignerSettings = new(),
+                RootSchemeId = Guid.NewGuid(),
+                Id = Guid.Empty,
+                InlinedSchemes = [],
+                IsObsolete = false,
+                Localization = [],
+                LogEnabled = false,
+                Name = code,
+                Parameters = [],
+                RootSchemeCode = string.Empty,
+                Tags = [],
+                Timers = [],
+                Transitions = []
+            }
+        };
     }
 
     public static List<SchemeCreateRequestWithCode> CreateRequests(params SchemeModel[] models)
