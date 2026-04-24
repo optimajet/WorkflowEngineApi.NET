@@ -56,7 +56,7 @@ public static class InboxEntryHelper
     {
         var api = service.Client.InboxEntries;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.processes.inbox-entries." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -64,7 +64,7 @@ public static class InboxEntryHelper
     {
         var api = service.Client.InboxEntries;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.processes.inbox-entries"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -72,7 +72,7 @@ public static class InboxEntryHelper
     {
         var api = service.Client.InboxEntries;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }

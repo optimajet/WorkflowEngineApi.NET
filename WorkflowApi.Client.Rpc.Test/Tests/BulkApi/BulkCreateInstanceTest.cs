@@ -226,7 +226,7 @@ public class BulkCreateInstanceTest
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkCreateInstance).WorkflowApiRpcBulkCreateInstanceAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkCreateInstance).WorkflowApiRpcBulkCreateInstanceAsync(request);
 
         // Assert
 
@@ -244,7 +244,7 @@ public class BulkCreateInstanceTest
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcBulk, Array.Empty<string>()).WorkflowApiRpcBulkCreateInstanceAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcBulk, Array.Empty<string>()).WorkflowApiRpcBulkCreateInstanceAsync(request)
         );
 
         // Assert

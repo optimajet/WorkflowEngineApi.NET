@@ -59,7 +59,7 @@ public class UpdateSchemeIfObsoleteTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcUpdateSchemeIfObsolete).WorkflowApiRpcUpdateSchemeIfObsoleteAsync(new(processId));
+        await service.Client.WithPermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcUpdateSchemeIfObsolete).WorkflowApiRpcUpdateSchemeIfObsoleteAsync(new(processId));
 
         // Assert
 
@@ -76,7 +76,7 @@ public class UpdateSchemeIfObsoleteTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcScheme, Array.Empty<string>()).WorkflowApiRpcUpdateSchemeIfObsoleteAsync(new (Guid.NewGuid()))
+            async () => await service.Client.WithPermissions(c => c.RpcScheme, Array.Empty<string>()).WorkflowApiRpcUpdateSchemeIfObsoleteAsync(new (Guid.NewGuid()))
         );
 
         // Assert

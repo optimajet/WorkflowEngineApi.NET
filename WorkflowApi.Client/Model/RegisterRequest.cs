@@ -37,7 +37,7 @@ namespace WorkflowApi.Client.Model
         /// <param name="name">name.</param>
         /// <param name="password">password.</param>
         /// <param name="permissions">permissions.</param>
-        public RegisterRequest(string name = default(string), string password = default(string), List<string> permissions = default(List<string>))
+        public RegisterRequest(string name = default(string), string password = default(string), string permissions = default(string))
         {
             this.Name = name;
             this.Password = password;
@@ -60,7 +60,7 @@ namespace WorkflowApi.Client.Model
         /// Gets or Sets Permissions
         /// </summary>
         [DataMember(Name = "permissions", EmitDefaultValue = true)]
-        public List<string> Permissions { get; set; }
+        public string Permissions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

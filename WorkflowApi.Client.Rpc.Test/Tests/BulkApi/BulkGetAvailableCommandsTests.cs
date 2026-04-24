@@ -463,7 +463,7 @@ public class BulkGetAvailableCommandsTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetAvailableCommands).WorkflowApiRpcBulkGetAvailableCommandsAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetAvailableCommands).WorkflowApiRpcBulkGetAvailableCommandsAsync(request);
 
         // Assert
 
@@ -481,7 +481,7 @@ public class BulkGetAvailableCommandsTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcBulk, Array.Empty<string>()).WorkflowApiRpcBulkGetAvailableCommandsAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcBulk, Array.Empty<string>()).WorkflowApiRpcBulkGetAvailableCommandsAsync(request)
         );
 
         // Assert

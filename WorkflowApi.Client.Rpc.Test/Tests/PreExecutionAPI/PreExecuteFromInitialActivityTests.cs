@@ -172,7 +172,7 @@ public class PreExecuteFromInitialActivityTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcPreExecution, [WorkflowApiOperationId.RpcPreExecuteFromInitialActivity]).WorkflowApiRpcPreExecuteFromInitialActivityAsync(new(processId));
+        var response = await service.Client.WithPermissions(c => c.RpcPreExecution, [WorkflowApiOperationId.RpcPreExecuteFromInitialActivity]).WorkflowApiRpcPreExecuteFromInitialActivityAsync(new(processId));
 
         // Assert
 
@@ -189,7 +189,7 @@ public class PreExecuteFromInitialActivityTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcPreExecution, Array.Empty<string>()).WorkflowApiRpcPreExecuteFromInitialActivityAsync(new ())
+            async () => await service.Client.WithPermissions(c => c.RpcPreExecution, Array.Empty<string>()).WorkflowApiRpcPreExecuteFromInitialActivityAsync(new ())
         );
 
         // Assert

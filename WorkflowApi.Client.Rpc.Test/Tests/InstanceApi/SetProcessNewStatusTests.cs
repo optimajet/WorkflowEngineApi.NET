@@ -78,7 +78,7 @@ public class SetProcessNewStatusTests
 
         var runningProcessStatus = Enum.Parse<ProcessStatusAvailableToSet>(OptimaJet.Workflow.Core.Persistence.ProcessStatus.Running.Name);
         var setRunningStatusRequest = new SetProcessNewStatusRequest(processId, runningProcessStatus);
-        await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcSetProcessNewStatus).WorkflowApiRpcSetProcessNewStatusAsync(setRunningStatusRequest);
+        await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcSetProcessNewStatus).WorkflowApiRpcSetProcessNewStatusAsync(setRunningStatusRequest);
 
         // Assert
 
@@ -97,7 +97,7 @@ public class SetProcessNewStatusTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcSetProcessNewStatusAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcSetProcessNewStatusAsync(request)
         );
 
         // Assert

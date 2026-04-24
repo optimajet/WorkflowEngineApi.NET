@@ -16,6 +16,8 @@ public class RuntimeColdStartTests
     {
         try
         {
+            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
+            
             // Act
 
             await service.Client.RpcRuntime.WorkflowApiRpcRuntimeColdStartAsync(new());
@@ -29,7 +31,7 @@ public class RuntimeColdStartTests
         }
         finally
         {
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
+            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
         }
     }
 
@@ -40,9 +42,11 @@ public class RuntimeColdStartTests
     {
         try
         {
+            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
+            
             // Act
 
-            var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeColdStart).WorkflowApiRpcRuntimeColdStartAsync(new());
+            var response = await service.Client.WithPermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeColdStart).WorkflowApiRpcRuntimeColdStartAsync(new());
 
             // Assert
 
@@ -50,7 +54,7 @@ public class RuntimeColdStartTests
         }
         finally
         {
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
+            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
         }
     }
 
@@ -64,7 +68,7 @@ public class RuntimeColdStartTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeColdStartAsync(new ())
+            async () => await service.Client.WithPermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeColdStartAsync(new ())
         );
 
         // Assert

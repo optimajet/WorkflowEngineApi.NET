@@ -62,7 +62,6 @@ public static class SchemeHelper
                 CodeActionsCommonUsings = string.Empty,
                 Commands = [],
                 Comments = [],
-                DefiningParametersString = string.Empty,
                 DesignerSettings = new(),
                 RootSchemeId = Guid.NewGuid(),
                 Id = Guid.Empty,
@@ -166,7 +165,7 @@ public static class SchemeHelper
     {
         var api = service.Client.Schemes;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.schemes." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -174,7 +173,7 @@ public static class SchemeHelper
     {
         var api = service.Client.Schemes;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.schemes"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -182,7 +181,7 @@ public static class SchemeHelper
     {
         var api = service.Client.Schemes;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -1489,7 +1488,6 @@ public static class SchemeHelper
                                    "ParametersForSerialize": [],
                                    "PersistenceParameters": [],
                                    "ActorsForSerialize": [],
-                                   "DefiningParametersString": null,
                                    "RootSchemeCode": null,
                                    "RootSchemeId": null,
                                    "IsObsolete": false,

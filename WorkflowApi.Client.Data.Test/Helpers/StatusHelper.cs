@@ -56,7 +56,7 @@ public static class StatusHelper
     {
         var api = service.Client.Statuses;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.statuses." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -64,7 +64,7 @@ public static class StatusHelper
     {
         var api = service.Client.Statuses;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.statuses"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -72,7 +72,7 @@ public static class StatusHelper
     {
         var api = service.Client.Statuses;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }

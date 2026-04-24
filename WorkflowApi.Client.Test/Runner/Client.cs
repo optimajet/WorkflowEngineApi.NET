@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using OptimaJet.Workflow.Api;
 using WorkflowApi.Client.Api;
 using WorkflowApi.Client.Client;
-using WorkflowApi.Client.Model;
 
 namespace WorkflowApi.Client.Test.Runner;
 
@@ -22,28 +24,42 @@ public class Client
 
     public async Task AuthorizeAsync()
     {
-        var jwtResponse = await Auth.AuthLoginAsync(
-            Configuration.AppCredentials.Name, 
-            Configuration.AppCredentials.Password
-        );
-        
-        _jwt = JsonConvert.DeserializeObject<string>(jwtResponse) ?? "";
+        _jwt = await CreateTokenAsync(permissions => permissions.AllowAllOperations().AllowAllTenants());
     }
-    
-    public async Task<string> CreateTokenAsync(List<string> permissions)
+
+    public Task<string> CreateTokenAsync(List<string> permissions, List<string>? tenantIds = null)
     {
-        var hash = Hash.GenerateStringHash(permissions);
-        var api = Auth;
-        api.Configuration.DefaultHeaders.Remove("Authorization");
-        await api.AuthRegisterAsync(new RegisterRequest(hash, hash, permissions));
-        return await api.AuthLoginAsync(hash, hash);
+        return CreateTokenAsync(builder => ConfigurePermissions(builder, permissions, tenantIds));
+    }
+
+    public Task<string> CreateTokenAsync(Action<IWorkflowApiPermissionsBuilder> configurePermissions)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.AppConfiguration.Jwt.Key));
+        
+        Claim[] claims = 
+        [
+            Service.Host.PermissionsService.BuildClaim(configurePermissions),
+            new (ClaimTypes.Name, Configuration.AppCredentials.Name)
+        ];
+
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(claims),
+            Expires = DateTime.UtcNow.AddMilliseconds(Configuration.AppConfiguration.Jwt.Expires),
+            Issuer = Configuration.AppConfiguration.Jwt.Issuer,
+            Audience = Configuration.AppConfiguration.Jwt.Audience,
+            SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
+        };
+
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return Task.FromResult(tokenHandler.WriteToken(token));
     }
     
     public TestService Service { get; }
     public TestConfiguration Configuration => Service.Configuration;
     public WorkflowApi.Client.Client.Configuration LocalClientConfiguration => CreateConfiguration();
-    
-    public AuthApi Auth => new(LocalClientConfiguration);
+
     public RootApi RootApi => new(LocalClientConfiguration);
     
     //Data & Search
@@ -67,17 +83,22 @@ public class Client
     public RpcRuntimeApi RpcRuntime => new(LocalClientConfiguration);
     public RpcSchemeApi RpcScheme => new(LocalClientConfiguration);
     public RpcStateApi RpcStates => new(LocalClientConfiguration);
-
-    public TApi ExclusivePermissions<TApi>(Func<Client, TApi> apiSelector, string permission) where TApi : IApiAccessor
+    
+    public TApi WithPermissions<TApi>(Func<Client, TApi> apiSelector, string permission) where TApi : IApiAccessor
     {
-        return ExclusivePermissions(apiSelector, [permission]);
+        return WithPermissions(apiSelector, [permission]);
     }
 
-    public TApi ExclusivePermissions<TApi>(Func<Client, TApi> apiSelector, string[] permissions) where TApi : IApiAccessor
+    public TApi WithPermissions<TApi>(Func<Client, TApi> apiSelector, string[] permissions, string[]? tenantIds = null) where TApi : IApiAccessor
+    {
+        return WithPermissions(apiSelector, builder => ConfigurePermissions(builder, permissions, tenantIds));
+    }
+
+    public TApi WithPermissions<TApi>(Func<Client, TApi> apiSelector, Action<IWorkflowApiPermissionsBuilder> configurePermissions) where TApi : IApiAccessor
     {
         var api = apiSelector(this);
-        var token = CreateTokenAsync(permissions.ToList()).Result;
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        var token = CreateTokenAsync(configurePermissions).Result;
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -123,6 +144,22 @@ public class Client
         };
         
         return configuration;
+    }
+
+    private void ConfigurePermissions(
+        IWorkflowApiPermissionsBuilder builder,
+        IEnumerable<string> permissions,
+        IEnumerable<string>? tenantIds
+    )
+    {
+        var configuredBuilder = builder.DenyAllOperations().Allow(permissions);
+
+        if (tenantIds == null && Service.TenantId == WorkflowApiConstants.SingleTenantId)
+        {
+            return;
+        }
+
+        configuredBuilder.DenyAllTenantsExcept(tenantIds ?? [Service.TenantId]);
     }
 
     private string _jwt = "";

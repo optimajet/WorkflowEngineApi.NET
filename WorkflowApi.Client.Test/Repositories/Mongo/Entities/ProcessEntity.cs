@@ -20,7 +20,6 @@ public class ProcessEntity
         PreviousActivityForReverse = model.PreviousActivityForReverse;
         ParentProcessId = model.ParentProcessId;
         RootProcessId = model.RootProcessId;
-        IsDeterminingParametersChanged = model.IsDeterminingParametersChanged;
         TenantId = model.TenantId;
         StartingTransition = model.StartingTransition;
         SubprocessName = model.SubprocessName;
@@ -41,7 +40,6 @@ public class ProcessEntity
     public string? PreviousActivityForReverse { get; set; }
     public Guid? ParentProcessId { get; set; }
     public Guid RootProcessId { get; set; }
-    public bool IsDeterminingParametersChanged { get; set; }
     public string? TenantId { get; set; }
     public string? StartingTransition { get; set; }
     public string? SubprocessName { get; set; }
@@ -67,7 +65,6 @@ public class ProcessEntity
             PreviousActivityForReverse,
             ParentProcessId,
             RootProcessId,
-            IsDeterminingParametersChanged,
             TenantId,
             StartingTransition,
             SubprocessName,

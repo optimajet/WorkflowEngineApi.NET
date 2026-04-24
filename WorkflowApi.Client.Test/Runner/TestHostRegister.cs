@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data.Common;
+using System.Net;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using OptimaJet.Workflow.Core;
 
@@ -48,7 +50,7 @@ public class TestHostRegister : IDisposable
         var dataHostConfiguration = new TestConfiguration
         {
             Id = HostId.DataHost,
-            Port = 8081,
+            Port = register.GetFreePort(),
             AppConfiguration =
             {
                 MultipleTenantMode = true,
@@ -119,13 +121,12 @@ public class TestHostRegister : IDisposable
         };
 
         CleanupSqliteDatabases(dataHostConfiguration);
-        
         await register.CreateHostAsync(dataHostConfiguration);
         
         var rpcHostConfiguration = new TestConfiguration
         {
             Id = HostId.RpcHost,
-            Port = 8082,
+            Port = register.GetFreePort(),
             AppConfiguration =
             {
                 MultipleTenantMode = true,
@@ -135,47 +136,59 @@ public class TestHostRegister : IDisposable
                     {
                         TenantIds = [PersistenceProviderId.Mongo],
                         PersistenceProviderId = PersistenceProviderId.Mongo,
-                        ConnectionString = "mongodb://localhost:47017/rpc-tests",
-                        WorkflowRuntimeCreationOptions =
-                        {
-                            DisableRuntimeAutoStart = true
-                        }
+                        ConnectionString = "mongodb://localhost:47017/rpc-tests"
                     },
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mssql],
                         PersistenceProviderId = PersistenceProviderId.Mssql,
-                        ConnectionString = "Server=localhost,41433;Database=rpc_tests;User Id=SA;Password=P@ssw0rd;TrustServerCertificate=True;",
-                        WorkflowRuntimeCreationOptions =
-                        {
-                            DisableRuntimeAutoStart = true
-                        }
+                        ConnectionString = "Server=localhost,41433;Database=rpc_tests;User Id=SA;Password=P@ssw0rd;TrustServerCertificate=True;"
                     },
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Mysql],
                         PersistenceProviderId = PersistenceProviderId.Mysql,
-                        ConnectionString = "Host=localhost;Port=43306;Database=rpc_tests;User ID=root;Password=P@ssw0rd;",
-                        WorkflowRuntimeCreationOptions =
-                        {
-                            DisableRuntimeAutoStart = true
-                        }
+                        ConnectionString = "Host=localhost;Port=43306;Database=rpc_tests;User ID=root;Password=P@ssw0rd;"
                     },
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Oracle],
                         PersistenceProviderId = PersistenceProviderId.Oracle,
-                        ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=41522))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=RPC_TESTS;Password=password;",
-                        WorkflowRuntimeCreationOptions =
-                        {
-                            DisableRuntimeAutoStart = true
-                        }
+                        ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=41522))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)));User Id=RPC_TESTS;Password=password;"
                     },
                     new()
                     {
                         TenantIds = [PersistenceProviderId.Postgres],
                         PersistenceProviderId = PersistenceProviderId.Postgres,
-                        ConnectionString = "Host=localhost;Port=45432;Database=rpc_tests;User Id=postgres;Password=P@ssw0rd;",
+                        ConnectionString = "Host=localhost;Port=45432;Database=rpc_tests;User Id=postgres;Password=P@ssw0rd;"
+                    },
+                    new()
+                    {
+                        TenantIds = [PersistenceProviderId.Sqlite],
+                        PersistenceProviderId = PersistenceProviderId.Sqlite,
+                        ConnectionString = "Data Source=rpc_tests.db"
+                    }
+                ]
+            }
+        };
+
+        CleanupSqliteDatabases(rpcHostConfiguration);
+        await register.CreateHostAsync(rpcHostConfiguration);
+        
+        var multitenantHostConfiguration = new TestConfiguration
+        {
+            Id = HostId.MultiTenantHost,
+            Port = register.GetFreePort(),
+            AppConfiguration =
+            {
+                MultipleTenantMode = true,
+                TenantsConfiguration =
+                [
+                    new()
+                    {
+                        TenantIds = MultitenantTestTenants.TenantAIds,
+                        PersistenceProviderId = PersistenceProviderId.Sqlite,
+                        ConnectionString = "Data Source=rpc_multitenant_tenant_a.db",
                         WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
@@ -183,9 +196,19 @@ public class TestHostRegister : IDisposable
                     },
                     new()
                     {
-                        TenantIds = [PersistenceProviderId.Sqlite],
+                        TenantIds = MultitenantTestTenants.TenantBIds,
                         PersistenceProviderId = PersistenceProviderId.Sqlite,
-                        ConnectionString = "Data Source=rpc_tests.db",
+                        ConnectionString = "Data Source=rpc_multitenant_tenant_b.db",
+                        WorkflowRuntimeCreationOptions =
+                        {
+                            DisableRuntimeAutoStart = true
+                        }
+                    },
+                    new()
+                    {
+                        TenantIds = MultitenantTestTenants.TenantCIds,
+                        PersistenceProviderId = PersistenceProviderId.Sqlite,
+                        ConnectionString = "Data Source=rpc_multitenant_tenant_c.db",
                         WorkflowRuntimeCreationOptions =
                         {
                             DisableRuntimeAutoStart = true
@@ -195,9 +218,30 @@ public class TestHostRegister : IDisposable
             }
         };
 
-        CleanupSqliteDatabases(rpcHostConfiguration);
-        
-        await register.CreateHostAsync(rpcHostConfiguration);
+        CleanupSqliteDatabases(multitenantHostConfiguration);
+        await register.CreateHostAsync(multitenantHostConfiguration);
+
+        var singleTenantHostConfiguration = new TestConfiguration
+        {
+            Id = HostId.SingleTenantHost,
+            Port = register.GetFreePort(),
+            AppConfiguration =
+            {
+                MultipleTenantMode = false,
+                WorkflowTenantCreationOptions = new()
+                {
+                    PersistenceProviderId = PersistenceProviderId.Sqlite,
+                    ConnectionString = "Data Source=single_tenant_tests.db",
+                    WorkflowRuntimeCreationOptions =
+                    {
+                        DisableRuntimeAutoStart = true
+                    }
+                }
+            }
+        };
+
+        CleanupSqliteDatabases(singleTenantHostConfiguration);
+        await register.CreateHostAsync(singleTenantHostConfiguration);
         
         return register;
     }
@@ -227,6 +271,7 @@ public class TestHostRegister : IDisposable
     }
 
     private readonly List<Host> _hosts = [];
+    private readonly HashSet<int> _reservedPorts = [];
 
     private static void CleanupSqliteDatabases(TestConfiguration configuration)
     {
@@ -301,6 +346,43 @@ public class TestHostRegister : IDisposable
             }
         }
     }
+
+    private int GetFreePort()
+    {
+        for (var port = PreferredPortRangeStart; port <= PreferredPortRangeEnd; port++)
+        {
+            if (_reservedPorts.Contains(port) || !IsPortAvailable(port))
+            {
+                continue;
+            }
+
+            _reservedPorts.Add(port);
+            return port;
+        }
+
+        using var listener = new TcpListener(IPAddress.Loopback, 0);
+        listener.Start();
+        var fallbackPort = ((IPEndPoint)listener.LocalEndpoint).Port;
+        _reservedPorts.Add(fallbackPort);
+        return fallbackPort;
+    }
+
+    private static bool IsPortAvailable(int port)
+    {
+        try
+        {
+            using var listener = new TcpListener(IPAddress.Loopback, port);
+            listener.Start();
+            return true;
+        }
+        catch (SocketException)
+        {
+            return false;
+        }
+    }
+
+    private const int PreferredPortRangeStart = 8081;
+    private const int PreferredPortRangeEnd = 8099;
 
     #region IDisposable Implementation
 

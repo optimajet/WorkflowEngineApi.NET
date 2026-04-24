@@ -1,4 +1,4 @@
-﻿using OptimaJet.Workflow.Api.Options;
+using OptimaJet.Workflow.Api.Options;
 using OptimaJet.Workflow.Core;
 using OptimaJet.Workflow.Core.Runtime;
 using WorkflowApi.Client.Test.Providers;
@@ -23,8 +23,9 @@ public sealed class TestService
         Host = host;
         TenantId = tenantId;
         WorkflowRuntime = host.TenantRegistry.Get(tenantId).WorkflowRuntime;
-        TenantOptions = Configuration.AppConfiguration.TenantsConfiguration
-            .First(option => option.TenantIds.Contains(TenantId));
+        TenantOptions = Configuration.AppConfiguration.MultipleTenantMode
+            ? Configuration.AppConfiguration.TenantsConfiguration.First(option => option.TenantIds.Contains(TenantId))
+            : Configuration.AppConfiguration.WorkflowTenantCreationOptions;
 
         RuleProvider = new TestRuleProvider();
         WorkflowRuntime.WithRuleProvider(RuleProvider);

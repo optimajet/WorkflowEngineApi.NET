@@ -26,7 +26,7 @@ public class ClientTestAttribute : TestCategoryBaseAttribute, ITestDataSource
 
     public IEnumerable<object[]> GetData(MethodInfo methodInfo)
     {
-        return _hosts.SelectMany(host => host.Services)
+        return _hosts.SelectMany(host => host.TestServices)
             .Where(service => FilteredProviderIds.Contains(service.TenantOptions.PersistenceProviderId))
             .Select(service => new object[] { service });
     }

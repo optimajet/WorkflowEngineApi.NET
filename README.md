@@ -1,4 +1,4 @@
-# Workflow Engine API Sample
+﻿# Workflow Engine API Sample
 
 This repository contains a sample integration of the Workflow Engine API into an ASP.NET application. The Workflow
 Engine Web API is a library for the ASP.NET framework that allows you to integrate a ready-made API into
@@ -10,7 +10,7 @@ your web ecosystem.
 
 1. **RESTful Data API**: Safely interact with the Workflow Engine database without risking internal process disruptions.
 2. **RPC API**: Remotely manage the Workflow Engine Runtime instances in single- or multi- tenant modes.
-3. **Permission-based Security**: Fine-tune access to each API operation and generate claims for your users.
+3. **Permission-based Security**: Fine-tune access to API operations and tenants, and generate claims for your users.
 
 Learn more about Workflow Engine API on the [documentation website](https://workflowengine.io/documentation/web-api).
 
@@ -103,7 +103,7 @@ Learn more about Workflow Engine API on the [documentation website](https://work
 
 ## Solution Structure
 
-The solution consists of three projects:
+The solution consists of the following projects:
 
 - **WorkflowApi** — A sample web application that demonstrates how to use the `OptimaJet.Workflow.Api` library.
 - **WorkflowApi.Client** — A sample WorkflowApi client application generated using OpenAPI specification.
@@ -125,7 +125,7 @@ When you run the build of the solution in the `Debug` configuration, an unusual 
 5. In the same script, the generated client is copied to the `./WorkflowApi.Client` project except for
    the `WorkflowApi.Client.csproj` file.
 6. Build `WorkflowApi.Client`.
-7. Build all tests projects.
+7. Build all unit and integration test projects.
 
 ### Scripts
 
@@ -178,18 +178,58 @@ To demonstrate the Workflow API Security component, this project includes authen
 Bearer, an authorization controller, and an in-memory SQLite database for storing user data.
 
 To quickly get an API access token with all privileges, send a GET request to the auth controller with the
-username `admin` and password `admin`.
+username `admin` and password `admin`. The seeded admin user receives a compact `WorkflowApiPermissions` JWT claim that
+allows all operations and all tenants.
 
-The auth controller has a POST method allowing you to create a new user with any set of privileges. Privileges are
-specified in dot format, such as `workflow-api.readiness`. You can learn more about privileges in
-the [documentation](https://workflowengine.io/documentation/web-api/security) or use the convenient builder in
-the `IWorkflowApiPermissions` service to get or validate a list of privileges.
+The auth controller has a POST method allowing you to create or update a user with a serialized permissions value. It
+also has a DELETE method to remove a user by name. The GET method reads the saved permissions value, validates it with
+the `IWorkflowApiPermissions` service, creates a single `WorkflowApiPermissions` claim, and returns a JWT token.
 
-The auth controller has a DELETE method to remove a user by their name.
-It also has a GET method to get a user from the
-database and create a list of claims for a JWT token based on their saved privileges.
-This token is then generated
-based on the JWT configuration and returned as a string.
+Workflow API permissions are stored in one compact claim. The serialized value is a semicolon-separated list of rules:
+
+```text
+<effect>:<target>[;<effect>:<target>]
+```
+
+The effect is `a` for allow or `d` for deny. Operation targets are hierarchical operation IDs, for example
+`workflow-api`, `workflow-api.liveness`, or `workflow-api.rpc`. A branch target such as `workflow-api.rpc` applies to
+all child RPC operations, so the value does not use a `.*` suffix. If several operation rules match the same request,
+the more specific rule wins.
+
+Tenant targets use the `tenants` branch. Use `a:tenants` to allow all tenants, `d:tenants` to deny all tenants,
+`a:tenants:TenantA,TenantB` to allow only the listed tenants, and `d:tenants:TenantA,TenantB` to allow all tenants
+except the listed tenants.
+
+Prefer building and validating the value through the `IWorkflowApiPermissions` service:
+
+```csharp
+var claim = permissions.BuildClaim(builder => builder
+    .DenyAllOperations()
+    .Allow("workflow-api.liveness")
+    .Allow("workflow-api.rpc")
+    .Deny("workflow-api.rpc.delete-instance")
+    .DenyAllTenantsExcept("TenantA", "TenantB"));
+```
+
+This produces a compact claim value similar to:
+
+```text
+d:workflow-api;a:workflow-api.liveness;a:workflow-api.rpc;d:workflow-api.rpc.delete-instance;a:tenants:TenantA,TenantB
+```
+
+To create a user directly through the sample auth controller, pass the serialized value in the `permissions` field:
+
+```bash
+curl -k -X POST "https://localhost:7169/auth" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"tenant-a-user\",\"password\":\"tenant-a-user\",\"permissions\":\"d:workflow-api;a:workflow-api.liveness;a:tenants:TenantA\"}"
+```
+
+In multi-tenant mode, `Workflow-Api-Tenant-ID` selects the tenant context for the request, but it does not grant access
+by itself. The selected tenant must also be allowed by the `WorkflowApiPermissions` claim. Requests return
+`403 Forbidden` when the operation is denied, tenant permission is missing, the tenant header is missing and no default
+tenant is configured, the tenant ID is invalid, the tenant is unknown, or the caller changes the header to a tenant that
+is not allowed by the token. Single-tenant mode does not require a tenant permission rule.
 
 ### Client Generation
 
@@ -211,8 +251,13 @@ To run automated testing, you need to install and run Docker, then execute the f
 pwsh ./Scripts/Tests/run-tests.ps1
 ```
 
-The tests are integration tests and use Docker databases, and start web application hosts in a separate thread,
-configuring them as needed for the tests. Each controller is tested in various use cases to ensure full coverage.
+The repository contains both unit and integration tests.
+
+The unit tests are located in `../Library/OptimaJet.Workflow.Api.Test` and cover isolated logic such as permission formatting without Docker.
+
+The integration tests use Docker databases, start web application hosts in a separate thread, configure them as needed
+for the tests, and exercise the API end-to-end. Each controller is tested in various use cases to ensure full
+coverage.
 
 The tests also use an automatically generated client, so significant changes in the API specification will break the
 application's build and help understand where backward compatibility is violated and where tests need to be modified.

@@ -167,7 +167,7 @@ public class GetProcessHistoryTests
         
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessHistory).WorkflowApiRpcGetProcessHistoryAsync(request);
+        var response = await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessHistory).WorkflowApiRpcGetProcessHistoryAsync(request);
 
         // Assert
 
@@ -210,7 +210,7 @@ public class GetProcessHistoryTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcGetProcessHistoryAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcGetProcessHistoryAsync(request)
         );
 
         // Assert

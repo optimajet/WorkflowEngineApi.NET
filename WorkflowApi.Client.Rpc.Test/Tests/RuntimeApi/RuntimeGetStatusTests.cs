@@ -20,7 +20,7 @@ public class RuntimeGetStatusTests
         // Assert
 
         Assert.IsNotNull(response);
-        Assert.AreEqual(RuntimeRunningStatus.Stopped, response.RunningStatus);
+        Assert.AreEqual(RuntimeRunningStatus.Running, response.RunningStatus);
     }
 
     [ClientTest(HostId.RpcHost)]
@@ -33,7 +33,7 @@ public class RuntimeGetStatusTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeGetRunningStatus).WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
+        var response = await service.Client.WithPermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeGetRunningStatus).WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
 
         // Assert
 
@@ -50,7 +50,7 @@ public class RuntimeGetStatusTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeGetRunningStatusAsync(new ())
+            async () => await service.Client.WithPermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeGetRunningStatusAsync(new ())
         );
 
         // Assert

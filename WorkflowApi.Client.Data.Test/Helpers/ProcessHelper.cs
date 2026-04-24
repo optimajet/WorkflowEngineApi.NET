@@ -26,7 +26,6 @@ public static class ProcessHelper
             Guid.NewGuid().ToString(),
             Guid.NewGuid(),
             Guid.NewGuid(),
-            Guid.NewGuid().GetHashCode() % 2 == 0,
             Guid.NewGuid().ToString(),
             Guid.NewGuid().ToString(),
             Guid.NewGuid().ToString(),
@@ -71,7 +70,6 @@ public static class ProcessHelper
         Assert.AreEqual(expected.PreviousActivityForReverse, actual.PreviousActivityForReverse);
         Assert.AreEqual(expected.ParentProcessId, actual.ParentProcessId);
         Assert.AreEqual(expected.RootProcessId, actual.RootProcessId);
-        Assert.AreEqual(expected.IsDeterminingParametersChanged, actual.IsDeterminingParametersChanged);
         Assert.AreEqual(expected.TenantId, actual.TenantId);
         Assert.AreEqual(expected.StartingTransition, actual.StartingTransition);
         Assert.AreEqual(expected.SubprocessName, actual.SubprocessName);
@@ -117,7 +115,7 @@ public static class ProcessHelper
     {
         var api = service.Client.Processes;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.processes." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -125,7 +123,7 @@ public static class ProcessHelper
     {
         var api = service.Client.Processes;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.processes"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -133,7 +131,7 @@ public static class ProcessHelper
     {
         var api = service.Client.Processes;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }

@@ -4,22 +4,22 @@
   </PropertyGroup>
   <!-- Workflow API packages -->
   <ItemGroup>
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mongo" Version="20.0.9" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mssql" Version="20.0.9" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Mysql" Version="20.0.9" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Oracle" Version="20.0.9" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Postgres" Version="20.0.9" />
-    <PackageVersion Include="OptimaJet.Workflow.Api.Sqlite" Version="20.0.9" />
-    <PackageVersion Include="OptimaJet.Workflow.Api" Version="20.0.9" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mongo" Version="21.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mssql" Version="21.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Mysql" Version="21.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Oracle" Version="21.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Postgres" Version="21.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api.Sqlite" Version="21.0.0" />
+    <PackageVersion Include="OptimaJet.Workflow.Api" Version="21.0.0" />
   </ItemGroup>
   <!-- Microsoft packages -->
   <ItemGroup>
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.6" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.5" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.5" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
     <PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageVersion Include="System.Text.Json" Version="8.0.5" />
+    <PackageVersion Include="System.Text.Json" Version="10.0.5" />
   </ItemGroup>
   <!-- Third-party packages -->
   <ItemGroup>

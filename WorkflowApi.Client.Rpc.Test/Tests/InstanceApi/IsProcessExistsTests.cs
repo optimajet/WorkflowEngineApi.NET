@@ -78,7 +78,7 @@ public class IsProcessExistsTests
         
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcIsProcessExists).WorkflowApiRpcIsProcessExistsAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcIsProcessExists).WorkflowApiRpcIsProcessExistsAsync(request);
 
         // Assert
         
@@ -96,7 +96,7 @@ public class IsProcessExistsTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcIsProcessExistsAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcIsProcessExistsAsync(request)
         );
 
         // Assert

@@ -523,7 +523,7 @@ public class SetProcessParameterTests
         // Act
         
         var setRequest = new SetProcessParameterRequest(processId, parameterName, parameterValue);
-        await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcSetProcessParameter).WorkflowApiRpcSetProcessParameterAsync(setRequest);
+        await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcSetProcessParameter).WorkflowApiRpcSetProcessParameterAsync(setRequest);
 
         // Assert
         
@@ -536,7 +536,7 @@ public class SetProcessParameterTests
     public async Task ShouldReturn403_WhenPermissionDenied(TestService service)
     {
         var request = new SetProcessParameterRequest(Guid.NewGuid());
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcSetProcessParameterAsync(request));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcSetProcessParameterAsync(request));
 
         Assert.AreEqual(403, exception.ErrorCode);
     }

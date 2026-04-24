@@ -1,7 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -37,7 +36,7 @@ public class AuthController : ControllerBase
     public Configuration Configuration { get; }
 
     /// <summary>
-    /// The permissions service for handling user permissions.
+    /// The permissions service for issuing claims and permissions builders.
     /// </summary>
     public IWorkflowApiPermissions Permissions { get; }
 
@@ -52,9 +51,9 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<string>> Login(string name, string password)
     {
         var user = await Data.Users.FirstOrDefaultAsync(user => user.Name == name && user.Password == password);
-        
+
         if (user == null) return Unauthorized("Invalid username or password");
-        
+
         return await GenerateToken(user);
     }
 
@@ -62,19 +61,23 @@ public class AuthController : ControllerBase
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.Jwt.Key));
+        var permissionsValue = Permissions.CreateBuilder().SetValue(user.Permissions).GetValue();
 
-        var permissions = JsonSerializer.Deserialize<string[]>(user.Permissions) ?? [];
-        var claims = Permissions.AllowList(permissions);
-        
+        Claim[] claims =
+        [
+            new(WorkflowApiConstants.PermissionsClaimType, permissionsValue),
+            new(ClaimTypes.Name, user.Name)
+        ];
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(claims.Union([new Claim(ClaimTypes.Name, user.Name)])),
+            Subject = new ClaimsIdentity(claims),
             Expires = DateTime.UtcNow.AddMilliseconds(Configuration.Jwt.Expires),
             Issuer = Configuration.Jwt.Issuer,
             Audience = Configuration.Jwt.Audience,
             SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
         };
-        
+
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return Task.FromResult(tokenHandler.WriteToken(token));
     }
@@ -88,14 +91,21 @@ public class AuthController : ControllerBase
     [SwaggerOperationId("auth.register")]
     public async Task<ActionResult> Register(RegisterRequest request)
     {
-        var user = new User(request.Name, request.Password, JsonSerializer.Serialize(request.Permissions));
+        var permissionClaimValue = request.Permissions;
+
+        if (!Permissions.CreateBuilder().ValidateValue(permissionClaimValue))
+        {
+            return BadRequest("Invalid permissions value.");
+        }
+
+        var user = new User(request.Name, request.Password, permissionClaimValue);
 
         var existing = await Data.Users.FirstOrDefaultAsync(u => u.Name == request.Name);
-        
+
         if (existing != null)
         {
             existing.Password = request.Password;
-            existing.Permissions = JsonSerializer.Serialize(request.Permissions);
+            existing.Permissions = permissionClaimValue;
             await Data.SaveChangesAsync();
         }
         else
@@ -103,7 +113,7 @@ public class AuthController : ControllerBase
             await Data.Users.AddAsync(user);
             await Data.SaveChangesAsync();
         }
-        
+
         return Ok();
     }
 
@@ -119,12 +129,12 @@ public class AuthController : ControllerBase
         var user = await Data.Users.FirstOrDefaultAsync(user => user.Name == name);
 
         if (user == null) return NotFound();
-        
+
         Data.Users.Remove(user);
         await Data.SaveChangesAsync();
-        
+
         return Ok();
     }
 
-    public record RegisterRequest(string Name, string Password, string[] Permissions);
+    public record RegisterRequest(string Name, string Password, string Permissions);
 }

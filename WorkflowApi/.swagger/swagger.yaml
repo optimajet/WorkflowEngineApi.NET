@@ -5371,7 +5371,6 @@ components:
         - PreviousActivityForReverse
         - ParentProcessId
         - RootProcessId
-        - IsDeterminingParametersChanged
         - TenantId
         - StartingTransition
         - SubprocessName
@@ -5545,8 +5544,6 @@ components:
           type: boolean
         isSubprocess:
           type: boolean
-        isDeterminingParametersChanged:
-          type: boolean
         processParameters:
           type: array
           items:
@@ -5658,8 +5655,6 @@ components:
         rootProcessId:
           type: string
           format: uuid
-        isDeterminingParametersChanged:
-          type: boolean
         tenantId:
           type: string
           nullable: true
@@ -5757,9 +5752,7 @@ components:
           type: string
           nullable: true
         permissions:
-          type: array
-          items:
-            type: string
+          type: string
           nullable: true
       additionalProperties: false
     Restriction:
@@ -6027,9 +6020,6 @@ components:
           type: array
           items:
             type: string
-          nullable: true
-        definingParametersString:
-          type: string
           nullable: true
         rootSchemeCode:
           type: string

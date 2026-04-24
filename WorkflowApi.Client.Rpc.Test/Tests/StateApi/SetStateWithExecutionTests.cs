@@ -621,7 +621,7 @@ public class SetStateWithExecutionTests
             ProcessId = processId,
             StateName = activityName,
         };
-        await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetStateWithExecution).WorkflowApiRpcSetStateWithExecutionAsync(request);
+        await service.Client.WithPermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetStateWithExecution).WorkflowApiRpcSetStateWithExecutionAsync(request);
 
         // Assert
 
@@ -641,7 +641,7 @@ public class SetStateWithExecutionTests
 
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcSetStateWithExecutionAsync(request));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcSetStateWithExecutionAsync(request));
 
         // Assert
 

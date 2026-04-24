@@ -105,7 +105,7 @@ public class BulkGetProcessInstancesTreeTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetProcessInstancesTree).WorkflowApiRpcBulkGetProcessInstancesTreeAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcBulk, WorkflowApiOperationId.RpcBulkGetProcessInstancesTree).WorkflowApiRpcBulkGetProcessInstancesTreeAsync(request);
 
         // Assert
 
@@ -123,7 +123,7 @@ public class BulkGetProcessInstancesTreeTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcBulk, Array.Empty<string>()).WorkflowApiRpcBulkGetProcessInstancesTreeAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcBulk, Array.Empty<string>()).WorkflowApiRpcBulkGetProcessInstancesTreeAsync(request)
         );
 
         // Assert

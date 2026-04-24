@@ -55,7 +55,7 @@ public class DeleteAllSubprocessesTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcDeleteAllSubprocesses).WorkflowApiRpcDeleteAllSubprocessesAsync(new (rootProcessId));
+        await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcDeleteAllSubprocesses).WorkflowApiRpcDeleteAllSubprocessesAsync(new (rootProcessId));
 
         // Assert
 
@@ -74,7 +74,7 @@ public class DeleteAllSubprocessesTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcDeleteAllSubprocessesAsync(request));
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcDeleteAllSubprocessesAsync(request));
 
         // Assert
 

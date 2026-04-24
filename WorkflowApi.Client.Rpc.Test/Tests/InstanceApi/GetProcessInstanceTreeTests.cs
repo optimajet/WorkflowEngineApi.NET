@@ -148,7 +148,7 @@ public class GetProcessInstanceTreeTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessInstanceTree)
+        var response = await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessInstanceTree)
             .WorkflowApiRpcGetProcessInstanceTreeAsync(request);
 
         // Assert
@@ -172,7 +172,7 @@ public class GetProcessInstanceTreeTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcGetProcessInstanceTreeAsync(request)
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcGetProcessInstanceTreeAsync(request)
         );
 
         // Assert

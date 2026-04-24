@@ -57,9 +57,8 @@ namespace WorkflowApi.Client.Model
         /// <param name="calendarName">calendarName.</param>
         /// <param name="isSchemeObsolete">isSchemeObsolete.</param>
         /// <param name="isSubprocess">isSubprocess.</param>
-        /// <param name="isDeterminingParametersChanged">isDeterminingParametersChanged.</param>
         /// <param name="processParameters">processParameters.</param>
-        public ProcessInstance(Guid processId = default(Guid), Guid? parentProcessId = default(Guid?), Guid rootProcessId = default(Guid), Guid schemeId = default(Guid), string previousState = default(string), string previousStateForDirect = default(string), string previousStateForReverse = default(string), string previousActivityName = default(string), string previousActivityForDirectName = default(string), string previousActivityForReverseName = default(string), string currentActivityName = default(string), string schemeCode = default(string), string currentState = default(string), string tenantId = default(string), string identityId = default(string), string impersonatedIdentityId = default(string), string subprocessName = default(string), DateTimeOffset creationDate = default(DateTimeOffset), DateTimeOffset? lastTransitionDate = default(DateTimeOffset?), bool logEnabled = default(bool), string calendarName = default(string), bool isSchemeObsolete = default(bool), bool isSubprocess = default(bool), bool isDeterminingParametersChanged = default(bool), List<ParameterDefinitionWithValue> processParameters = default(List<ParameterDefinitionWithValue>))
+        public ProcessInstance(Guid processId = default(Guid), Guid? parentProcessId = default(Guid?), Guid rootProcessId = default(Guid), Guid schemeId = default(Guid), string previousState = default(string), string previousStateForDirect = default(string), string previousStateForReverse = default(string), string previousActivityName = default(string), string previousActivityForDirectName = default(string), string previousActivityForReverseName = default(string), string currentActivityName = default(string), string schemeCode = default(string), string currentState = default(string), string tenantId = default(string), string identityId = default(string), string impersonatedIdentityId = default(string), string subprocessName = default(string), DateTimeOffset creationDate = default(DateTimeOffset), DateTimeOffset? lastTransitionDate = default(DateTimeOffset?), bool logEnabled = default(bool), string calendarName = default(string), bool isSchemeObsolete = default(bool), bool isSubprocess = default(bool), List<ParameterDefinitionWithValue> processParameters = default(List<ParameterDefinitionWithValue>))
         {
             this.ProcessId = processId;
             this.ParentProcessId = parentProcessId;
@@ -84,7 +83,6 @@ namespace WorkflowApi.Client.Model
             this.CalendarName = calendarName;
             this.IsSchemeObsolete = isSchemeObsolete;
             this.IsSubprocess = isSubprocess;
-            this.IsDeterminingParametersChanged = isDeterminingParametersChanged;
             this.ProcessParameters = processParameters;
         }
 
@@ -227,12 +225,6 @@ namespace WorkflowApi.Client.Model
         public bool IsSubprocess { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsDeterminingParametersChanged
-        /// </summary>
-        [DataMember(Name = "isDeterminingParametersChanged", EmitDefaultValue = true)]
-        public bool IsDeterminingParametersChanged { get; set; }
-
-        /// <summary>
         /// Gets or Sets ProcessParameters
         /// </summary>
         [DataMember(Name = "processParameters", EmitDefaultValue = true)]
@@ -269,7 +261,6 @@ namespace WorkflowApi.Client.Model
             sb.Append("  CalendarName: ").Append(CalendarName).Append("\n");
             sb.Append("  IsSchemeObsolete: ").Append(IsSchemeObsolete).Append("\n");
             sb.Append("  IsSubprocess: ").Append(IsSubprocess).Append("\n");
-            sb.Append("  IsDeterminingParametersChanged: ").Append(IsDeterminingParametersChanged).Append("\n");
             sb.Append("  ProcessParameters: ").Append(ProcessParameters).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

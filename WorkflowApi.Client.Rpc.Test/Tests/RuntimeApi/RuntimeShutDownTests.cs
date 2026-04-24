@@ -18,8 +18,6 @@ public class RuntimeShutDownTests
         {
             // Arrange
 
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
-
             var response1 = await service.Client.RpcRuntime.WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
 
             Assert.IsNotNull(response1);
@@ -38,7 +36,7 @@ public class RuntimeShutDownTests
         }
         finally
         {
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
+            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
         }
     }
 
@@ -51,8 +49,6 @@ public class RuntimeShutDownTests
         {
             // Arrange
 
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
-
             var response1 = await service.Client.RpcRuntime.WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
 
             Assert.IsNotNull(response1);
@@ -60,7 +56,7 @@ public class RuntimeShutDownTests
 
             // Act
 
-            await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeShutDown).WorkflowApiRpcRuntimeShutDownAsync(new());
+            await service.Client.WithPermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeShutDown).WorkflowApiRpcRuntimeShutDownAsync(new());
 
             // Assert
 
@@ -71,7 +67,7 @@ public class RuntimeShutDownTests
         }
         finally
         {
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
+            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
         }
     }
 
@@ -85,7 +81,7 @@ public class RuntimeShutDownTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeShutDownAsync(new ())
+            async () => await service.Client.WithPermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeShutDownAsync(new ())
         );
 
         // Assert

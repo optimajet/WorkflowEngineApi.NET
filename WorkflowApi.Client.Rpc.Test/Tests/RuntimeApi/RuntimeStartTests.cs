@@ -14,23 +14,23 @@ public class RuntimeStartTests
     [DoNotParallelize]
     public async Task ShouldGetRuntimeStatus(TestService service)
     {
-        try
-        {
-            // Act
+        await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
 
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
+        var response = await service.Client.RpcRuntime.WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
 
-            // Assert
+        Assert.IsNotNull(response);
+        Assert.AreEqual(RuntimeRunningStatus.Stopped, response.RunningStatus);
 
-            var response = await service.Client.RpcRuntime.WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
+        // Act
 
-            Assert.IsNotNull(response);
-            Assert.AreEqual(RuntimeRunningStatus.Running, response.RunningStatus);
-        }
-        finally
-        {
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
-        }
+        await service.Client.RpcRuntime.WorkflowApiRpcRuntimeStartAsync(new());
+
+        // Assert
+
+        response = await service.Client.RpcRuntime.WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
+
+        Assert.IsNotNull(response);
+        Assert.AreEqual(RuntimeRunningStatus.Running, response.RunningStatus);
     }
 
     [ClientTest(HostId.RpcHost)]
@@ -38,20 +38,20 @@ public class RuntimeStartTests
     [DoNotParallelize]
     public async Task ShouldExecute_WhenPermissionAllowed(TestService service)
     {
-        try
-        {
-            // Act
+        await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
 
-            var response = await service.Client.ExclusivePermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeStart).WorkflowApiRpcRuntimeStartAsync(new());
+        var response = await service.Client.RpcRuntime.WorkflowApiRpcRuntimeGetRunningStatusAsync(new());
 
-            // Assert
+        Assert.IsNotNull(response);
+        Assert.AreEqual(RuntimeRunningStatus.Stopped, response.RunningStatus);
+        // Act
 
-            Assert.IsNotNull(response);
-        }
-        finally
-        {
-            await service.Client.RpcRuntime.WorkflowApiRpcRuntimeShutDownAsync(new());
-        }
+        var response1 = await service.Client.WithPermissions(c => c.RpcRuntime, WorkflowApiOperationId.RpcRuntimeStart)
+            .WorkflowApiRpcRuntimeStartAsync(new());
+
+        // Assert
+
+        Assert.IsNotNull(response1);
     }
 
     [ClientTest(HostId.RpcHost)]
@@ -64,7 +64,7 @@ public class RuntimeStartTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeStartAsync(new ())
+            async () => await service.Client.WithPermissions(c => c.RpcRuntime, Array.Empty<string>()).WorkflowApiRpcRuntimeStartAsync(new ())
         );
 
         // Assert

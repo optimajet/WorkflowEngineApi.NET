@@ -492,7 +492,7 @@ public class GetProcessParameterTests
         // Act
         
         var request = new GetProcessParameterRequest(processId, "ProcessId");
-        var result = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessParameter).WorkflowApiRpcGetProcessParameterAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcGetProcessParameter).WorkflowApiRpcGetProcessParameterAsync(request);
 
         // Assert
 
@@ -509,7 +509,7 @@ public class GetProcessParameterTests
 
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcGetProcessParameterAsync(request));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcGetProcessParameterAsync(request));
 
         // Assert
 

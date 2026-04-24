@@ -104,46 +104,40 @@ namespace WorkflowApi.Client.Model
         RootProcessId = 12,
 
         /// <summary>
-        /// Enum IsDeterminingParametersChanged for value: IsDeterminingParametersChanged
-        /// </summary>
-        [EnumMember(Value = "IsDeterminingParametersChanged")]
-        IsDeterminingParametersChanged = 13,
-
-        /// <summary>
         /// Enum TenantId for value: TenantId
         /// </summary>
         [EnumMember(Value = "TenantId")]
-        TenantId = 14,
+        TenantId = 13,
 
         /// <summary>
         /// Enum StartingTransition for value: StartingTransition
         /// </summary>
         [EnumMember(Value = "StartingTransition")]
-        StartingTransition = 15,
+        StartingTransition = 14,
 
         /// <summary>
         /// Enum SubprocessName for value: SubprocessName
         /// </summary>
         [EnumMember(Value = "SubprocessName")]
-        SubprocessName = 16,
+        SubprocessName = 15,
 
         /// <summary>
         /// Enum CreationDate for value: CreationDate
         /// </summary>
         [EnumMember(Value = "CreationDate")]
-        CreationDate = 17,
+        CreationDate = 16,
 
         /// <summary>
         /// Enum LastTransitionDate for value: LastTransitionDate
         /// </summary>
         [EnumMember(Value = "LastTransitionDate")]
-        LastTransitionDate = 18,
+        LastTransitionDate = 17,
 
         /// <summary>
         /// Enum CalendarName for value: CalendarName
         /// </summary>
         [EnumMember(Value = "CalendarName")]
-        CalendarName = 19
+        CalendarName = 18
     }
 
 }

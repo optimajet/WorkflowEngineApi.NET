@@ -169,7 +169,7 @@ public class GetInitialCommandsTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcGetInitialCommands).WorkflowApiRpcGetInitialCommandsAsync(new(schemeCode));
+        var response = await service.Client.WithPermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcGetInitialCommands).WorkflowApiRpcGetInitialCommandsAsync(new(schemeCode));
 
         // Assert
 
@@ -182,7 +182,7 @@ public class GetInitialCommandsTests
     {
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcCommands, Array.Empty<string>()).WorkflowApiRpcGetInitialCommandsAsync(new(Guid.NewGuid().ToString())));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcCommands, Array.Empty<string>()).WorkflowApiRpcGetInitialCommandsAsync(new(Guid.NewGuid().ToString())));
 
         // Assert
 

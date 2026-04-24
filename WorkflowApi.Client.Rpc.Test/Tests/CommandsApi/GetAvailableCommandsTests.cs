@@ -374,7 +374,7 @@ public class GetAvailableCommandsTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcGetAvailableCommands).WorkflowApiRpcGetAvailableCommandsAsync(new(processId));
+        var response = await service.Client.WithPermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcGetAvailableCommands).WorkflowApiRpcGetAvailableCommandsAsync(new(processId));
 
         // Assert
 
@@ -387,7 +387,7 @@ public class GetAvailableCommandsTests
     {
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcCommands, Array.Empty<string>()).WorkflowApiRpcGetAvailableCommandsAsync(new(Guid.NewGuid())));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcCommands, Array.Empty<string>()).WorkflowApiRpcGetAvailableCommandsAsync(new(Guid.NewGuid())));
 
         // Assert
 

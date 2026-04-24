@@ -67,7 +67,7 @@ public class SetActivityWithoutExecutionTests
         // Act
         
         var request = new SetActivityWithoutExecutionRequest(processId, "Activity2");
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetActivityWithoutExecution).WorkflowApiRpcSetActivityWithoutExecutionAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetActivityWithoutExecution).WorkflowApiRpcSetActivityWithoutExecutionAsync(request);
 
         // Assert
 
@@ -84,7 +84,7 @@ public class SetActivityWithoutExecutionTests
 
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcSetActivityWithoutExecutionAsync(request));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcSetActivityWithoutExecutionAsync(request));
 
         // Assert
 

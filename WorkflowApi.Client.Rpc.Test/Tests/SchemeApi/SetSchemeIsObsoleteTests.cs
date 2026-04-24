@@ -55,7 +55,7 @@ public class SetSchemeIsObsoleteTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcSetSchemeIsObsolete).WorkflowApiRpcSetSchemeIsObsoleteAsync(new (schemeCode));
+        var result = await service.Client.WithPermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcSetSchemeIsObsolete).WorkflowApiRpcSetSchemeIsObsoleteAsync(new (schemeCode));
 
         // Assert
 
@@ -72,7 +72,7 @@ public class SetSchemeIsObsoleteTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcScheme, Array.Empty<string>()).WorkflowApiRpcSetSchemeIsObsoleteAsync(new(Guid.NewGuid().ToString()))
+            async () => await service.Client.WithPermissions(c => c.RpcScheme, Array.Empty<string>()).WorkflowApiRpcSetSchemeIsObsoleteAsync(new(Guid.NewGuid().ToString()))
         );
 
         // Assert

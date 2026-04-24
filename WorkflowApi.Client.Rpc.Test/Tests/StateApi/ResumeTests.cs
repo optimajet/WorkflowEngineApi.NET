@@ -593,7 +593,7 @@ public class ResumeTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcResume).WorkflowApiRpcResumeAsync(new(processId));
+        var result = await service.Client.WithPermissions(c => c.RpcStates, WorkflowApiOperationId.RpcResume).WorkflowApiRpcResumeAsync(new(processId));
 
         // Assert
         
@@ -610,7 +610,7 @@ public class ResumeTests
 
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcIsProcessExistsAsync(request));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcIsProcessExistsAsync(request));
 
         // Assert
 

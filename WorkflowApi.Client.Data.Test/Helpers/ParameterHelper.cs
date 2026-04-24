@@ -119,7 +119,7 @@ public static class ParameterHelper
     {
         var api = service.Client.Parameters;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.processes.parameters." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -127,7 +127,7 @@ public static class ParameterHelper
     {
         var api = service.Client.Parameters;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.processes.parameters"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -135,7 +135,7 @@ public static class ParameterHelper
     {
         var api = service.Client.Parameters;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 

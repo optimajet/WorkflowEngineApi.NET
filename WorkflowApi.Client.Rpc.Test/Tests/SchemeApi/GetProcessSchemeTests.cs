@@ -54,7 +54,7 @@ public class GetProcessSchemeTests
 
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcGetProcessScheme).WorkflowApiRpcGetProcessSchemeAsync(new(processId));
+        var response = await service.Client.WithPermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcGetProcessScheme).WorkflowApiRpcGetProcessSchemeAsync(new(processId));
 
         // Assert
 
@@ -70,7 +70,7 @@ public class GetProcessSchemeTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcIsProcessExistsAsync(new (Guid.NewGuid()))
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcIsProcessExistsAsync(new (Guid.NewGuid()))
         );
 
         // Assert

@@ -547,45 +547,6 @@ public class SearchTests
 
     [ClientTest(HostId.DataHost)]
     [TestMethod]
-    public async Task ExecuteWithIsDeterminingParametersChangedEqualTest(TestService service)
-    {
-        // Arrange
-
-        await using var context = service.Repository.Use();
-        var repository = service.Repository.Processes;
-        var api = service.Client.Processes;
-
-        var models = ProcessHelper.Generate(3);
-
-        await repository.CreateAsync(models);
-
-        var expected = models.First().IsDeterminingParametersChanged;
-
-        // Act
-
-        var query = new ProcessFieldQuery
-        {
-            Filters = [new (FilterType.Equal, null, ProcessField.IsDeterminingParametersChanged, expected)],
-            Take = 100
-        };
-
-        var result = await api.WorkflowApiSearchProcessesAsync(query);
-
-        TestLogger.LogApiCalled(query, result);
-
-        // Assert
-
-        Assert.IsTrue(result.Total >= 1);
-        Assert.IsTrue(result.Collection.Count >= 1);
-
-        foreach (var model in result.Collection)
-        {
-            Assert.AreEqual(expected, model.IsDeterminingParametersChanged);
-        }
-    }
-
-    [ClientTest(HostId.DataHost)]
-    [TestMethod]
     public async Task ExecuteWithTenantIdEqualTest(TestService service)
     {
         // Arrange
@@ -847,7 +808,6 @@ public class SearchTests
             new (FilterType.Equal, null, ProcessField.PreviousActivityForReverse, expected.PreviousActivityForReverse),
             new (FilterType.Equal, null, ProcessField.ParentProcessId, expected.ParentProcessId),
             new (FilterType.Equal, null, ProcessField.RootProcessId, expected.RootProcessId),
-            new (FilterType.Equal, null, ProcessField.IsDeterminingParametersChanged, expected.IsDeterminingParametersChanged),
             new (FilterType.Equal, null, ProcessField.TenantId, expected.TenantId),
             new (FilterType.Equal, null, ProcessField.StartingTransition, expected.StartingTransition),
             new (FilterType.Equal, null, ProcessField.SubprocessName, expected.SubprocessName),
@@ -899,7 +859,6 @@ public class SearchTests
             new (FilterType.Equal, null, ProcessField.PreviousActivityForReverse, expected.PreviousActivityForReverse),
             new (FilterType.Equal, null, ProcessField.ParentProcessId, expected.ParentProcessId),
             new (FilterType.Equal, null, ProcessField.RootProcessId, expected.RootProcessId),
-            new (FilterType.Equal, null, ProcessField.IsDeterminingParametersChanged, expected.IsDeterminingParametersChanged),
             new (FilterType.Equal, null, ProcessField.TenantId, expected.TenantId),
             new (FilterType.Equal, null, ProcessField.StartingTransition, expected.StartingTransition),
             new (FilterType.Equal, null, ProcessField.SubprocessName, expected.SubprocessName),
@@ -949,7 +908,6 @@ public class SearchTests
             new (FilterType.Equal, null, ProcessField.PreviousActivityForReverse, models[9].PreviousActivityForReverse),
             new (FilterType.Equal, null, ProcessField.ParentProcessId, models[10].ParentProcessId),
             new (FilterType.Equal, null, ProcessField.RootProcessId, models[11].RootProcessId),
-            // new (FilterType.Equal, null, ProcessField.IsDeterminingParametersChanged, models[12].IsDeterminingParametersChanged),
             new (FilterType.Equal, null, ProcessField.TenantId, models[12].TenantId),
             new (FilterType.Equal, null, ProcessField.StartingTransition, models[13].StartingTransition),
             new (FilterType.Equal, null, ProcessField.SubprocessName, models[14].SubprocessName),
@@ -1004,7 +962,6 @@ public class SearchTests
             new (FilterType.Equal, null, ProcessField.PreviousActivityForReverse, models[9].PreviousActivityForReverse),
             new (FilterType.Equal, null, ProcessField.ParentProcessId, models[10].ParentProcessId),
             new (FilterType.Equal, null, ProcessField.RootProcessId, models[11].RootProcessId),
-            // new (FilterType.Equal, null, ProcessField.IsDeterminingParametersChanged, models[12].IsDeterminingParametersChanged),
             new (FilterType.Equal, null, ProcessField.TenantId, models[12].TenantId),
             new (FilterType.Equal, null, ProcessField.StartingTransition, models[13].StartingTransition),
             new (FilterType.Equal, null, ProcessField.SubprocessName, models[14].SubprocessName),

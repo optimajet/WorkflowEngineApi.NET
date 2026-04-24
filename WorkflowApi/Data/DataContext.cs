@@ -1,4 +1,3 @@
-﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using OptimaJet.Workflow.Api;
 using WorkflowApi.Data.Entities;
@@ -19,7 +18,7 @@ public sealed class DataContext : DbContext
     }
 
     /// <summary>
-    /// The permissions service for handling user permissions.
+    /// The permissions service for handling user permissions values.
     /// </summary>
     public IWorkflowApiPermissions Permissions { get; }
 
@@ -30,7 +29,12 @@ public sealed class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        var permissions = JsonSerializer.Serialize(Permissions.GetAllPermissions());
+        var permissions = Permissions
+            .CreateBuilder()
+            .AllowAllOperations()
+            .AllowAllTenants()
+            .GetValue();
+
         builder.Entity<User>().HasData(new User("admin", "admin", permissions));
     }
 }

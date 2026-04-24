@@ -17,12 +17,12 @@ public class Host : IDisposable
         
         host.Configuration.ClientConfiguration.BasePath = host.Uri;
         
-        var services = await Task.WhenAll(host.Configuration.AppConfiguration.TenantsConfiguration
-            .SelectMany(tenant => tenant.TenantIds)
+        var services = await Task.WhenAll(host.TenantRegistry.Tenants
+            .SelectMany(tenant => tenant.Ids)
             .Select(id => TestService.CreateAsync(host, id))
         );
         
-        host._services.AddRange(services);
+        host._testServices.AddRange(services);
         
         return host;
     }
@@ -35,9 +35,11 @@ public class Host : IDisposable
     }
     
     public TestConfiguration Configuration { get; }
-    public IReadOnlyCollection<TestService> Services => _services;
-    public IWorkflowTenantRegistry TenantRegistry;
+    public IReadOnlyCollection<TestService> TestServices => _testServices;
+    public IWorkflowTenantRegistry TenantRegistry { get; }
+    public IWorkflowApiPermissions PermissionsService => _app.Services.GetRequiredService<IWorkflowApiPermissions>();
     public string Id => Configuration.Id;
+    public IReadOnlyCollection<string> TenantIds => TenantRegistry.Tenants.SelectMany(tenant => tenant.Ids).ToArray();
     public bool IsRunning { get; private set; }
     public string Uri => _app.Urls.First();
     
@@ -60,7 +62,7 @@ public class Host : IDisposable
     }
 
     private readonly WebApplication _app;
-    private readonly List<TestService> _services = [];
+    private readonly List<TestService> _testServices = [];
     
     public override int GetHashCode()
     {

@@ -78,7 +78,7 @@ public static class TransitionHelper
     {
         var api = service.Client.Transitions;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.processes.transitions." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -86,7 +86,7 @@ public static class TransitionHelper
     {
         var api = service.Client.Transitions;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.processes.transitions"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -94,7 +94,7 @@ public static class TransitionHelper
     {
         var api = service.Client.Transitions;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }

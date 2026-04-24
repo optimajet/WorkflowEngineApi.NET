@@ -51,14 +51,13 @@ namespace WorkflowApi.Client.Model
         /// <param name="logEnabled">logEnabled.</param>
         /// <param name="inlinedSchemes">inlinedSchemes.</param>
         /// <param name="tags">tags.</param>
-        /// <param name="definingParametersString">definingParametersString.</param>
         /// <param name="rootSchemeCode">rootSchemeCode.</param>
         /// <param name="rootSchemeId">rootSchemeId.</param>
         /// <param name="isObsolete">isObsolete.</param>
         /// <param name="id">id.</param>
         /// <param name="allowedActivities">allowedActivities.</param>
         /// <param name="calendarName">calendarName.</param>
-        public Scheme(string name = default(string), Designer designerSettings = default(Designer), List<Actor> actors = default(List<Actor>), List<Parameter> parameters = default(List<Parameter>), List<Command> commands = default(List<Command>), List<Timer> timers = default(List<Timer>), List<Comment> comments = default(List<Comment>), List<Activity> activities = default(List<Activity>), List<Transition> transitions = default(List<Transition>), List<Translation> localization = default(List<Translation>), List<CodeAction> codeActions = default(List<CodeAction>), string codeActionsCommonUsings = default(string), Dictionary<string, Object> additionalParams = default(Dictionary<string, Object>), bool canBeInlined = default(bool), bool logEnabled = default(bool), List<string> inlinedSchemes = default(List<string>), List<string> tags = default(List<string>), string definingParametersString = default(string), string rootSchemeCode = default(string), Guid? rootSchemeId = default(Guid?), bool isObsolete = default(bool), Guid id = default(Guid), List<string> allowedActivities = default(List<string>), string calendarName = default(string))
+        public Scheme(string name = default(string), Designer designerSettings = default(Designer), List<Actor> actors = default(List<Actor>), List<Parameter> parameters = default(List<Parameter>), List<Command> commands = default(List<Command>), List<Timer> timers = default(List<Timer>), List<Comment> comments = default(List<Comment>), List<Activity> activities = default(List<Activity>), List<Transition> transitions = default(List<Transition>), List<Translation> localization = default(List<Translation>), List<CodeAction> codeActions = default(List<CodeAction>), string codeActionsCommonUsings = default(string), Dictionary<string, Object> additionalParams = default(Dictionary<string, Object>), bool canBeInlined = default(bool), bool logEnabled = default(bool), List<string> inlinedSchemes = default(List<string>), List<string> tags = default(List<string>), string rootSchemeCode = default(string), Guid? rootSchemeId = default(Guid?), bool isObsolete = default(bool), Guid id = default(Guid), List<string> allowedActivities = default(List<string>), string calendarName = default(string))
         {
             this.Name = name;
             this.DesignerSettings = designerSettings;
@@ -77,7 +76,6 @@ namespace WorkflowApi.Client.Model
             this.LogEnabled = logEnabled;
             this.InlinedSchemes = inlinedSchemes;
             this.Tags = tags;
-            this.DefiningParametersString = definingParametersString;
             this.RootSchemeCode = rootSchemeCode;
             this.RootSchemeId = rootSchemeId;
             this.IsObsolete = isObsolete;
@@ -189,12 +187,6 @@ namespace WorkflowApi.Client.Model
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets DefiningParametersString
-        /// </summary>
-        [DataMember(Name = "definingParametersString", EmitDefaultValue = true)]
-        public string DefiningParametersString { get; set; }
-
-        /// <summary>
         /// Gets or Sets RootSchemeCode
         /// </summary>
         [DataMember(Name = "rootSchemeCode", EmitDefaultValue = true)]
@@ -255,7 +247,6 @@ namespace WorkflowApi.Client.Model
             sb.Append("  LogEnabled: ").Append(LogEnabled).Append("\n");
             sb.Append("  InlinedSchemes: ").Append(InlinedSchemes).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
-            sb.Append("  DefiningParametersString: ").Append(DefiningParametersString).Append("\n");
             sb.Append("  RootSchemeCode: ").Append(RootSchemeCode).Append("\n");
             sb.Append("  RootSchemeId: ").Append(RootSchemeId).Append("\n");
             sb.Append("  IsObsolete: ").Append(IsObsolete).Append("\n");

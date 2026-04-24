@@ -100,7 +100,7 @@ public class GetCurrentStateNameTests
         // Act
         
         var request = new GetCurrentStateNameRequest(processId);
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetCurrentStateName).WorkflowApiRpcGetCurrentStateNameAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcStates, WorkflowApiOperationId.RpcGetCurrentStateName).WorkflowApiRpcGetCurrentStateNameAsync(request);
 
         // Assert
 
@@ -118,7 +118,7 @@ public class GetCurrentStateNameTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () =>
-            await service.Client.ExclusivePermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcGetCurrentStateNameAsync(request));
+            await service.Client.WithPermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcGetCurrentStateNameAsync(request));
 
         // Assert
 

@@ -18,7 +18,6 @@ public record Scheme(
     bool LogEnabled,
     List<string> InlinedSchemes,
     List<string> Tags,
-    string DefiningParametersString,
     string RootSchemeCode,
     Guid? RootSchemeId,
     bool IsObsolete,

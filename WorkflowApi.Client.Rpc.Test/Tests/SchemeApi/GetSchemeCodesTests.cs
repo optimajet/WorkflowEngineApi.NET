@@ -74,7 +74,7 @@ public class GetSchemeCodesTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcGetSchemeCodes).WorkflowApiRpcGetSchemeCodesAsync(new());
+        var result = await service.Client.WithPermissions(c => c.RpcScheme, WorkflowApiOperationId.RpcGetSchemeCodes).WorkflowApiRpcGetSchemeCodesAsync(new());
 
         // Assert
 
@@ -90,7 +90,7 @@ public class GetSchemeCodesTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcScheme, Array.Empty<string>()).WorkflowApiRpcGetSchemeCodesAsync(new())
+            async () => await service.Client.WithPermissions(c => c.RpcScheme, Array.Empty<string>()).WorkflowApiRpcGetSchemeCodesAsync(new())
         );
 
         // Assert

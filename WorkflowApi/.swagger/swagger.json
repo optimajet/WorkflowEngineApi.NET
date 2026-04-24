@@ -8538,7 +8538,6 @@
           "PreviousActivityForReverse",
           "ParentProcessId",
           "RootProcessId",
-          "IsDeterminingParametersChanged",
           "TenantId",
           "StartingTransition",
           "SubprocessName",
@@ -8774,9 +8773,6 @@
           "isSubprocess": {
             "type": "boolean"
           },
-          "isDeterminingParametersChanged": {
-            "type": "boolean"
-          },
           "processParameters": {
             "type": "array",
             "items": {
@@ -8928,9 +8924,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "isDeterminingParametersChanged": {
-            "type": "boolean"
-          },
           "tenantId": {
             "type": "string",
             "nullable": true
@@ -9062,10 +9055,7 @@
             "nullable": true
           },
           "permissions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
+            "type": "string",
             "nullable": true
           }
         },
@@ -9437,10 +9427,6 @@
             "items": {
               "type": "string"
             },
-            "nullable": true
-          },
-          "definingParametersString": {
-            "type": "string",
             "nullable": true
           },
           "rootSchemeCode": {

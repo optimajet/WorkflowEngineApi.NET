@@ -33,7 +33,7 @@ public class DesignerTests
 
         httpClient.BaseAddress = new Uri(service.Host.Uri);
         var jwt = await service.Client.CreateTokenAsync([WorkflowApiOperationId.Designer, WorkflowApiOperationId.DesignerGet]);
-        httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + JsonConvert.DeserializeObject<string>(jwt));
+        httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
         httpClient.DefaultRequestHeaders.Add(WorkflowApiConstants.TenantIdHeader, service.TenantId);
 
         var requestUri = BuildRelativeUri(
@@ -85,7 +85,7 @@ public class DesignerTests
 
         httpClient.BaseAddress = new Uri(service.Host.Uri);
         var jwt = await service.Client.CreateTokenAsync([WorkflowApiOperationId.Designer, WorkflowApiOperationId.DesignerGet]);
-        httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + JsonConvert.DeserializeObject<string>(jwt));
+        httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
         httpClient.DefaultRequestHeaders.Add(WorkflowApiConstants.TenantIdHeader, service.TenantId);
 
         var content = new FormUrlEncodedContent(new Dictionary<string, string?>
@@ -127,7 +127,7 @@ public class DesignerTests
 
         httpClient.BaseAddress = new Uri(service.Host.Uri);
         var jwt = await service.Client.CreateTokenAsync([WorkflowApiOperationId.Designer, WorkflowApiOperationId.DesignerGet]);
-        httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + JsonConvert.DeserializeObject<string>(jwt));
+        httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + jwt);
         httpClient.DefaultRequestHeaders.Add(WorkflowApiConstants.TenantIdHeader, service.TenantId);
 
         var schemeCode = Guid.NewGuid().ToString();

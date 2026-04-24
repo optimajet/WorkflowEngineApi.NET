@@ -115,7 +115,7 @@ public static class TimerHelper
     {
         var api = service.Client.Timers;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.processes.timers." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -123,7 +123,7 @@ public static class TimerHelper
     {
         var api = service.Client.Timers;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.processes.timers"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -131,7 +131,7 @@ public static class TimerHelper
     {
         var api = service.Client.Timers;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }

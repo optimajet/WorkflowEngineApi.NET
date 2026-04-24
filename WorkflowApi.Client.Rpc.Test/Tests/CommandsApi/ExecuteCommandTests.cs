@@ -551,7 +551,7 @@ public class ExecuteCommandTests
         // Act
 
         var command = new WorkflowCommand(processId, nextCommand.Name, validForActivityName: initialActivity.Name);
-        var response = await service.Client.ExclusivePermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcExecuteCommand).WorkflowApiRpcExecuteCommandAsync(new(command));
+        var response = await service.Client.WithPermissions(c => c.RpcCommands, WorkflowApiOperationId.RpcExecuteCommand).WorkflowApiRpcExecuteCommandAsync(new(command));
 
         // Assert
 
@@ -564,7 +564,7 @@ public class ExecuteCommandTests
     {
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcCommands, Array.Empty<string>()).WorkflowApiRpcExecuteCommandAsync(new(new(Guid.NewGuid()))));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcCommands, Array.Empty<string>()).WorkflowApiRpcExecuteCommandAsync(new(new(Guid.NewGuid()))));
 
         // Assert
 

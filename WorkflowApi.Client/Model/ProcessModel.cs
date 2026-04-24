@@ -46,14 +46,13 @@ namespace WorkflowApi.Client.Model
         /// <param name="previousActivityForReverse">previousActivityForReverse.</param>
         /// <param name="parentProcessId">parentProcessId.</param>
         /// <param name="rootProcessId">rootProcessId.</param>
-        /// <param name="isDeterminingParametersChanged">isDeterminingParametersChanged.</param>
         /// <param name="tenantId">tenantId.</param>
         /// <param name="startingTransition">startingTransition.</param>
         /// <param name="subprocessName">subprocessName.</param>
         /// <param name="creationDate">creationDate.</param>
         /// <param name="lastTransitionDate">lastTransitionDate.</param>
         /// <param name="calendarName">calendarName.</param>
-        public ProcessModel(Guid id = default(Guid), string stateName = default(string), string activityName = default(string), Guid? schemeId = default(Guid?), string previousState = default(string), string previousStateForDirect = default(string), string previousStateForReverse = default(string), string previousActivity = default(string), string previousActivityForDirect = default(string), string previousActivityForReverse = default(string), Guid? parentProcessId = default(Guid?), Guid rootProcessId = default(Guid), bool isDeterminingParametersChanged = default(bool), string tenantId = default(string), string startingTransition = default(string), string subprocessName = default(string), DateTimeOffset creationDate = default(DateTimeOffset), DateTimeOffset? lastTransitionDate = default(DateTimeOffset?), string calendarName = default(string))
+        public ProcessModel(Guid id = default(Guid), string stateName = default(string), string activityName = default(string), Guid? schemeId = default(Guid?), string previousState = default(string), string previousStateForDirect = default(string), string previousStateForReverse = default(string), string previousActivity = default(string), string previousActivityForDirect = default(string), string previousActivityForReverse = default(string), Guid? parentProcessId = default(Guid?), Guid rootProcessId = default(Guid), string tenantId = default(string), string startingTransition = default(string), string subprocessName = default(string), DateTimeOffset creationDate = default(DateTimeOffset), DateTimeOffset? lastTransitionDate = default(DateTimeOffset?), string calendarName = default(string))
         {
             this.Id = id;
             this.StateName = stateName;
@@ -67,7 +66,6 @@ namespace WorkflowApi.Client.Model
             this.PreviousActivityForReverse = previousActivityForReverse;
             this.ParentProcessId = parentProcessId;
             this.RootProcessId = rootProcessId;
-            this.IsDeterminingParametersChanged = isDeterminingParametersChanged;
             this.TenantId = tenantId;
             this.StartingTransition = startingTransition;
             this.SubprocessName = subprocessName;
@@ -149,12 +147,6 @@ namespace WorkflowApi.Client.Model
         public Guid RootProcessId { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsDeterminingParametersChanged
-        /// </summary>
-        [DataMember(Name = "isDeterminingParametersChanged", EmitDefaultValue = true)]
-        public bool IsDeterminingParametersChanged { get; set; }
-
-        /// <summary>
         /// Gets or Sets TenantId
         /// </summary>
         [DataMember(Name = "tenantId", EmitDefaultValue = true)]
@@ -210,7 +202,6 @@ namespace WorkflowApi.Client.Model
             sb.Append("  PreviousActivityForReverse: ").Append(PreviousActivityForReverse).Append("\n");
             sb.Append("  ParentProcessId: ").Append(ParentProcessId).Append("\n");
             sb.Append("  RootProcessId: ").Append(RootProcessId).Append("\n");
-            sb.Append("  IsDeterminingParametersChanged: ").Append(IsDeterminingParametersChanged).Append("\n");
             sb.Append("  TenantId: ").Append(TenantId).Append("\n");
             sb.Append("  StartingTransition: ").Append(StartingTransition).Append("\n");
             sb.Append("  SubprocessName: ").Append(SubprocessName).Append("\n");

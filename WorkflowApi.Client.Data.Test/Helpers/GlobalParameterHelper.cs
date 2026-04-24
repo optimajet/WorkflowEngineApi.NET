@@ -121,7 +121,7 @@ public static class GlobalParameterHelper
     {
         var api = service.Client.GlobalParameters;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.global-parameters." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -129,7 +129,7 @@ public static class GlobalParameterHelper
     {
         var api = service.Client.GlobalParameters;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.global-parameters"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -137,7 +137,7 @@ public static class GlobalParameterHelper
     {
         var api = service.Client.GlobalParameters;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 

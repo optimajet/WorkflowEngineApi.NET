@@ -112,7 +112,7 @@ public class SetActivityWithExecutionTests
 
         // Act
 
-        var result = await service.Client.ExclusivePermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetActivityWithExecution).WorkflowApiRpcSetActivityWithExecutionAsync(request);
+        var result = await service.Client.WithPermissions(c => c.RpcStates, WorkflowApiOperationId.RpcSetActivityWithExecution).WorkflowApiRpcSetActivityWithExecutionAsync(request);
 
         // Assert
 
@@ -129,7 +129,7 @@ public class SetActivityWithExecutionTests
 
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcSetActivityWithExecutionAsync(request));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcStates, Array.Empty<string>()).WorkflowApiRpcSetActivityWithExecutionAsync(request));
 
         // Assert
 

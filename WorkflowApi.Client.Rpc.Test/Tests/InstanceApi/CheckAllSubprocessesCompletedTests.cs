@@ -72,7 +72,7 @@ public class CheckAllSubprocessesCompletedTests
         
         // Act
 
-        var response = await service.Client.ExclusivePermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcCheckAllSubprocessesCompleted)
+        var response = await service.Client.WithPermissions(c => c.RpcInstance, WorkflowApiOperationId.RpcCheckAllSubprocessesCompleted)
             .WorkflowApiRpcCheckAllSubprocessesCompletedAsync(new (rootProcessId));
 
         // Assert
@@ -87,7 +87,7 @@ public class CheckAllSubprocessesCompletedTests
         // Act
 
         var exception = await Assert.ThrowsExceptionAsync<ApiException>(
-            async () => await service.Client.ExclusivePermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcCheckAllSubprocessesCompletedAsync(new (Guid.NewGuid())));
+            async () => await service.Client.WithPermissions(c => c.RpcInstance, Array.Empty<string>()).WorkflowApiRpcCheckAllSubprocessesCompletedAsync(new (Guid.NewGuid())));
 
         // Assert
 

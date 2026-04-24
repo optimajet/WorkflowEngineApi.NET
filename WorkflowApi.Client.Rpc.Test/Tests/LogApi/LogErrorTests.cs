@@ -102,7 +102,7 @@ public class LogErrorTests
 
         // Act
 
-        await service.Client.ExclusivePermissions(c => c.RpcLog, WorkflowApiOperationId.RpcLogError).WorkflowApiRpcLogErrorAsync(new("Test message"));
+        await service.Client.WithPermissions(c => c.RpcLog, WorkflowApiOperationId.RpcLogError).WorkflowApiRpcLogErrorAsync(new("Test message"));
     }
 
     [ClientTest(HostId.RpcHost)]
@@ -111,7 +111,7 @@ public class LogErrorTests
     {
         // Act
 
-        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.ExclusivePermissions(c => c.RpcLog, Array.Empty<string>()).WorkflowApiRpcLogErrorAsync(new LogErrorRequest("Test message")));
+        var exception = await Assert.ThrowsExceptionAsync<ApiException>(async () => await service.Client.WithPermissions(c => c.RpcLog, Array.Empty<string>()).WorkflowApiRpcLogErrorAsync(new LogErrorRequest("Test message")));
 
         // Assert
 

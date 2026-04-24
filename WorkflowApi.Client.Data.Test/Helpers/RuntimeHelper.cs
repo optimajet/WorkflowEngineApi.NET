@@ -60,7 +60,7 @@ public static class RuntimeHelper
     {
         var api = service.Client.Runtimes;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.runtimes." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -68,7 +68,7 @@ public static class RuntimeHelper
     {
         var api = service.Client.Runtimes;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.runtimes"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -76,7 +76,7 @@ public static class RuntimeHelper
     {
         var api = service.Client.Runtimes;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }

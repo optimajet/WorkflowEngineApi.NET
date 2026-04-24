@@ -66,7 +66,7 @@ public static class ApprovalHelper
     {
         var api = service.Client.Approvals;
         var token = await service.Client.CreateTokenAsync(["workflow-api.data.processes.approvals." + method]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -74,7 +74,7 @@ public static class ApprovalHelper
     {
         var api = service.Client.Approvals;
         var token = await service.Client.CreateTokenAsync(["workflow-api.search.processes.approvals"]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 
@@ -82,7 +82,7 @@ public static class ApprovalHelper
     {
         var api = service.Client.Approvals;
         var token = await service.Client.CreateTokenAsync([]);
-        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {JsonConvert.DeserializeObject<string>(token)}";
+        api.Configuration.DefaultHeaders["Authorization"] = $"Bearer {token}";
         return api;
     }
 }
