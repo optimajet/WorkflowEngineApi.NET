@@ -47,7 +47,7 @@ public class AuthController : ControllerBase
     /// <param name="password">The password of the user to log in.</param>
     /// <returns>The JWT token for the user.</returns>
     [HttpGet]
-    [SwaggerOperationId("auth.login")]
+    [EndpointName("auth.login")]
     public async Task<ActionResult<string>> Login(string name, string password)
     {
         var user = await Data.Users.FirstOrDefaultAsync(user => user.Name == name && user.Password == password);
@@ -88,7 +88,7 @@ public class AuthController : ControllerBase
     /// <param name="request">The request to register a new user.</param>
     /// <returns>The result of the registration.</returns>
     [HttpPost]
-    [SwaggerOperationId("auth.register")]
+    [EndpointName("auth.register")]
     public async Task<ActionResult> Register(RegisterRequest request)
     {
         var permissionClaimValue = request.Permissions;
@@ -123,7 +123,7 @@ public class AuthController : ControllerBase
     /// <param name="name">The name of the user to delete.</param>
     /// <returns>The result of the deletion.</returns>
     [HttpDelete]
-    [SwaggerOperationId("auth.delete")]
+    [EndpointName("auth.delete")]
     public async Task<ActionResult> Delete(string name)
     {
         var user = await Data.Users.FirstOrDefaultAsync(user => user.Name == name);

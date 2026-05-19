@@ -42,10 +42,10 @@ Learn more about Workflow Engine API on the [documentation website](https://work
     }
     ```
 
-7. Install the OpenAPI specification generator tool:
+7. Restore the local OpenAPI specification generator tool:
 
     ```bash
-    dotnet tool install --global Swashbuckle.AspNetCore.Cli --version 6.6.2
+    dotnet tool restore
     ```
 
 8. Build the solution:

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.4
 info:
   title: Workflow Engine API
   description: A Workflow Engine Web API
@@ -6923,3 +6923,25 @@ components:
       description: Please insert JWT Bearer token into field
       scheme: bearer
       bearerFormat: JWT
+tags:
+  - name: Approvals
+  - name: Auth
+  - name: Designer
+  - name: GlobalParameters
+  - name: InboxEntries
+  - name: Parameters
+  - name: Processes
+  - name: Root
+  - name: RpcBulk
+  - name: RpcCommands
+  - name: RpcInstance
+  - name: RpcLog
+  - name: RpcPreExecution
+  - name: RpcRuntime
+  - name: RpcScheme
+  - name: RpcState
+  - name: Runtimes
+  - name: Schemes
+  - name: Statuses
+  - name: Timers
+  - name: Transitions

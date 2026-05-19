@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using OptimaJet.Workflow.Api;
 using OptimaJet.Workflow.Api.Mongo;
 using OptimaJet.Workflow.Api.Mssql;
@@ -208,8 +208,7 @@ public class AppBuilder
             Description = "Please insert JWT Bearer token into field"
         });
         
-        options.OperationFilter<SecurityOperationFilter>();
-        options.OperationFilter<OperationIdOperationFilter>();
+        options.DocumentFilter<SecurityOperationFilter>();
     }
 
     private static void ConfigureCore(WorkflowApiCoreOptions options)

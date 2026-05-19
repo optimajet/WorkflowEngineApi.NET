@@ -262,7 +262,7 @@ public class UpdateTests
         await using var context = service.Repository.Use();
         var repository = service.Repository.Schemes;
         var api = service.Client.Schemes;
-
+  
         var code = "Code";
         var exist = SchemeHelper.Generate();
         var request = new SchemeUpdateRequest

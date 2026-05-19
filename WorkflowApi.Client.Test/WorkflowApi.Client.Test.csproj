@@ -2,7 +2,7 @@
     <!-- Build -->
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
-        <LangVersion>12</LangVersion>
+        <LangVersion>14</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -13,6 +13,8 @@
     </PropertyGroup>
     <!-- Dependencies -->
     <ItemGroup>
+        <PackageReference Include="SharpCompress" />
+        <PackageReference Include="Snappier" />
         <ProjectReference Include="..\WorkflowApi.Client\WorkflowApi.Client.csproj" />
         <ProjectReference Include="..\WorkflowApi\WorkflowApi.csproj" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" />

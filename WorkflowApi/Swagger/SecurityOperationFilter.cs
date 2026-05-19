@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace WorkflowApi.Swagger;
 
 /// <summary>
-/// An operation filter that adds security requirements to operations based on the presence of authorize attributes.
+/// A document filter that adds security requirements to operations based on endpoint metadata.
 /// </summary>
-public class SecurityOperationFilter : IOperationFilter
+public class SecurityOperationFilter : IDocumentFilter
 {
     public IOptions<AuthenticationOptions> AuthenticationOptions { get; }
 
@@ -18,66 +18,107 @@ public class SecurityOperationFilter : IOperationFilter
         AuthenticationOptions = authenticationOptions;
     }
 
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
     {
-        var classAuthorize = context
-            .MethodInfo.DeclaringType?
-            .GetCustomAttributes(true)
-            .OfType<IAuthorizeData>()
-            .FirstOrDefault();
-        
-        var methodAuthorize = context
-            .MethodInfo
-            .GetCustomAttributes(true)
-            .OfType<IAuthorizeData>()
-            .FirstOrDefault();
-        
-        var classAllowAnonymous = context
-            .MethodInfo.DeclaringType?
-            .GetCustomAttributes(true)
-            .OfType<IAllowAnonymous>()
-            .Any() ?? false;
-        
-        var methodAllowAnonymous = context
-            .MethodInfo
-            .GetCustomAttributes(true)
-            .OfType<IAllowAnonymous>()
-            .Any();
-        
-        if (methodAllowAnonymous) return;
-        if (classAllowAnonymous && methodAuthorize == null) return;
-        
-        var authorize = methodAuthorize ?? classAuthorize;
-        if (authorize == null) return;
+        var defaultSchemes = GetSchemes(null);
 
-        var schemesString = authorize.AuthenticationSchemes 
-                            ?? AuthenticationOptions.Value.DefaultAuthenticateScheme 
-                            ?? AuthenticationOptions.Value.DefaultScheme;
-        
-        var schemes = schemesString?.Split(",") ?? [];
-        
-        var securityRequirements = new OpenApiSecurityRequirement();
-        
-        foreach (var scheme in schemes)
+        foreach (var apiDescription in context.ApiDescriptions)
         {
-            securityRequirements.Add(GetSecurityScheme(scheme), []);
-        }
-        
-        operation.Security = new List<OpenApiSecurityRequirement>
-        {
-            securityRequirements
-        };
-    }
-    
-    private OpenApiSecurityScheme GetSecurityScheme(string scheme)
-    {
-        return new()
-        {
-            Reference = new()
+            var path = "/" + apiDescription.RelativePath!.TrimStart('/');
+            if (path.StartsWith("/auth", StringComparison.OrdinalIgnoreCase))
             {
-                Type = ReferenceType.SecurityScheme,
-                Id = scheme
+                continue;
             }
-        };
+
+            var endpointMetadata = apiDescription.ActionDescriptor.EndpointMetadata ?? [];
+            if (endpointMetadata.OfType<IAllowAnonymous>().Any())
+            {
+                continue;
+            }
+
+            var authorize = endpointMetadata.OfType<IAuthorizeData>().FirstOrDefault();
+            if (!swaggerDoc.Paths.TryGetValue(path, out var pathItem))
+            {
+                continue;
+            }
+
+            if (pathItem.Operations == null)
+            {
+                continue;
+            }
+
+            var operation = pathItem.Operations
+                .FirstOrDefault(pair => String.Equals(pair.Key.ToString(), apiDescription.HttpMethod, StringComparison.OrdinalIgnoreCase))
+                .Value;
+
+            if (operation == null)
+            {
+                continue;
+            }
+
+            var securityRequirements = new OpenApiSecurityRequirement();
+            foreach (var scheme in GetSchemes(authorize))
+            {
+                securityRequirements.Add(new OpenApiSecuritySchemeReference(scheme, swaggerDoc, null), []);
+            }
+
+            operation.Security = [securityRequirements];
+        }
+
+        foreach (var pathItem in swaggerDoc.Paths)
+        {
+            if (pathItem.Key.StartsWith("/auth", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            if (pathItem.Value.Operations == null)
+            {
+                continue;
+            }
+
+            foreach (var operation in pathItem.Value.Operations.Values)
+            {
+                if (operation.Security != null && operation.Security.Count > 0)
+                {
+                    continue;
+                }
+
+                var securityRequirements = new OpenApiSecurityRequirement();
+                foreach (var scheme in defaultSchemes)
+                {
+                    securityRequirements.Add(new OpenApiSecuritySchemeReference(scheme, swaggerDoc, null), []);
+                }
+
+                operation.Security = [securityRequirements];
+            }
+        }
+    }
+
+    private string[] GetSchemes(IAuthorizeData? authorize)
+    {
+        var schemes = SplitSchemes(authorize?.AuthenticationSchemes);
+
+        if (schemes.Length > 0)
+        {
+            return schemes;
+        }
+
+        schemes = SplitSchemes(AuthenticationOptions.Value.DefaultAuthenticateScheme);
+        if (schemes.Length > 0)
+        {
+            return schemes;
+        }
+
+        return SplitSchemes(AuthenticationOptions.Value.DefaultScheme);
+    }
+
+    private static string[] SplitSchemes(string? schemes)
+    {
+        return schemes?
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Where(scheme => !String.IsNullOrWhiteSpace(scheme))
+            .ToArray()
+            ?? [];
     }
 }
