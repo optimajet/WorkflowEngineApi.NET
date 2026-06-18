@@ -152,8 +152,8 @@ namespace WorkflowApi.Client.Api
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>Dictionary&lt;string, BooleanBulkTaskResult&gt;</returns>
-        Dictionary<string, BooleanBulkTaskResult> WorkflowApiRpcBulkIsProcessExists(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0);
+        /// <returns>Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;</returns>
+        Dictionary<string, BooleanNullableBulkTaskResult> WorkflowApiRpcBulkIsProcessExists(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0);
 
         /// <summary>
         /// Check existence of multiple process instances.
@@ -164,8 +164,8 @@ namespace WorkflowApi.Client.Api
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Dictionary&lt;string, BooleanBulkTaskResult&gt;</returns>
-        ApiResponse<Dictionary<string, BooleanBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfo(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0);
+        /// <returns>ApiResponse of Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;</returns>
+        ApiResponse<Dictionary<string, BooleanNullableBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfo(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0);
         /// <summary>
         /// Update multiple schemes of process instances if they are obsolete.
         /// </summary>
@@ -355,8 +355,8 @@ namespace WorkflowApi.Client.Api
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Dictionary&lt;string, BooleanBulkTaskResult&gt;</returns>
-        System.Threading.Tasks.Task<Dictionary<string, BooleanBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;</returns>
+        System.Threading.Tasks.Task<Dictionary<string, BooleanNullableBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Check existence of multiple process instances.
@@ -368,8 +368,8 @@ namespace WorkflowApi.Client.Api
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Dictionary&lt;string, BooleanBulkTaskResult&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Dictionary<string, BooleanBulkTaskResult>>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfoAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Dictionary<string, BooleanNullableBulkTaskResult>>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfoAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update multiple schemes of process instances if they are obsolete.
         /// </summary>
@@ -1469,10 +1469,10 @@ namespace WorkflowApi.Client.Api
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>Dictionary&lt;string, BooleanBulkTaskResult&gt;</returns>
-        public Dictionary<string, BooleanBulkTaskResult> WorkflowApiRpcBulkIsProcessExists(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0)
+        /// <returns>Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;</returns>
+        public Dictionary<string, BooleanNullableBulkTaskResult> WorkflowApiRpcBulkIsProcessExists(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0)
         {
-            WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanBulkTaskResult>> localVarResponse = WorkflowApiRpcBulkIsProcessExistsWithHttpInfo(bulkIsProcessExistsRequest);
+            WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanNullableBulkTaskResult>> localVarResponse = WorkflowApiRpcBulkIsProcessExistsWithHttpInfo(bulkIsProcessExistsRequest);
             return localVarResponse.Data;
         }
 
@@ -1482,8 +1482,8 @@ namespace WorkflowApi.Client.Api
         /// <exception cref="WorkflowApi.Client.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Dictionary&lt;string, BooleanBulkTaskResult&gt;</returns>
-        public WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfo(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0)
+        /// <returns>ApiResponse of Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;</returns>
+        public WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanNullableBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfo(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0)
         {
             // verify the required parameter 'bulkIsProcessExistsRequest' is set
             if (bulkIsProcessExistsRequest == null)
@@ -1527,7 +1527,7 @@ namespace WorkflowApi.Client.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Dictionary<string, BooleanBulkTaskResult>>("/workflow-api/rpc/bulk-is-process-exists", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<Dictionary<string, BooleanNullableBulkTaskResult>>("/workflow-api/rpc/bulk-is-process-exists", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("WorkflowApiRpcBulkIsProcessExists", localVarResponse);
@@ -1547,10 +1547,10 @@ namespace WorkflowApi.Client.Api
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Dictionary&lt;string, BooleanBulkTaskResult&gt;</returns>
-        public async System.Threading.Tasks.Task<Dictionary<string, BooleanBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;</returns>
+        public async System.Threading.Tasks.Task<Dictionary<string, BooleanNullableBulkTaskResult>> WorkflowApiRpcBulkIsProcessExistsAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanBulkTaskResult>> localVarResponse = await WorkflowApiRpcBulkIsProcessExistsWithHttpInfoAsync(bulkIsProcessExistsRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanNullableBulkTaskResult>> localVarResponse = await WorkflowApiRpcBulkIsProcessExistsWithHttpInfoAsync(bulkIsProcessExistsRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1561,8 +1561,8 @@ namespace WorkflowApi.Client.Api
         /// <param name="bulkIsProcessExistsRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Dictionary&lt;string, BooleanBulkTaskResult&gt;)</returns>
-        public async System.Threading.Tasks.Task<WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanBulkTaskResult>>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfoAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (Dictionary&lt;string, BooleanNullableBulkTaskResult&gt;)</returns>
+        public async System.Threading.Tasks.Task<WorkflowApi.Client.Client.ApiResponse<Dictionary<string, BooleanNullableBulkTaskResult>>> WorkflowApiRpcBulkIsProcessExistsWithHttpInfoAsync(BulkIsProcessExistsRequest bulkIsProcessExistsRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'bulkIsProcessExistsRequest' is set
             if (bulkIsProcessExistsRequest == null)
@@ -1607,7 +1607,7 @@ namespace WorkflowApi.Client.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Dictionary<string, BooleanBulkTaskResult>>("/workflow-api/rpc/bulk-is-process-exists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Dictionary<string, BooleanNullableBulkTaskResult>>("/workflow-api/rpc/bulk-is-process-exists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

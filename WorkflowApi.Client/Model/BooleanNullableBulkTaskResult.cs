@@ -26,10 +26,10 @@ using OpenAPIDateConverter = WorkflowApi.Client.Client.OpenAPIDateConverter;
 namespace WorkflowApi.Client.Model
 {
     /// <summary>
-    /// BooleanBulkTaskResult
+    /// BooleanNullableBulkTaskResult
     /// </summary>
-    [DataContract(Name = "BooleanBulkTaskResult")]
-    public partial class BooleanBulkTaskResult : IValidatableObject
+    [DataContract(Name = "BooleanNullableBulkTaskResult")]
+    public partial class BooleanNullableBulkTaskResult : IValidatableObject
     {
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace WorkflowApi.Client.Model
         [DataMember(Name = "state", EmitDefaultValue = false)]
         public BulkTaskState? State { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BooleanBulkTaskResult" /> class.
+        /// Initializes a new instance of the <see cref="BooleanNullableBulkTaskResult" /> class.
         /// </summary>
         /// <param name="state">state.</param>
         /// <param name="result">result.</param>
@@ -46,7 +46,7 @@ namespace WorkflowApi.Client.Model
         /// <param name="startedAt">startedAt.</param>
         /// <param name="finalizedAt">finalizedAt.</param>
         /// <param name="duration">duration.</param>
-        public BooleanBulkTaskResult(BulkTaskState? state = default(BulkTaskState?), bool result = default(bool), ExceptionModel exception = default(ExceptionModel), DateTimeOffset? startedAt = default(DateTimeOffset?), DateTimeOffset? finalizedAt = default(DateTimeOffset?), string duration = default(string))
+        public BooleanNullableBulkTaskResult(BulkTaskState? state = default(BulkTaskState?), bool? result = default(bool?), ExceptionModel exception = default(ExceptionModel), DateTimeOffset? startedAt = default(DateTimeOffset?), DateTimeOffset? finalizedAt = default(DateTimeOffset?), string duration = default(string))
         {
             this.State = state;
             this.Result = result;
@@ -60,7 +60,7 @@ namespace WorkflowApi.Client.Model
         /// Gets or Sets Result
         /// </summary>
         [DataMember(Name = "result", EmitDefaultValue = true)]
-        public bool Result { get; set; }
+        public bool? Result { get; set; }
 
         /// <summary>
         /// Gets or Sets Exception
@@ -93,7 +93,7 @@ namespace WorkflowApi.Client.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BooleanBulkTaskResult {\n");
+            sb.Append("class BooleanNullableBulkTaskResult {\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Result: ").Append(Result).Append("\n");
             sb.Append("  Exception: ").Append(Exception).Append("\n");

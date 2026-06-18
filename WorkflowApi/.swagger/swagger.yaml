@@ -1426,7 +1426,7 @@ paths:
               schema:
                 type: object
                 additionalProperties:
-                  $ref: '#/components/schemas/BooleanBulkTaskResult'
+                  $ref: '#/components/schemas/BooleanNullableBulkTaskResult'
         '400':
           description: Bad Request
           content:
@@ -3881,13 +3881,14 @@ components:
           type: integer
           format: int64
       additionalProperties: false
-    BooleanBulkTaskResult:
+    BooleanNullableBulkTaskResult:
       type: object
       properties:
         state:
           $ref: '#/components/schemas/BulkTaskState'
         result:
           type: boolean
+          nullable: true
         exception:
           $ref: '#/components/schemas/ExceptionModel'
         startedAt:

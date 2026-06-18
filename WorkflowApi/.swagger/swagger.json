@@ -2378,7 +2378,7 @@
                 "schema": {
                   "type": "object",
                   "additionalProperties": {
-                    "$ref": "#/components/schemas/BooleanBulkTaskResult"
+                    "$ref": "#/components/schemas/BooleanNullableBulkTaskResult"
                   }
                 }
               }
@@ -6455,14 +6455,15 @@
         },
         "additionalProperties": false
       },
-      "BooleanBulkTaskResult": {
+      "BooleanNullableBulkTaskResult": {
         "type": "object",
         "properties": {
           "state": {
             "$ref": "#/components/schemas/BulkTaskState"
           },
           "result": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "exception": {
             "$ref": "#/components/schemas/ExceptionModel"
