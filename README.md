@@ -16,7 +16,7 @@ Learn more about Workflow Engine API on the [documentation website](https://work
 
 ## Get Started
 
-1. Install the [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
+1. Install the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0).
 2. Install [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4)
    version 7 or higher.
 3. Install and run [Docker](https://www.docker.com/products/docker-desktop/).
